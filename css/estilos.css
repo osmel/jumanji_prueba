@@ -60,6 +60,95 @@
     padding: 12px 0px;
     margin-bottom: 25px;
 }
+
+
+  .generalsinborde img{
+    width: 100%;
+    
+  }
+  .vigencia{
+    color: #ffffff;
+  }
+  .imagen img{
+        padding: 0px 30px 30px 30px;
+  }
+  .alto1{
+    margin-bottom: 71px;
+    margin-top: 40px;
+  }
+  .alto2{
+    
+  }
+  .headera span{
+        padding: 25px;
+    display: inline-block;
+    font-size: 18px;
+    color: #ffffff;
+        padding: 25px 9px;
+  }
+  footer{
+    margin-top: 90px;
+   }
+  @media only screen and (max-width : 1024px) {
+    .headera span{
+    padding: 20px 9px;
+    font-size: 16px;
+    
+   }
+   footer{
+    margin-top: 90px;
+    text-align: center;
+   }
+  }
+  @media only screen and (max-width : 768px) {
+    .headera span{
+    padding: 12px 9px;
+    font-size: 14px;
+    
+   }
+   .logo1a{
+        width: 254px;
+   }
+   footer{
+    margin-top: 90px;
+    text-align: center;
+   }
+   .vigencia{
+    text-align: center;
+   }
+  }
+  @media only screen and (max-width : 480px) {
+    body{
+      background-size: cover;
+      padding-bottom: 60px;
+    }
+    .alto1{
+      margin-top: 0px;
+    }
+     .alto2{
+      margin-top: 30px;
+    }
+    .generalsinborde{
+      margin-top: 190px;
+    }
+    .imagen img{
+      padding: 0px;
+      padding-top: 20px !important;
+    }
+    .headera span{
+    padding: 12px 9px;
+    font-size: 11px;
+    
+   }
+   footer{
+    margin-top: 90px;
+    text-align: center;
+   }
+   .vigencia{
+    text-align: center;
+   }
+  }
+
 .amarillo{
   color: yellow;
 }
@@ -960,9 +1049,7 @@ footer {
   color: #fff;
 }
 
-footer .copy > p:first-child {
-  font-size: 20px;
-}
+
 
 footer .vigencia {
   font-size: 15px;

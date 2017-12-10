@@ -110,9 +110,9 @@
 				
 					
              <?php }else{ ?>
-					<!-- <li>
+					 <li>
 					<a href="<?php echo base_url(); ?>registro_usuario" class="">crear cuenta</a> 
-				</li> -->
+				</li> 
              <?php } ?> 
             
 			

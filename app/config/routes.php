@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------------
-| URI ROUTING
+| URI ROUTING 
 | -------------------------------------------------------------------------
 | This file lets you re-map URI requests to specific controller functions.
 |
@@ -69,6 +69,10 @@ $route['eleccion_premio']							= 'home/eleccion_premio';
 $route['registro_usuario']        = 'registro/nuevo_registro';
 $route['validar_registros']        = 'registro/validar_registros';
 
+$route['nuevo_invitado/(:any)']        = 'registro/nuevo_invitado/$1';
+$route['validar_invitado']        = 'registro/validar_invitado';
+
+
 $route['ingresar_usuario']        = 'registro/ingresar_usuario';
 $route['validar_login_participante']        = 'registro/validar_login_participante';
 
@@ -77,6 +81,8 @@ $route['validar_recuperar_participante']	= 'registro/validar_recuperar_participa
 
 $route['desconectar']							= 'registro/desconectar_participante';
 
+/////////////////////////////////////////////INSTRUCCIONES/////////////////////////////////////////////////////////
+$route['proc_modal_instrucciones']		= 'registro/proc_modal_instrucciones';
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////Juegos//////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,7 +205,7 @@ $route['tabla_general']      = 'registro/tabla_general';
 
 
 
-$route['proc_modal_instrucciones']		= 'registro/proc_modal_instrucciones';
+
 
 $route['proc_modal_cero_puntos']		= 'registro/proc_modal_cero_puntos';
 

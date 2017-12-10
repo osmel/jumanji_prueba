@@ -18,62 +18,73 @@ class Home extends CI_Controller {
 ///////////juego//////////////////////
    function tarjetas(){
 
-		if ( ($this->session->userdata( 'session_participante' ) !== TRUE ) ||  ( substr_count($this->session->userdata('tarjeta_participante'),';')>=5) )   { //(no registrado) o (registrado y completado)
-			 redirect('');
-		} else {
-			 $data['pregunta1'] = $this->modelo_registro->get_preguntas($this->session->userdata('pregunta1'));
-			 $data['pregunta2'] = $this->modelo_registro->get_preguntas($this->session->userdata('pregunta2'));
-			 $data['pregunta3'] = $this->modelo_registro->get_preguntas($this->session->userdata('pregunta3'));
-			 $data['pregunta4'] = $this->modelo_registro->get_preguntas($this->session->userdata('pregunta4'));
-			 $data['pregunta5'] = $this->modelo_registro->get_preguntas($this->session->userdata('pregunta5'));
-			 //print_r($data['pregunta1']);die;
+   		//||  ( substr_count($this->session->userdata('tarjeta_participante'),';')>=5) )
+
+		if ( ($this->session->userdata( 'session_participante' ) == TRUE )) { //(no registrado) o (registrado y completado)
+
+			 $preg = $this->modelo_registro->get_datos();
+
+			 $data['tarjeta'] = $preg->tarjeta;
+			 
+			 $preg_cara= str_replace("[", "", $preg->cara);
+			 $preg_cara= str_replace("]", "", $preg_cara);
+			 $data['cara'] = explode(",", $preg_cara);
+
+
+			 $preg_misdatos= str_replace("[", "", $preg->misdatos);
+			 $preg_misdatos= str_replace("]", "", $preg_misdatos);
+
+			 $data['misdatos'] = explode(",", $preg_misdatos);
+
+		
+
 			 $this->load->view( 'juegos/tarjetas', $data);
+
+			 
+		} else {
+			redirect('');
 		}
 
 	}
 
-
-
-	//formato  fig+resp-tiempo;
-	function respuesta_tarjeta(){ 
-		//$this->load->view( 'dashboard/tarjetas' );
-		$figura =  $this->input->post( 'figura' );
-		$respuesta =  $this->input->post( 'respuesta' );
-		$tiempo =  $this->input->post( 'tiempo' );
-
-		$preg = $this->modelo_registro->get_preguntas($this->session->userdata('pregunta'.$figura));
-
-		$data['id_pregunta'] = $preg->id;
-
-		$data['responder'] = (int)($respuesta ==$preg->respuesta);
-		$data['formato'] = $this->session->userdata('tarjeta_participante').$figura.'+'.$respuesta.'-'.$data['responder'].'*'.$data['id_pregunta'].'|'.$tiempo.';';
-
-		//$data['formato'] = $this->session->userdata('tarjeta_participante').$figura.'+'.$respuesta.'-'.$tiempo.';';
-		//if guarda bien entonces
-		$data 		  		= $this->security->xss_clean( $data );
-		$guardar	 		= $this->modelo_registro->actualizar_respuesta_tarjeta( $data );
-			
-		if ( $guardar !== FALSE ){  
-			$this->session->set_userdata('tarjeta_participante', $data['formato']);
-		}	
-
-
-		if  ( substr_count($this->session->userdata('tarjeta_participante'),';')<5) {
-				$data['redireccion']='tarjetas';
-		} else if ( strlen($this->session->userdata('juego_participante'))!=3) {
-				$data['redireccion']= 'juegos';		
-				//$data['redireccion']= 'modal_tarjeta';		que esta redireccionará al juego
-		} else {
-				$data['redireccion'] = '';	
-		}	
+	/*
+SELECT AES_DECRYPT( email,  'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5' ) AS email, AES_DECRYPT( tarjeta, 'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5' ) AS tarjeta
+FROM calimax_participantes
 
 		//https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_clearinterval
 		//A script on this page starts this clock php
 		//https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/
 
+		//$this->load->view( 'dashboard/tarjetas' );
+
+			// print_r($data);
+
+			 //print_r(  $data['fichas']->cara  );
+			 //die;
+	*/
+
+	//formato  fig+resp-tiempo;
+	function respuesta_tarjeta(){ 
 		
+
+		$posicion =  $this->input->post( 'posicion' );
+		$numero =  $this->input->post( 'numero' );
+		$cara =  $this->input->post( 'cara' );
+
+		$data['formato'] = $posicion.'+'.$numero.'|'.$cara.';';
+
+		//if guarda bien entonces
+		$data 		  		= $this->security->xss_clean( $data );
+		$guardar	 		= $this->modelo_registro->actualizar_respuesta_tarjeta( $data );
+		
+		if  ( substr_count($guardar,';') <5) {
+				$data['redireccion']='no'; //tarjetas
+		} else {
+				$data['redireccion'] = '';	
+		}	
+
 		echo json_encode($data);        
-                            
+                           
 	}
 
 

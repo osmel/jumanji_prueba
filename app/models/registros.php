@@ -34,6 +34,46 @@
 
 		}
 
+
+        public function agregar_datos($data){
+
+             //$this->db->set( 'cara', "AES_ENCRYPT('{$data['juego']}','{$this->key_hash}')", FALSE );
+             $this->db->set( 'cara', "AES_ENCRYPT('{$data['cara']}','{$this->key_hash}')", FALSE );
+             $this->db->set( 'misdatos', "AES_ENCRYPT('{$data['misdatos']}','{$this->key_hash}')", FALSE );
+             
+            
+             $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            
+             $this->db->update($this->participantes );
+  
+              if ($this->db->affected_rows() > 0){
+                    return TRUE;
+                } else {
+                    return FALSE;
+                }
+                $result->free_result();
+
+        }
+
+
+        public function get_datos(){
+            
+            $this->db->select("AES_DECRYPT(cara,'{$this->key_hash}') AS cara", FALSE);      
+            $this->db->select("AES_DECRYPT(misdatos,'{$this->key_hash}') AS misdatos", FALSE);      
+            $this->db->select("AES_DECRYPT(tarjeta,'{$this->key_hash}') AS tarjeta", FALSE);      
+
+            $this->db->from($this->participantes);
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            $preg = $this->db->get();
+            if ($preg->num_rows() > 0)
+              return $preg->row();
+            else
+              return TRUE;
+            $login->free_result();
+        }
+
+
+
         public function listado_preguntas(){
             $this->db->select( 'id, pregunta, a, b,c, respuesta' );
             $preguntas = $this->db->get($this->catalogo_preguntas );
@@ -69,7 +109,7 @@
             $this->db->set( 'tarjeta', "AES_ENCRYPT('','{$this->key_hash}')", FALSE );  //total comienza en 0
             $this->db->set( 'juego', "AES_ENCRYPT('','{$this->key_hash}')", FALSE );  //total comienza en 0
 
-            $this->db->set( 'id_perfil', $data['id_perfil']);
+            $this->db->set( 'id_perfil', $data['id_perfil']);  //4 jefe participante
             $this->db->set( 'creacion',  gmt_to_local( $timestamp, $this->timezone, TRUE) );
             $this->db->set( 'fecha_pc',  gmt_to_local( $timestamp, $this->timezone, TRUE) );  //fecha cdo se registro
             $this->db->set( 'id', "UUID()", FALSE); //id
@@ -80,12 +120,57 @@
 
 
             //$this->db->set( 'id_estado', $data['id_estado']);
-	   $this->db->set( 'ciudad', "AES_ENCRYPT('{$data['ciudad']}','{$this->key_hash}')", FALSE );
+	          $this->db->set( 'ciudad', "AES_ENCRYPT('{$data['ciudad']}','{$this->key_hash}')", FALSE );
             $this->db->set( 'celular', "AES_ENCRYPT('{$data['celular']}','{$this->key_hash}')", FALSE );
             $this->db->set( 'email', "AES_ENCRYPT('{$data['email']}','{$this->key_hash}')", FALSE );
+
+            $this->db->set( 'equipo', "AES_ENCRYPT('{$data['equipo']}','{$this->key_hash}')", FALSE );
+            $this->db->set( 'email_invitado', "AES_ENCRYPT('{$data['email_invitado']}','{$this->key_hash}')", FALSE );
             $this->db->set( 'contrasena', "AES_ENCRYPT('{$data['contrasena']}','{$this->key_hash}')", FALSE );
 
-            //$this->db->insert($this->participantes );
+            $this->db->insert($this->participantes );
+
+            if ($this->db->affected_rows() > 0){
+                  return TRUE;
+                } else {
+                    return FALSE;
+                }
+                $result->free_result();
+            
+        }
+
+
+   //agregar participante
+    public function anadir_invitado( $data ){
+            $timestamp = time();
+
+            
+            $this->db->set( 'total', "AES_ENCRYPT(0,'{$this->key_hash}')", FALSE );  //total comienza en 0
+            $this->db->set( 'tarjeta', "AES_ENCRYPT('','{$this->key_hash}')", FALSE );  //total comienza en 0
+            $this->db->set( 'juego', "AES_ENCRYPT('','{$this->key_hash}')", FALSE );  //total comienza en 0
+
+            $this->db->set( 'id_perfil', $data['id_perfil']); //4 invitado
+            $this->db->set( 'creacion',  gmt_to_local( $timestamp, $this->timezone, TRUE) );
+            $this->db->set( 'fecha_pc',  gmt_to_local( $timestamp, $this->timezone, TRUE) );  //fecha cdo se registro
+            $this->db->set( 'id', "UUID()", FALSE); //id
+
+            $this->db->set( 'nombre', "AES_ENCRYPT('{$data['nombre']}','{$this->key_hash}')", FALSE );
+            $this->db->set( 'apellidos', "AES_ENCRYPT('{$data['apellidos']}','{$this->key_hash}')", FALSE );
+            $this->db->set( 'fecha_nac', strtotime(date( "d-m-Y", strtotime($data['fecha_nac']) )) ,false);
+
+
+            //$this->db->set( 'id_estado', $data['id_estado']);
+            $this->db->set( 'ciudad', "AES_ENCRYPT('{$data['ciudad']}','{$this->key_hash}')", FALSE );
+            $this->db->set( 'celular', "AES_ENCRYPT('{$data['celular']}','{$this->key_hash}')", FALSE );
+            $this->db->set( 'email', "AES_ENCRYPT('{$data['email']}','{$this->key_hash}')", FALSE );
+
+            $this->db->set( 'equipo', "AES_ENCRYPT('{$data['equipo']}','{$this->key_hash}')", FALSE );
+            
+            $this->db->set( 'contrasena', "AES_ENCRYPT('{$data['contrasena']}','{$this->key_hash}')", FALSE );
+
+            $this->db->set( 'id_jefe', $this->db->escape($data['id']) , FALSE );  //id del jefe participante
+
+            $this->db->insert($this->participantes );
 
             if ($this->db->affected_rows() > 0){
                   return TRUE;
@@ -109,6 +194,9 @@
           $this->db->select("AES_DECRYPT(p.tarjeta,'{$this->key_hash}') AS tarjeta", FALSE);
           $this->db->select("AES_DECRYPT(p.juego,'{$this->key_hash}') AS juego", FALSE);
 
+          $this->db->select("AES_DECRYPT(p.email_invitado,'{$this->key_hash}') AS email_invitado", FALSE);      
+          $this->db->select("AES_DECRYPT(p.equipo,'{$this->key_hash}') AS equipo", FALSE);      
+
           $this->db->from($this->participantes.' as p');
             
           $this->db->where('p.email', "AES_ENCRYPT('{$data['email']}','{$this->key_hash}')", FALSE); 
@@ -123,6 +211,36 @@
         }        
 
 
+        public function datos_jefe_equipo($id){
+
+         // $id = $this->db->escape($id);
+
+             $this->db->select("id", FALSE);           
+          $this->db->select("AES_DECRYPT(p.email,'{$this->key_hash}') AS email", FALSE);      
+          $this->db->select("AES_DECRYPT(p.nombre,'{$this->key_hash}') AS nombre", FALSE);      
+          $this->db->select("AES_DECRYPT(p.apellidos,'{$this->key_hash}') AS apellidos", FALSE);      
+          $this->db->select("AES_DECRYPT(p.celular,'{$this->key_hash}') AS celular", FALSE);      
+          $this->db->select("AES_DECRYPT(p.contrasena,'{$this->key_hash}') AS contrasena", FALSE);
+
+          $this->db->select("AES_DECRYPT(p.tarjeta,'{$this->key_hash}') AS tarjeta", FALSE);
+          $this->db->select("AES_DECRYPT(p.juego,'{$this->key_hash}') AS juego", FALSE);
+
+          $this->db->select("AES_DECRYPT(p.email_invitado,'{$this->key_hash}') AS email_invitado", FALSE);      
+          $this->db->select("AES_DECRYPT(p.equipo,'{$this->key_hash}') AS equipo", FALSE);      
+
+          $this->db->from($this->participantes.' as p');
+            
+            $this->db->where('p.id', $this->db->escape($id), false); 
+          //$this->db->where('p.email', "AES_ENCRYPT('{$data['email']}','{$this->key_hash}')", FALSE); 
+          //$this->db->where('p.contrasena', "AES_ENCRYPT('{$data['contrasena']}','{$this->key_hash}')", FALSE);
+          $login = $this->db->get();
+
+          if ($login->num_rows() > 0)
+            return $login->row();
+          else 
+            return FALSE;
+          $login->free_result();
+        }   
 
       //agregar a la bitacora de participante sus accesos  
        public function anadir_historico_acceso($data){
@@ -145,16 +263,31 @@
 
         }
 
+/*
+select 
+  AES_DECRYPT( email,'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5') AS email,
+  AES_DECRYPT( tarjeta,'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5') AS tarjeta
+from 
+  calimax_participantes
+  */
 
         public function actualizar_respuesta_tarjeta($data){
 
-            $this->db->set( 'tarjeta', "AES_ENCRYPT('{$data['formato']}','{$this->key_hash}')", FALSE );
+            $this->db->select("AES_DECRYPT(tarjeta,'{$this->key_hash}') AS tarjeta", FALSE);      
+            $this->db->from($this->participantes);
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            $preg = $this->db->get();
+              //return $preg->row();
+
+
+            $data["formato"] =trim($preg->row()->tarjeta).trim($data["formato"]);
+            $this->db->set( 'tarjeta', "AES_ENCRYPT(' {$data["formato"]}  ','{$this->key_hash}')", FALSE );
             $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
             
-             //$this->db->update($this->participantes );
+             $this->db->update($this->participantes );
   
               if ($this->db->affected_rows() > 0){
-                    return TRUE;
+                    return json_encode($data["formato"]);
                 } else {
                     return FALSE;
                 }
@@ -169,7 +302,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
         public function listado_imagenes(){
 
-            $this->db->select('c.id, c.nombre, c.valor, c.activo, c.puntos');
+            $this->db->select('c.id, c.nombre, c.valor, c.activo, c.puntos, c.porciento');
             $this->db->from($this->catalogo_imagenes.' as c');
             $this->db->where('c.activo',0);
             $result = $this->db->get();
@@ -192,7 +325,7 @@
             
              $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
             
-             //$this->db->update($this->participantes );
+             $this->db->update($this->participantes );
   
               if ($this->db->affected_rows() > 0){
                     return TRUE;
@@ -310,7 +443,7 @@ redes
             $this->db->set( 'redes', 1, FALSE );
             $this->db->where('id_participante', $id_participante);  
             $this->db->where("AES_DECRYPT(ticket,'{$this->key_hash}')", '"'.$num_ticket_participante.'"',false);  
-            //$this->db->update($this->registro_participantes );
+            $this->db->update($this->registro_participantes );
 
 
             if ($this->db->affected_rows() > 0){
@@ -335,7 +468,7 @@ redes
 
 
               $this->db->where('id', $id_participante);   
-            //$this->db->update($this->participantes );
+            $this->db->update($this->participantes );
             
 
         }           
@@ -362,7 +495,7 @@ redes
             $this->db->set( 'compra', strtotime(date( "d-m-Y", strtotime($data['compra']) )) ,false);
             //$this->db->set( 'id_litraje', $data['id_litraje'], FALSE );
             $this->db->set( 'cantidad', $data['cantidad'], FALSE );
-            //$this->db->insert($this->registro_participantes );
+            $this->db->insert($this->registro_participantes );
 
 
             if ($this->db->affected_rows() > 0){
@@ -390,7 +523,7 @@ redes
               $this->db->where('id', $id_participante);   
             //$this->db->where('id', '"'.$id_participante.'"',false); // id del usuario que se registro
 
-            //$this->db->update($this->participantes );
+            $this->db->update($this->participantes );
             
 
         }    
@@ -448,7 +581,11 @@ redes
 		public function check_correo_existente($data){
 			$this->db->select("AES_DECRYPT(email,'{$this->key_hash}') AS email", FALSE);			
 			$this->db->from($this->participantes);
+
 			$this->db->where('email',"AES_ENCRYPT('{$data['email']}','{$this->key_hash}')",FALSE);
+      $this->db->or_where('email',"AES_ENCRYPT('{$data['email_invitado']}','{$this->key_hash}')",FALSE);
+      $this->db->or_where('email_invitado',"AES_ENCRYPT('{$data['email']}','{$this->key_hash}')",FALSE);
+      $this->db->or_where('email_invitado',"AES_ENCRYPT('{$data['email_invitado']}','{$this->key_hash}')",FALSE);
 			$login = $this->db->get();
 			if ($login->num_rows() > 0)
 				return FALSE;

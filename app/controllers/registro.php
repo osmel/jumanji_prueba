@@ -61,6 +61,10 @@ function validar_registros(){
 			$this->form_validation->set_rules( 'ciudad', 'Cd. de compra', 'trim|required|callback_nombre_valido|min_length[3]|max_length[50]|xss_clean');
 			$this->form_validation->set_rules( 'celular', 'Celular', 'trim|required|numeric|min_length[10]|callback_valid_phone|xss_clean');
 			$this->form_validation->set_rules( 'email', 'Correo', 'trim|required|valid_email|xss_clean');
+
+			$this->form_validation->set_rules( 'equipo', 'Equipo', 'trim|required|min_length[3]|max_length[50]|xss_clean');
+			$this->form_validation->set_rules( 'email_invitado', 'Invitado', 'trim|required|valid_email|xss_clean');
+			
 			
 			$this->form_validation->set_rules( 'pass_1', 'La contraseña', 'required|trim|min_length[8]|xss_clean');
 			$this->form_validation->set_rules( 'pass_2', 'Confirmación de contraseña', 'required|trim|min_length[8]|xss_clean');
@@ -82,6 +86,8 @@ function validar_registros(){
 					   "ciudad"=>'',
 					    "celular" =>  '',
 					    "email" =>  '',
+					    "equipo"=>'',
+					    "email_invitado"=>'',
 
 					    'pass_1'=> '',
 					    'pass_2'=>  '',
@@ -97,6 +103,7 @@ function validar_registros(){
 
 				if ($this->input->post( 'pass_1' ) === $this->input->post( 'pass_2' ) ){
 					$data['email']			=	$this->input->post('email');
+					$data['email_invitado']			=	$this->input->post('email_invitado');
 					$data['contrasena']		=	$this->input->post('pass_1');
 					$data 				= 	$this->security->xss_clean($data);  
 					$login_check = $this->modelo_registro->check_correo_existente($data);
@@ -111,12 +118,18 @@ function validar_registros(){
 
 						$usuario['celular']   		= $this->input->post( 'celular' );
 						$usuario['email']   			= $this->input->post( 'email' );
+
+						$usuario['equipo']   			= $this->input->post('equipo');
+						$usuario['email_invitado']   			= $this->input->post( 'email_invitado' );
+
 						$usuario['contrasena']				= $this->input->post( 'pass_1' );
 
 						$usuario['id_perfil']   		= 3; //significa participante
 
 						$usuario 						= $this->security->xss_clean( $usuario );
 						$guardar 						= $this->modelo_registro->anadir_registro( $usuario );
+
+						
 
 						
 						if ( $guardar !== FALSE ){  
@@ -129,14 +142,14 @@ function validar_registros(){
 									
 									//$desde = $this->session->userdata('c1');
 									$esp_nuevo = $usuario['email'];
-
+/*
 									$this->email->from('admin@cinepremios.com', 'Cine premios');
 									$this->email->to( $esp_nuevo );
 									$this->email->subject('Cine premios'); //.$this->session->userdata('c2')
 									$this->email->message( $this->load->view('admin/correos/alta_usuario', $dato, TRUE ) );
 									$this->email->send();
 
-									
+									*/
 
 										 
 									//if ($this->email->send()) 
@@ -159,12 +172,16 @@ function validar_registros(){
 
 									
 									//checar el loguin y recoger datos de usuario registrado
+
 									$login_checkeo = $this->modelo_registro->check_login($usuario);
 									//agrega al historico de acceso de participantes
+
 									$this->modelo_registro->anadir_historico_acceso($login_checkeo[0]);  
+
 
 									$this->session->set_userdata('session_participante', TRUE);
 									$this->session->set_userdata('email_participante', $usuario['email']);
+									$this->session->set_userdata('email_invitado_participante', $usuario['email_invitado']);
 
 									
 									
@@ -229,6 +246,8 @@ function validar_registros(){
 	} //fin del else if ($this->session->userdata('session_participante') == TRUE) {
 
 
+
+
 //tratamiento de errores
 				$error = validation_errors();
 				
@@ -242,6 +261,9 @@ function validar_registros(){
 					"ciudad" =>  'Cd.',
 					"celular" => 'Celular',
 					"email" => 'Correo',
+
+					"equipo" =>'Equipo',
+					"email_invitado"=>"Invitado",
 
 				    'pass_1'=>'La Contraseña',
 				    'pass_2'=>'Confirmación',
@@ -271,12 +293,291 @@ function validar_registros(){
 				    
 			}
 
+			//$mis_errores['datos'] = self::configuraciones_imagenes();
+			echo json_encode($mis_errores);
+			self::configuraciones_imagenes();
+			
+
+}		
+
+
+
+
+ // Creación de especialista o Administrador (Nuevo Colaborador)
+	function nuevo_invitado($id){
+		if($this->session->userdata('session_participante') === TRUE ){   //si esta logueado  ir al home
+				  redirect('');
+		} else {  //nuevo registro
+			  //$data['premios']   = $this->catalogo->listado_premios();
+			  $data['estados']   = $this->modelo_registro->listado_estados();
+			  $data['jefe_equipo']   = $this->modelo_registro->datos_jefe_equipo($id);
+			  //print_r($data['jefe_equipo']);die;
+			  $this->load->view( 'registros/registro_invitado',$data );   
+		}    
+	}
+
+
+function validar_invitado(){
+		if ($this->session->userdata('session_participante') == TRUE) {
+			redirect('');
+		} else {
+
+
+			$this->form_validation->set_rules( 'nombre', 'Nombre', 'trim|required|callback_nombre_valido|min_length[3]|max_length[50]|xss_clean');
+			$this->form_validation->set_rules( 'apellidos', 'Apellido(s)', 'trim|required|callback_nombre_valido|min_length[3]|max_length[50]|xss_clean');
+			$this->form_validation->set_rules( 'fecha_nac', 'Fecha de Nacimiento', 'trim|required|callback_valid_nacimiento[fecha_nac]|xss_clean');
+			//$this->form_validation->set_rules('id_estado', 'Ciudad de compra', 'required|callback_valid_option|xss_clean');
+			$this->form_validation->set_rules( 'ciudad', 'Cd. de compra', 'trim|required|callback_nombre_valido|min_length[3]|max_length[50]|xss_clean');
+			$this->form_validation->set_rules( 'celular', 'Celular', 'trim|required|numeric|min_length[10]|callback_valid_phone|xss_clean');
+			$this->form_validation->set_rules( 'email', 'Correo', 'trim|required|valid_email|xss_clean');
+
+			$this->form_validation->set_rules( 'equipo', 'Equipo', 'trim|required|min_length[3]|max_length[50]|xss_clean');
+			//$this->form_validation->set_rules( 'email_invitado', 'Invitado', 'trim|required|valid_email|xss_clean');
+			
+			
+			$this->form_validation->set_rules( 'pass_1', 'La contraseña', 'required|trim|min_length[8]|xss_clean');
+			$this->form_validation->set_rules( 'pass_2', 'Confirmación de contraseña', 'required|trim|min_length[8]|xss_clean');
+							
+			
+			$this->form_validation->set_rules('coleccion_id_aviso', 'Aviso de privacidad', 'callback_accept_terms[coleccion_id_aviso]');	
+			$this->form_validation->set_rules('coleccion_id_base', 'Bases legales', 'callback_accept_terms[coleccion_id_base]');	
+			$this->form_validation->set_rules('coleccion_id_newsletter', 'Recibir Promociones', 'callback_accept_terms[coleccion_id_base]');	
+			
+			
+			$mis_errores=array(
+						"exito" => false,
+						"general" => '',
+					    "nombre" =>  '',
+					    "apellidos" =>  '',
+					    "fecha_nac" =>  '',
+
+					    //"id_estado" =>  '',
+					   "ciudad"=>'',
+					    "celular" =>  '',
+					    "email" =>  '',
+					    "equipo"=>'',
+					   // "email_invitado"=>'',
+
+					    'pass_1'=> '',
+					    'pass_2'=>  '',
+
+					    "coleccion_id_aviso" =>  '',
+					    "coleccion_id_base" =>  '',
+					    "coleccion_id_newsletter" =>  '',
+				);
+			
+
+
+			if ($this->form_validation->run() === TRUE){
+
+				if ($this->input->post( 'pass_1' ) === $this->input->post( 'pass_2' ) ){
+					$data['email']			=	$this->input->post('email');
+					//$data['email_invitado']			=	$this->input->post('email_invitado');
+					$data['contrasena']		=	$this->input->post('pass_1');
+					$data 				= 	$this->security->xss_clean($data);  
+					//$login_check = $this->modelo_registro->check_correo_invitado($data);
+
+					if ( true ){ //$login_check != FALSE
+						$usuario['nombre']   			= $this->input->post( 'nombre' );
+						$usuario['apellidos']   		= $this->input->post( 'apellidos' );
+
+						$usuario['fecha_nac']   		= $this->input->post( 'fecha_nac' );
+						//$usuario['id_estado']   		= $this->input->post( 'id_estado' );
+						$usuario['ciudad']				= $this->input->post( 'ciudad' );
+
+						$usuario['celular']   		= $this->input->post( 'celular' );
+						$usuario['email']   			= $this->input->post( 'email' );
+
+						$usuario['equipo']   			= $this->input->post('equipo');
+					//	$usuario['email_invitado']   			= $this->input->post( 'email_invitado' );
+
+						$usuario['contrasena']				= $this->input->post( 'pass_1' );
+
+						$usuario['id']				= $this->input->post( 'id' );
+						$usuario['id_perfil']   		= 4; //significa invitado
+
+						$usuario 						= $this->security->xss_clean( $usuario );
+						$guardar 						= $this->modelo_registro->anadir_invitado( $usuario );
+
+						
+
+						
+						if ( $guardar !== FALSE ){  
+
+									$dato['email']   			    = $usuario['email'];   			
+									$dato['contrasena']				= $usuario['contrasena'];				
+
+									
+									//envio de correo para notificar alta en usuarios del sistema
+									
+									//$desde = $this->session->userdata('c1');
+									$esp_nuevo = $usuario['email'];
+/*
+									$this->email->from('admin@cinepremios.com', 'Cine premios');
+									$this->email->to( $esp_nuevo );
+									$this->email->subject('Cine premios'); //.$this->session->userdata('c2')
+									$this->email->message( $this->load->view('admin/correos/alta_usuario', $dato, TRUE ) );
+									$this->email->send();
+
+									*/
+
+										 
+									//if ($this->email->send()) 
+										//{	//si se notifico al usuario, que envie a los administradores un correo
+										/*
+										$dato['email']   			    = $usuario['email'];   			
+										$dato['contrasena']				= $usuario['contrasena'];				
+										$dato['nombre']   			    = $usuario['nombre'];   			
+										$dato['apellidos']				= $usuario['apellidos'];
+										$dato['celular']   			    = $usuario['celular'];   			
+
+											
+										$this->load->library('email');
+										$this->email->from('admin@cinepremios.com', 'Información Calimax');
+										$this->email->to('guerreroadrian1111@gmail.com,carlos.ramirez@lostres.mx');	
+
+										$this->email->subject('Nuevo usuario en Vamonos a España Calimax');
+										$this->email->message( $this->load->view('admin/correos/alta_usuarios', $dato, TRUE ) );
+										$this->email->send();*/
+
+									
+									//checar el loguin y recoger datos de usuario registrado
+
+									$login_checkeo = $this->modelo_registro->check_login($usuario);
+									//agrega al historico de acceso de participantes
+
+									$this->modelo_registro->anadir_historico_acceso($login_checkeo[0]);  
+
+
+									$this->session->set_userdata('session_participante', TRUE);
+									$this->session->set_userdata('email_participante', $usuario['email']);
+									//$this->session->set_userdata('email_jefe_participante', $usuario['email_invitado']);
+
+									
+									
+									if (is_array($login_checkeo))  //si existe el usuario
+										foreach ($login_checkeo as $element) {
+											$this->session->set_userdata('id_participante', $element->id);
+											$this->session->set_userdata('nombre_participante', $element->nombre.' '.$element->apellidos);
+											$this->session->set_userdata('tarjeta_participante', $element->tarjeta);
+											$this->session->set_userdata('juego_participante', $element->juego);
+										}
+
+
+										//cantidad de ; para saber a donde redirigir
+										if  ( substr_count($this->session->userdata('tarjeta_participante'),';')<5) {
+											$mis_errores['redireccion'] = 'tarjetas';		
+										} else if  ( strlen($this->session->userdata('juego_participante'))!=3){
+											$mis_errores['redireccion'] = 'juegos';		
+										} else {
+											$mis_errores['redireccion'] = '';	
+										}
+										
+										$mis_errores['exito'] = true;	
+
+
+
+										//$mis_errores = true;
+								
+									/*} else {
+										 $mis_errores["general"] = '<span class="error"><b>E01</b> - El nuevo participante no pudo ser agregado</span>';
+									}*/
+									
+									/*
+						} else {
+							
+							 	 $mis_errores["general"] = '<span class="error"><b>E01</b> - El nuevo participante no pudo ser agregado</span>';
+							 
+						}*/
+						
+					} else {  //if ( $guardar !== FALSE ){  
+						
+							 	 
+							 
+						
+					}
+				} else { //if ( $login_check != FALSE ){
+					
+					$mis_errores["general"] = '<span class="error">El <b>Correo electrónico</b> ya se encuentra registrado.</span>';		 	
+							 
+						
+					
+				}
+			} else {	//if ($this->input->post( 'pass_1' ) === $this->input->post( 'pass_2' ) ){		
+				
+					$mis_errores["general"] = '<span class="error">No coinciden la Contraseña </b> y su <b>Confirmación</b> </span>';
+
+
+		} ////if ($this->form_validation->run() === TRUE){
+
+			//$mis_errores = true;
+
+
+	} //fin del else if ($this->session->userdata('session_participante') == TRUE) {
+
+
+
+
+//tratamiento de errores
+				$error = validation_errors();
+				
+				$errores = explode("<b class='requerido'>*</b>", $error);
+				$campos = array(
+				    "nombre" => 'Nombre',
+				    "apellidos" => 'Apellido(s)',
+				  	"fecha_nac" => 'Fecha de Nacimiento',  
+
+					//"id_estado" => 'Ciudad de compra',
+					"ciudad" =>  'Cd.',
+					"celular" => 'Celular',
+					"email" => 'Correo',
+
+					"equipo" =>'Equipo',
+					//"email_invitado"=>"Invitado",
+
+				    'pass_1'=>'La Contraseña',
+				    'pass_2'=>'Confirmación',
+				    
+				    "coleccion_id_aviso" => 'Aviso de privacidad',
+				    "coleccion_id_base" => 'Bases legales',
+				    "coleccion_id_newsletter" => 'Recibir Promociones',
+				  
+				);
+
+
+				    foreach ($errores as $elemento) {
+				    	//echo $elemento.'<br/>';
+						foreach ($campos as $clave => $valor) {
+								
+						        if (stripos($elemento, $valor) !== false) {
+						        	if  ($valor=="requerido") {
+						         		$mis_errores[$clave] = $elemento; //condiciones
+						        	} else {
+						        		$mis_errores[$clave] = '*';
+						        	}						
+
+						        	$mis_errores[$clave] = substr($elemento, 0, -5);   //condiciones 	
+						        }
+						}    	
+				    }
+				    
+			}
+
+			//$mis_errores['datos'] = self::configuraciones_imagenes();
 			echo json_encode($mis_errores);
 			self::configuraciones_imagenes();
 
 }		
 
-
+ //instrucciones despues q se registre o se loguee	
+ public function proc_modal_instrucciones(){
+		  if ( $this->session->userdata('session_participante') !== TRUE ) {
+		      redirect('');
+		    } else {
+		      
+               $this->load->view( 'juegos/modal_instrucciones' );
+		   }   			
+}
 
 
   
@@ -367,9 +668,9 @@ function validar_registros(){
 				    }
 
 		}	
-
+		//$mis_errores['datos'] = self::configuraciones_imagenes();
 		echo json_encode($mis_errores);
-		self::configuraciones_imagenes();
+		///self::configuraciones_imagenes();//aqui hay q corregir
 	}	
 
 
@@ -450,51 +751,64 @@ function validar_registros(){
 						foreach ($configuraciones as $configuracion) {
 							$this->session->set_userdata('i'.$configuracion->id, $configuracion->valor);
 							$this->session->set_userdata('ip'.$configuracion->id, $configuracion->puntos);
+							$this->session->set_userdata('ipor'.$configuracion->id, $configuracion->porciento);
 						}
 
 					}
 				} 
-
-						//crear los ptos
-						$uno =1; //mt_rand(1, $this->session->userdata('cantimagen'));
-						$dos =1; //mt_rand(1, $this->session->userdata('cantimagen'));
-						$tres =1; // mt_rand(1, $this->session->userdata('cantimagen'));
-
-						$uno =mt_rand(1, $this->session->userdata('cantimagen'));
-						$dos =mt_rand(1, $this->session->userdata('cantimagen'));
-						$tres =mt_rand(1, $this->session->userdata('cantimagen'));
 						
-
-						$ticket['puntos'] = base64_encode($uno. $dos. $tres);
-						//print_r($ticket['puntos']);die;
-
-
-						$this->session->set_userdata('cripto', $ticket['puntos'] );
-
-						//indicar que ya registro su ticket						
-						//$this->session->set_userdata('registro_ticket', true );
-
 						//cuando entra 3 posibilidades de barajear
-						$this->session->set_userdata('numImage', 3 );  //para poder ir descontando imagenes
+						$this->session->set_userdata('numImage', count($configuraciones) );  //para poder ir descontando imagenes
 
 						//tiempo comienzo
 						$this->session->set_userdata('tiempo', $this->tiempo_comienzo);  //para poder ir descontando tiempo
 
 
-						//la pregunta que va a salir
-						$datos = $this->modelo_registro->listado_preguntas();
-						foreach ($datos as $row) {
-							$misdatos[]=$row->id;
-						}	
-						shuffle($misdatos);
-						
-						$this->session->set_userdata('pregunta1', $misdatos[0] );
-						$this->session->set_userdata('pregunta2', $misdatos[1] );
-						$this->session->set_userdata('pregunta3', $misdatos[2] );
-						$this->session->set_userdata('pregunta4', $misdatos[3] );
-						$this->session->set_userdata('pregunta5', $misdatos[4] );
+				        $cant_fichas=30;
+				        $cant_caritas= $this->session->userdata('numImage'); //5
+				        
+				        $total = 0;	
+				        for ($i = 1; $i <= $cant_caritas; $i++) {
+					            $carita[$i] =  $this->session->userdata('ipor'.$i);
+					            $porciento[$i]=($carita[$i]*$cant_fichas)/100;
+					            $total = $total + $porciento[$i];
+					    }   
+				        
+				        for ($i = 1; $i <= $total; $i++) {
+				            $misdatos[]=$i;
+				        }   
+
+				        shuffle($misdatos);
 
 
+				        foreach ($misdatos as $key => $i) {  //dinamizar esto
+				            $cara[]=($i<=$porciento[1])  ?  1 : ($i<=$porciento[1]+$porciento[2] ? 2 : ($i<=$porciento[1]+$porciento[2]+ $porciento[3] ? 3 : ($i<=$porciento[1]+$porciento[2]+ $porciento[3]+ $porciento[4] ? 4 : 5 )));
+				        }
+
+
+				        
+						//$cara = json_decode(strval(html_entity_decode(htmlspecialchars( $cara ))),true);
+
+						//print_r(json_decode(strval(( $cara )),true));
+
+						$data['cara'] =  json_encode($cara);
+						$data['misdatos'] =  json_encode($misdatos);
+
+				        $checar         = $this->modelo_registro->agregar_datos( $data );
+				        /*
+						die;
+				          return json_encode ( array(
+	                        "cara"            => $cara,
+	                        "misdatos"        => $misdatos,
+	                        
+	                      ));*/
+
+
+
+				        //print_r($cara);die;
+
+
+				       
 
 	}
 
@@ -601,15 +915,6 @@ function registrar_facebook($puntos){ //nuevo
 }
 
 
- public function proc_modal_instrucciones(){
-		  if ( $this->session->userdata('session_participante') !== TRUE ) {
-		      redirect('');
-		    } else {
-		      
-               $this->load->view( 'tickes/modal_instrucciones' );
-		   }   			
-
-}
 
 
  public function proc_modal_cero_puntos(){
