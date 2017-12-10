@@ -1,50 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
-<?php 
-   
-        /*
-        $cant_fichas=30;
-        $cant_caritas=5;
-        $carita[1] = 20;
-        $carita[2] = 20;
-        $carita[3] = 20;
-        $carita[4] = 20;
-        $carita[5] = 20;
-
-        
-        $porciento[1]=($carita[1]*$cant_fichas)/100;
-        $porciento[2]=($carita[2]*$cant_fichas)/100;
-        $porciento[3]=($carita[3]*$cant_fichas)/100;
-        $porciento[4]=($carita[4]*$cant_fichas)/100;
-        $porciento[5]=($carita[5]*$cant_fichas)/100;
-
-        $total = $porciento[1]+$porciento[2]+$porciento[3]+$porciento[4]+$porciento[5];
-
-
-        for ($i = 1; $i <= $total; $i++) {
-            $misdatos[]=$i;
-          
-
-        }   
-        shuffle($misdatos);
-
-
-        foreach ($misdatos as $key => $i) {
-            
-            $cara[]=($i<=$porciento[1])  ?  '1' : ($i<=$porciento[1]+$porciento[2] ? '2' : ($i<=$porciento[1]+$porciento[2]+ $porciento[3] ? '3' : ($i<=$porciento[1]+$porciento[2]+ $porciento[3]+ $porciento[4] ? '4' : '5' )));
-
-        }*/
-        /*
-        print_r($misdatos);
-        echo '<br>';
-        echo '<br>';
-        print_r($cara);*/
-        //die;
-
-        //count($cara); die;  
-
- ?>
-
 <?php $this->load->view( 'header' ); ?>
 <?php $this->load->view( 'navbar' ); ?>
 
@@ -83,6 +38,9 @@
             <?php } ?>
 
     </div> 
+     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="reloj"><i class="fa fa-clock-o" aria-hidden="true"></i> 00:59<span class="r1"></span></span>
+    </div>
 </div>
 
 </div>
