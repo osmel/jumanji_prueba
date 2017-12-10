@@ -295,7 +295,7 @@ function validar_registros(){
 
 			//$mis_errores['datos'] = self::configuraciones_imagenes();
 			echo json_encode($mis_errores);
-			self::configuraciones_imagenes();
+			self::configuraciones_imagenes(true);
 			
 
 }		
@@ -565,7 +565,7 @@ function validar_invitado(){
 
 			//$mis_errores['datos'] = self::configuraciones_imagenes();
 			echo json_encode($mis_errores);
-			self::configuraciones_imagenes();
+			self::configuraciones_imagenes(true);
 
 }		
 
@@ -670,7 +670,7 @@ function validar_invitado(){
 		}	
 		//$mis_errores['datos'] = self::configuraciones_imagenes();
 		echo json_encode($mis_errores);
-		///self::configuraciones_imagenes();//aqui hay q corregir
+		self::configuraciones_imagenes(false);//aqui hay q corregir
 	}	
 
 
@@ -743,7 +743,7 @@ function validar_invitado(){
 
 
 
-	public function configuraciones_imagenes(){
+	public function configuraciones_imagenes($booleano){
 			    $configuraciones = $this->modelo_registro->listado_imagenes();
 				if ( $configuraciones != FALSE ){
 					if (is_array($configuraciones)){
@@ -763,50 +763,35 @@ function validar_invitado(){
 						//tiempo comienzo
 						$this->session->set_userdata('tiempo', $this->tiempo_comienzo);  //para poder ir descontando tiempo
 
+						if ($booleano) {
+					        $cant_fichas=30;
+					        $cant_caritas= $this->session->userdata('numImage'); //5
+					        
+					        $total = 0;	
+					        for ($i = 1; $i <= $cant_caritas; $i++) {
+						            $carita[$i] =  $this->session->userdata('ipor'.$i);
+						            $porciento[$i]=($carita[$i]*$cant_fichas)/100;
+						            $total = $total + $porciento[$i];
+						    }   
+					        
+					        for ($i = 1; $i <= $total; $i++) {
+					            $misdatos[]=$i;
+					        }   
 
-				        $cant_fichas=30;
-				        $cant_caritas= $this->session->userdata('numImage'); //5
-				        
-				        $total = 0;	
-				        for ($i = 1; $i <= $cant_caritas; $i++) {
-					            $carita[$i] =  $this->session->userdata('ipor'.$i);
-					            $porciento[$i]=($carita[$i]*$cant_fichas)/100;
-					            $total = $total + $porciento[$i];
-					    }   
-				        
-				        for ($i = 1; $i <= $total; $i++) {
-				            $misdatos[]=$i;
-				        }   
-
-				        shuffle($misdatos);
-
-
-				        foreach ($misdatos as $key => $i) {  //dinamizar esto
-				            $cara[]=($i<=$porciento[1])  ?  1 : ($i<=$porciento[1]+$porciento[2] ? 2 : ($i<=$porciento[1]+$porciento[2]+ $porciento[3] ? 3 : ($i<=$porciento[1]+$porciento[2]+ $porciento[3]+ $porciento[4] ? 4 : 5 )));
-				        }
+					        shuffle($misdatos);
 
 
-				        
-						//$cara = json_decode(strval(html_entity_decode(htmlspecialchars( $cara ))),true);
-
-						//print_r(json_decode(strval(( $cara )),true));
-
-						$data['cara'] =  json_encode($cara);
-						$data['misdatos'] =  json_encode($misdatos);
-
-				        $checar         = $this->modelo_registro->agregar_datos( $data );
-				        /*
-						die;
-				          return json_encode ( array(
-	                        "cara"            => $cara,
-	                        "misdatos"        => $misdatos,
-	                        
-	                      ));*/
+					        foreach ($misdatos as $key => $i) {  //dinamizar esto
+					            $cara[]=($i<=$porciento[1])  ?  1 : ($i<=$porciento[1]+$porciento[2] ? 2 : ($i<=$porciento[1]+$porciento[2]+ $porciento[3] ? 3 : ($i<=$porciento[1]+$porciento[2]+ $porciento[3]+ $porciento[4] ? 4 : 5 )));
+					        }
 
 
+							$data['cara'] =  json_encode($cara);
+							$data['misdatos'] =  json_encode($misdatos);
 
-				        //print_r($cara);die;
-
+					        $checar         = $this->modelo_registro->agregar_datos( $data );
+					    }    
+				    
 
 				       
 
@@ -853,15 +838,25 @@ function record($id_participante){
 		$data["id_participante"] = $id_participante;
 		$dato 		=   $this->modelo_registro->record_personal($data);
 
- 		//$objeto = $this->modelo->listado_imagenes();
+		if ($dato->id_jefe=='') {
 
+		  $datu['jefe'] = $dato;  
+		  
+		  $data['email'] = $dato->email_invitado;
+		  $datu['invitado']	=   $this->modelo_registro->record_invitado($data);
+		  
+		} else {
+		   $datu['invitado'] = $dato;
+		   $data["id_participante"] = $dato->id_jefe;
+		   $datu['jefe']	=   $this->modelo_registro->record_personal($data);
+		}
 
-				
-				$dato->c1 =  (int) ($dato->juego / 100);
-                $dato->c2 =   (int) (($dato->juego % 100) / 10 );
-                $dato->c3 =   (int) (($dato->juego % 10)  );
+		//print_r($datu['jefe']);die;
 
-		$this->load->view( 'juegos/record',$dato );
+		//print_r($dato['jefe']);die;
+		
+
+		$this->load->view( 'juegos/record',$datu );
 	}	
 }	
 

@@ -19,26 +19,31 @@ class Home extends CI_Controller {
    function tarjetas(){
 
    		//||  ( substr_count($this->session->userdata('tarjeta_participante'),';')>=5) )
+   		
+		if ( ($this->session->userdata( 'session_participante' ) == TRUE )   ) { //(no registrado) o (registrado y completado)
 
-		if ( ($this->session->userdata( 'session_participante' ) == TRUE )) { //(no registrado) o (registrado y completado)
+			$preg = $this->modelo_registro->get_datos();
 
-			 $preg = $this->modelo_registro->get_datos();
+			
+			if ( ( substr_count($preg->tarjeta,';') <5) && ($preg->tiempo_juego!='0:00') ) {
+				 $data['tarjeta'] = $preg->tarjeta;
+				 
+				 $preg_cara= str_replace("[", "", $preg->cara);
+				 $preg_cara= str_replace("]", "", $preg_cara);
+				 $data['cara'] = explode(",", $preg_cara);
 
-			 $data['tarjeta'] = $preg->tarjeta;
-			 
-			 $preg_cara= str_replace("[", "", $preg->cara);
-			 $preg_cara= str_replace("]", "", $preg_cara);
-			 $data['cara'] = explode(",", $preg_cara);
 
+				 $preg_misdatos= str_replace("[", "", $preg->misdatos);
+				 $preg_misdatos= str_replace("]", "", $preg_misdatos);
 
-			 $preg_misdatos= str_replace("[", "", $preg->misdatos);
-			 $preg_misdatos= str_replace("]", "", $preg_misdatos);
+				 $data['misdatos'] = explode(",", $preg_misdatos);
 
-			 $data['misdatos'] = explode(",", $preg_misdatos);
+			
 
-		
-
-			 $this->load->view( 'juegos/tarjetas', $data);
+				 $this->load->view( 'juegos/tarjetas', $data);
+			} else {
+					redirect('record/'.$this->session->userdata('id_participante'));	
+			}	 
 
 			 
 		} else {
@@ -47,21 +52,17 @@ class Home extends CI_Controller {
 
 	}
 
-	/*
-SELECT AES_DECRYPT( email,  'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5' ) AS email, AES_DECRYPT( tarjeta, 'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5' ) AS tarjeta
-FROM calimax_participantes
 
-		//https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_clearinterval
-		//A script on this page starts this clock php
-		//https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/
+	
 
-		//$this->load->view( 'dashboard/tarjetas' );
+	function tiempo_juego(){ 
+			$data['tiempo'] =  $this->input->post( 'tiempo' );
+			$data 		  		= $this->security->xss_clean( $data );
+			$guardar	 		= $this->modelo_registro->actualizar_tiempo( $data );
+			echo json_encode($data);   
 
-			// print_r($data);
 
-			 //print_r(  $data['fichas']->cara  );
-			 //die;
-	*/
+	}	
 
 	//formato  fig+resp-tiempo;
 	function respuesta_tarjeta(){ 
@@ -70,6 +71,8 @@ FROM calimax_participantes
 		$posicion =  $this->input->post( 'posicion' );
 		$numero =  $this->input->post( 'numero' );
 		$cara =  $this->input->post( 'cara' );
+
+		$data['tiempo'] =  $this->input->post( 'tiempo' );
 
 		$data['formato'] = $posicion.'+'.$numero.'|'.$cara.';';
 

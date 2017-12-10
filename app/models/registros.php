@@ -61,6 +61,7 @@
             $this->db->select("AES_DECRYPT(cara,'{$this->key_hash}') AS cara", FALSE);      
             $this->db->select("AES_DECRYPT(misdatos,'{$this->key_hash}') AS misdatos", FALSE);      
             $this->db->select("AES_DECRYPT(tarjeta,'{$this->key_hash}') AS tarjeta", FALSE);      
+            $this->db->select("AES_DECRYPT(tiempo_juego,'{$this->key_hash}') AS tiempo_juego", FALSE);      
 
             $this->db->from($this->participantes);
             $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
@@ -282,6 +283,7 @@ from
 
             $data["formato"] =trim($preg->row()->tarjeta).trim($data["formato"]);
             $this->db->set( 'tarjeta', "AES_ENCRYPT(' {$data["formato"]}  ','{$this->key_hash}')", FALSE );
+            $this->db->set( 'tiempo_juego', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );  
             $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
             
              $this->db->update($this->participantes );
@@ -295,6 +297,21 @@ from
 
         }
 
+        public function actualizar_tiempo($data){
+
+            $this->db->set( 'tiempo_juego', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );  
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            
+             $this->db->update($this->participantes );
+  
+              if ($this->db->affected_rows() > 0){
+                    return true;
+                } else {
+                    return FALSE;
+                }
+                $result->free_result();
+
+        }
 
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -351,7 +368,8 @@ from
           $this->db->select("AES_DECRYPT(email, '{$this->key_hash}') AS email", FALSE);
           $this->db->select("AES_DECRYPT(contrasena, '{$this->key_hash}') AS contrasena", FALSE);
           $this->db->select("AES_DECRYPT(puntos, '{$this->key_hash}') AS puntos", FALSE);
-          $this->db->select("redes");
+          $this->db->select("AES_DECRYPT(email_invitado, '{$this->key_hash}') AS email_invitado", FALSE);
+          $this->db->select("redes,id_jefe");
 
 
           $this->db->from($this->participantes.' as p');
@@ -369,6 +387,38 @@ from
 
 
       }  
+
+
+public function record_invitado($data){
+
+          $this->db->select("AES_DECRYPT(nombre, '{$this->key_hash}') AS nombre", FALSE);
+          $this->db->select("AES_DECRYPT(Apellidos, '{$this->key_hash}') AS Apellidos", FALSE);
+          $this->db->select("AES_DECRYPT(juego, '{$this->key_hash}') AS juego", FALSE);
+          $this->db->select("AES_DECRYPT(tiempo_juego, '{$this->key_hash}') AS tiempo_juego", FALSE);
+          $this->db->select("AES_DECRYPT(tarjeta, '{$this->key_hash}') AS tarjeta", FALSE);
+          $this->db->select("AES_DECRYPT(email, '{$this->key_hash}') AS email", FALSE);
+          $this->db->select("AES_DECRYPT(contrasena, '{$this->key_hash}') AS contrasena", FALSE);
+          $this->db->select("AES_DECRYPT(puntos, '{$this->key_hash}') AS puntos", FALSE);
+          $this->db->select("AES_DECRYPT(email_invitado, '{$this->key_hash}') AS email_invitado", FALSE);
+          $this->db->select("redes,id_jefe");
+
+
+          $this->db->from($this->participantes.' as p');
+          $this->db->where('email',"AES_ENCRYPT('{$data['email']}','{$this->key_hash}')",FALSE);
+          $this->db->group_by("p.id");
+
+            $result = $this->db->get();
+            
+            if ( $result->num_rows() > 0 )
+               return $result->row();
+            else
+               return False;
+            $result->free_result();
+
+
+      }  
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////

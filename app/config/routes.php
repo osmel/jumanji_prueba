@@ -100,7 +100,7 @@ $route['respuesta_juegos']							= 'home/respuesta_juegos';
 $route['num_conteo']      = 'registro/num_conteo';
 $route['proc_modal_juego/(:any)/(:any)']		= 'home/proc_modal_juego/$1/$2';
 
-
+$route['tiempo_juego']								    = 'home/tiempo_juego';
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////Administracion//////////////////////////////////////////////////////
