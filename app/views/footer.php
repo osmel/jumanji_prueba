@@ -7,10 +7,12 @@
 <footer>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 copy text-center">
-				<p></p>
-				 <p class="vigencia">Vigencia del 17 al 30 de Noviembre de 2017. Válido en toda la República Mexicana. Consulta Bases, términos y condiciones en <a href="http://cinemex.com">cinemex.com</a> o comunícate al 01800 890 96 52 de lunes a viernes / 9:00 - 18:00 horas (tiempo CDMX)</p>
-			</div>
+			 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 copy text-left">
+         <p class="vigencia">Vigencia del 15 de diciembre de 2017 al 5 de enero de 2017. Válido en toda la República Mexicana. Consulta Bases, términos y condiciones.</p>
+      </div>
+       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 copy text-right">
+         <p class="vigencia">© 2017 Columbia TriStar Marketing Group, Inc. All Rights Reserved.</p>
+      </div>
 			<!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right"> -->
 				<!-- <img src="<?php echo base_url().$this->session->userdata('c6'); ?>"> -->
 			<!-- </div> -->

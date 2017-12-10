@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-fixed-top menu-top" role="navigation">
 
-	<div class="navbar-header">
+<div class="navbar-header">
       
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar">
         <span class="sr-only">Toggle navigation</span>
@@ -10,10 +10,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-       <a class="navbar-brand" href="<?php echo base_url(); ?>">
-      	<img src="<?php echo base_url(); ?>img/home3.png">
+
+      <a class="navbar-brand" href="<?php echo base_url(); ?>">
+      	<img src="<?php echo base_url(); ?>img/logo2.png">
       </a>
-  
+
     </div>
 
 		<?php 
