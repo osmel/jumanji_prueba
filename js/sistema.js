@@ -67,11 +67,11 @@ jQuery(document).ready(function($) {
 						//$catalogo = e.target.name;
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-						//window.location.href = '/'+data.redireccion;    //$catalogo;						
+						//window.location.href = '/promojumanji/'+data.redireccion;    //$catalogo;						
 
 						
 						//new ok 
-						var url = "/proc_modal_instrucciones";
+						var url = "/promojumanji/proc_modal_instrucciones";
 						//alert(url);
 						jQuery('#modalInstrucciones').modal({
 							  show:'true',
@@ -91,7 +91,7 @@ jQuery(document).ready(function($) {
 	//cuando se oculta la ventana modal de juego redirige al 
 	jQuery("body").on('hide.bs.modal','#modalInstrucciones[ventana="instrucciones"]',function(e){	
 		$catalogo = jQuery(this).attr('valor'); //e.target.name;
-		window.location.href = '/'+$catalogo;						    
+		window.location.href = '/promojumanji/'+$catalogo;						    
 	});	
 
 
@@ -120,10 +120,10 @@ jQuery(document).ready(function($) {
 						//$catalogo = e.target.name;
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-						//window.location.href = '/'+data.redireccion;    //$catalogo;				
+						//window.location.href = '/promojumanji/'+data.redireccion;    //$catalogo;				
 
 						//new ok 
-						var url = "/proc_modal_instrucciones";
+						var url = "/promojumanji/proc_modal_instrucciones";
 						//alert(url);
 						jQuery('#modalInstrucciones').modal({
 							  show:'true',
@@ -153,7 +153,7 @@ var hash_url = window.location.pathname;
 jQuery('body').on('click','button#botonIniciar', function (e) {
 	localStorage.setItem('inicioJuego','1');
 
-	window.location.href = '/juegos';						    
+	window.location.href = '/promojumanji/juegos';						    
 
 });	
 
@@ -168,7 +168,7 @@ var hash_url = window.location.pathname;
 
 		var started =0;
 			jQuery.ajax({
-				        url : '/num_conteo',
+				        url : '/promojumanji/num_conteo',
 				        data : { 
 				        	//started: started,
 				        },
@@ -213,7 +213,7 @@ var hash_url = window.location.pathname;
 													started=0;
 
 													jQuery.ajax({ //guardar en la cookie el conteo
-													        url : '/num_conteo',
+													        url : '/promojumanji/num_conteo',
 													        data : { 
 													        	started: started,
 													        },
@@ -223,7 +223,7 @@ var hash_url = window.location.pathname;
 
 													        	started = data.num;
 
-												        	    var url = "/proc_modal_juego/"+jQuery.base64.encode(minutes + ':' + seconds)+'/'+jQuery.base64.encode(1);
+												        	    var url = "/promojumanji/proc_modal_juego/"+jQuery.base64.encode(minutes + ':' + seconds)+'/'+jQuery.base64.encode(1);
 																jQuery('#modalMessage').modal({
 																	  show:'true',
 																	remote:url,
@@ -237,7 +237,7 @@ var hash_url = window.location.pathname;
 								//cuando se oculta la ventana modal de juego redirige al 
 								jQuery("body").on('hide.bs.modal','#modalMessage[ventana="juegos"]',function(e){	
 									$catalogo = jQuery(this).attr('valor'); //e.target.name;
-									window.location.href = '/'+$catalogo;						    
+									window.location.href = '/promojumanji/'+$catalogo;						    
 								});	
 
 
@@ -301,7 +301,7 @@ var hash_url = window.location.pathname;
 
 
 									jQuery.ajax({ //guardar en la cookie el conteo
-									        url : '/num_conteo',
+									        url : '/promojumanji/num_conteo',
 									        data : { 
 									        	started: started,
 									        },
@@ -312,7 +312,7 @@ var hash_url = window.location.pathname;
 									        	started = data.num;
 
 									        		if (started==0){
-										        		var url = "/proc_modal_juego/"+jQuery.base64.encode(localStorage.getItem('miTiempo'))+'/'+jQuery.base64.encode(1);
+										        		var url = "/promojumanji/proc_modal_juego/"+jQuery.base64.encode(localStorage.getItem('miTiempo'))+'/'+jQuery.base64.encode(1);
 															jQuery('#modalMessage').modal({
 																  show:'true',
 																remote:url,
@@ -449,10 +449,10 @@ var hash_url = window.location.pathname;
 
 
 						if (transaccion<100) {
-							var url = "/proc_modal_cero_puntos";	
+							var url = "/promojumanji/proc_modal_cero_puntos";	
 
 						} else {
-							var url = "/proc_modal_instrucciones";	
+							var url = "/promojumanji/proc_modal_instrucciones";	
 						}
 						
 
@@ -465,7 +465,7 @@ var hash_url = window.location.pathname;
 						$catalogo = e.target.name;
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-						window.location.href = '/'+$catalogo;				
+						window.location.href = '/promojumanji/'+$catalogo;				
 						*/
 
 				}
@@ -485,7 +485,7 @@ jQuery("body").on('hide.bs.modal','#modalMessage[ventana="redi_ticket"]',functio
 						} else {
 							$catalogo = jQuery(this).attr('valor'); //e.target.name;
 						}
-						window.location.href = '/'+$catalogo;						    
+						window.location.href = '/promojumanji/'+$catalogo;						    
 
 
 });
@@ -503,8 +503,8 @@ jQuery("body").on('hide.bs.modal','#modalMessage[ventana="redi_ticket"]',functio
 
 	jQuery("body").on('hide.bs.modal','#modalMessage[ventana="facebook"]',function(e){	
 		$catalogo = jQuery(this).attr('valor'); //e.target.name;
-		window.location.href = '/'+$catalogo;						    
-		//window.location.href = '/registrar_facebook/0';
+		window.location.href = '/promojumanji/'+$catalogo;						    
+		//window.location.href = '/promojumanji/registrar_facebook/0';
 	});	
 
 
@@ -543,7 +543,7 @@ jQuery("body").on('hide.bs.modal','#modalMessage[ventana="redi_ticket"]',functio
 						$catalogo = e.target.name;
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-						window.location.href = '/'+$catalogo;				
+						window.location.href = '/promojumanji/'+$catalogo;				
 				}
 			} 
 		});
@@ -582,3 +582,4 @@ http://cryptojs.altervista.org/api/
 
 
 });	
+
