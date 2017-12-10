@@ -3,7 +3,7 @@
 <?php $this->load->view( 'navbar' ); ?>
 
 <?php 
-	print_r(trim($jefe->tarjeta));
+	//print_r((trim($jefe->tarjeta)));
 	//die;
 ?>
 
@@ -23,22 +23,23 @@
 			//$suma_jefe =0;
 
 			if (($jefe)) {
-			$matriz = explode( ";",substr(trim($jefe->tarjeta), 0, -1));
-			
-			if ($matriz)
-			foreach ($matriz as $key => $value) { //3+c-0*5|00:00:01;1+a-1*12|00:00:10;2+c-0*8|00:00:0...
-				$ma1=explode( "+",$value);   //Array ( [0] => 3 [1] => c-0*5|00:00:01 )  -->fig 1,2,3,4,5
-				$ma2=explode( "|",$ma1[1]);   //Array ( [0] => c [1] => 0*5|00:00:01 )   --> resp a, b o c
+				$matriz = explode( ";",substr(trim($jefe->tarjeta), 0, -1));
+				
+				if ($jefe->tarjeta!='')
+				foreach ($matriz as $key => $value) { //3+c-0*5|00:00:01;1+a-1*12|00:00:10;2+c-0*8|00:00:0...
+					$ma1=explode( "+",$value);   //Array ( [0] => 3 [1] => c-0*5|00:00:01 )  -->fig 1,2,3,4,5
+					$ma2=explode( "|",$ma1[1]);   //Array ( [0] => c [1] => 0*5|00:00:01 )   --> resp a, b o c
 
-				$suma_jefe = $suma_jefe + (int)$this->session->userdata('ip'.$ma2[1]);
-			} 
+					$suma_jefe = $suma_jefe + (int)$this->session->userdata('ip'.$ma2[1]);
+				} 
 
-
+			}
+				
 			if (($invitado)) {
 			
 				$matriz = explode( ";",substr(trim($invitado->tarjeta), 0, -1));
 				
-				if ($matriz)
+				if ($invitado->tarjeta!='')
 				foreach ($matriz as $key => $value) { //3+c-0*5|00:00:01;1+a-1*12|00:00:10;2+c-0*8|00:00:0...
 					$ma1=explode( "+",$value);   //Array ( [0] => 3 [1] => c-0*5|00:00:01 )  -->fig 1,2,3,4,5
 					$ma2=explode( "|",$ma1[1]);   //Array ( [0] => c [1] => 0*5|00:00:01 )   --> resp a, b o c
@@ -54,7 +55,7 @@
 			echo '<div class="col-md-6"><span class="textosmarcador">PUNTOS TOTALES:</span></div><div class="col-md-6"><span class="marcadorconte">'.($suma_jefe+$suma_invitado).'</span></div>';
 
 
-			}
+			
 
 			?>
 			<h1>Conserva tu boleto de entrada; debes presentarlo si resultas ganador</h1>
