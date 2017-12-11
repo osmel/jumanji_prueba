@@ -678,10 +678,67 @@ function validar_invitado(){
 
 
 //recuperar constraseña OK
+
+	function recuperar_invitado(){ //NO FUNCIONA ERA PARA RECUPERAR CONTRASEÑA
+		$this->load->view('registros/recuperar_invitado');
+	}
+	
+	function validar_recuperar_invitado(){  //NO FUNCIONA ERA PARA RECUPERAR CONTRASEÑA
+		$mis_errores=array(
+				    'general'=> '',
+				    'exito' =>false,
+		);
+
+		$this->form_validation->set_rules( 'email', 'Email', 'trim|required|valid_email|xss_clean');
+
+		if ( $this->form_validation->run() == FALSE ){
+			$mis_errores["general"] =  validation_errors('<span class="error">','</span>');
+
+		} else {
+				$data['email_invitado']	=	$this->input->post('email');
+				//$correo_enviar      =   $data['email'];
+				$data 				= 	$this->security->xss_clean($data);  
+				$usuario_check 		=   $this->modelo_registro->recuperar_invitado($data);
+				//print_r($usuario_check);die;
+
+				if ( $usuario_check != FALSE ){
+						/*
+						$data= $usuario_check[0]; 	
+						//$desde = $this->session->userdata('c1');
+						
+						$this->email->from('admin@cinepremios.com', 'Cine premios');
+						$this->email->to($correo_enviar);
+						$this->email->subject('Recuperación de contraseña de Cine premios');
+						$this->email->message($this->load->view('registros/correos/envio_contrasena', $data, true));
+
+						
+						if ($this->email->send()) {
+							*/
+						if (true) {	
+						
+							//$mis_errores = true;	
+							$mis_errores['exito'] = true;
+							$mis_errores['redireccion'] = 'nuevo_invitado/'.$usuario_check->id;
+						
+						} else 
+							//$mis_errores = false;
+							$mis_errores["general"] = '<span class="error">Su correo no ha podido salir, error conexión.</span>';
+				} else {
+					//echo '<span class="error">Tus datos no son correctos, verificalos e intenta nuevamente por favor.</span>';
+					$mis_errores["general"] = '<span class="error">Tus datos no son correctos, verificalos e intenta nuevamente por favor.</span>';
+				}
+		}
+
+		echo json_encode($mis_errores);
+	}		
+
+
+
 	function recuperar_participante(){ //NO FUNCIONA ERA PARA RECUPERAR CONTRASEÑA
 		$this->load->view('registros/recuperar_password');
 	}
 	
+
 	
 	function validar_recuperar_participante(){  //NO FUNCIONA ERA PARA RECUPERAR CONTRASEÑA
 		$mis_errores=array(

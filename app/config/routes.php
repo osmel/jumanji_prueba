@@ -73,6 +73,11 @@ $route['nuevo_invitado/(:any)']        = 'registro/nuevo_invitado/$1';
 $route['validar_invitado']        = 'registro/validar_invitado';
 
 
+
+$route['recuperar_invitado']			= 'registro/recuperar_invitado';
+$route['validar_recuperar_invitado']	= 'registro/validar_recuperar_invitado';
+
+
 $route['ingresar_usuario']        = 'registro/ingresar_usuario';
 $route['validar_login_participante']        = 'registro/validar_login_participante';
 

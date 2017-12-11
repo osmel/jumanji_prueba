@@ -64,7 +64,7 @@
           jQuery(this).attr('valor','s');
           jQuery(this).off('.flip'); //no flipear
           jQuery.ajax({ //guardar en la cookie el conteo
-                    url : '/respuesta_tarjeta',
+                    url : '/promojumanji/respuesta_tarjeta',
                     data : { 
                            posicion: $(this).attr('posicion'),
                         numero: $(this).attr('numero'),
@@ -83,7 +83,7 @@
                         
                           if   (data.redireccion!='no') {
                                                             //new ok 
-                                var url = "/proc_modal_facebook";
+                                var url = "/promojumanji/proc_modal_facebook";
                                 //alert(url);
                                 jQuery('#modalMessage_face').modal({
                                       show:'true',
@@ -91,7 +91,7 @@
                                 }); 
                                 
                           } else {
-                            //window.location.href = '/'+data.redireccion;        
+                            //window.location.href = '/promojumanji/'+data.redireccion;        
                           }
                             
 
@@ -155,7 +155,7 @@
                    
 
                          jQuery.ajax({ //guardar en la cookie el conteo
-                                url : '/tiempo_juego',
+                                url : '/promojumanji/tiempo_juego',
                                 data : { 
                                     tiempo   :  $('span.r1').text(),
                                 },
@@ -165,7 +165,7 @@
                                     clearInterval(interval);  //limpiar el intervalo
                                     localStorage.clear();  //quitar las variables del localStorage
                                      //new ok 
-                                    var url = "/proc_modal_facebook";
+                                    var url = "/promojumanji/proc_modal_facebook";
                                     //alert(url);
                                     jQuery('#modalMessage_face').modal({
                                           show:'true',
@@ -190,8 +190,8 @@
 
     jQuery("body").on('hide.bs.modal','#modalMessage_face[ventana="facebook"]',function(e){  
         $catalogo = jQuery(this).attr('valor'); //e.target.name;
-        window.location.href = '/'+$catalogo;                           
-        //window.location.href = '/sukarne/registrar_facebook/0';
+        window.location.href = '/promojumanji/'+$catalogo;                           
+        //window.location.href = '/promojumanji/sukarne/registrar_facebook/0';
     }); 
 
 

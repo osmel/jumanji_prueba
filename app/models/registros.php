@@ -75,6 +75,22 @@
 
 
 
+    //Recuperar contraseña  del participante
+      public function recuperar_invitado($data){
+         $this->db->select("p.id");           
+        $this->db->from($this->participantes.' as p');
+        $this->db->where('p.email_invitado',"AES_ENCRYPT('{$data['email_invitado']}','{$this->key_hash}')",FALSE);
+        $login = $this->db->get();
+        if ($login->num_rows() > 0)
+          return $login->row();
+        else 
+          return FALSE;
+        $login->free_result();    
+      } 
+
+
+
+
         public function listado_preguntas(){
             $this->db->select( 'id, pregunta, a, b,c, respuesta' );
             $preguntas = $this->db->get($this->catalogo_preguntas );
