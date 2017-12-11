@@ -129,7 +129,7 @@ function validar_registros(){
 						$usuario 						= $this->security->xss_clean( $usuario );
 						$guardar 						= $this->modelo_registro->anadir_registro( $usuario );
 
-						print_r($guardar);die;
+						//print_r($guardar);die;
 
 						
 						if ( $guardar !== FALSE ){  
@@ -137,7 +137,7 @@ function validar_registros(){
 									$dato['email']   			    = $usuario['email'];   			
 									$dato['contrasena']				= $usuario['contrasena'];			
 
-
+									/*
 										$this->load->library('email');
 
 		$this->email->from('info@cinepremios.com', 'probando');
@@ -153,8 +153,8 @@ function validar_registros(){
 		else {
 			echo 'bad';
 		}
-	
-
+	*/
+			$this->load->library('email');
 									
 									//envio de correo para notificar alta en usuarios del sistema
 									
@@ -164,7 +164,7 @@ function validar_registros(){
 									$login_checkeo = $this->modelo_registro->check_login($usuario);
 									$dato['id_jefe'] = $login_checkeo[0]->id;
 
-									$this->load->library('email');
+									
 									
 									$this->email->from('admin@cinepremios.com', 'promojumanji');
 									$this->email->to( $esp_nuevo );
@@ -172,7 +172,7 @@ function validar_registros(){
 									$this->email->message( $this->load->view('admin/correos/alta_usuario', $dato, TRUE ) );
 									$this->email->send();
 
-									$this->load->library('email');
+									
 									$this->email->from('admin@cinepremios.com', 'promojumanji');
 									$this->email->to( $usuario['email_invitado'] );
 									$this->email->subject('promojumanji'); //.$this->session->userdata('c2')
