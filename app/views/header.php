@@ -13,11 +13,11 @@
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
     <meta property="og:url" content="https://cinepremios.com/" />
-	<meta property="fb:app_id" content="310777946073687" />
+	<meta property="fb:app_id" content="2000864566866195" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Vigencia de la promoción: del 17 al 30 de Noviembre de 2017" />	
-	<meta property="og:image" content="<?php echo base_url(); ?>img/logo.jpg"  /> 
-	<meta property="og:image:alt" content="image"  />
+	<meta property="og:image" content="<?php echo base_url(); ?>img/logo2.png"  /> 
+	<meta property="og:image:alt" content="image"/>
 
     <!--<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>-->
      

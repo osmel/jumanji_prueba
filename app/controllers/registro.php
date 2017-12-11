@@ -52,7 +52,7 @@ function validar_registros(){
 		if ($this->session->userdata('session_participante') == TRUE) {
 			redirect('');
 		} else {
-
+			$this->load->library('email');
 
 			$this->form_validation->set_rules( 'nombre', 'Nombre', 'trim|required|callback_nombre_valido|min_length[3]|max_length[50]|xss_clean');
 			$this->form_validation->set_rules( 'apellidos', 'Apellido(s)', 'trim|required|callback_nombre_valido|min_length[3]|max_length[50]|xss_clean');
@@ -137,24 +137,8 @@ function validar_registros(){
 									$dato['email']   			    = $usuario['email'];   			
 									$dato['contrasena']				= $usuario['contrasena'];			
 
-									/*
-										$this->load->library('email');
-
-		$this->email->from('info@cinepremios.com', 'probando');
-		$this->email->to('osmel.calderon@gmail.com');
-		
-		$this->email->subject('Email Test');
-		$this->email->message('Testing the email class.');
-
-		if ($this->email->send()) 
-		{
-			echo 'ok' ;
-		}
-		else {
-			echo 'bad';
-		}
-	*/
-			$this->load->library('email');
+									
+			
 									
 									//envio de correo para notificar alta en usuarios del sistema
 									
@@ -955,22 +939,11 @@ function record($id_participante){
 function registrar_facebook($puntos){ //nuevo
 	if ( $this->session->userdata( 'session_participante' ) == TRUE ){
 		
-		$ticket['total'] = (int) ($puntos);
-		if  ($ticket['total']>0) { //si compartio el total>0
-
-			$ticket['ticket']			=	'fac-'.$this->session->userdata('id_participante');
-			$ticket['compra']   			= "08/24/17";
-			$ticket['cantidad']   			= 0;
-			$ticket['monto']				= $ticket['total']; //cantidad
-			$ticket['transaccion']			= 0;
-			$ticket['clave_producto']		= 0;
-			$uno = mt_rand(1, 1);
-			$ticket['puntos'] = base64_encode($uno. $uno. $uno);
-			$ticket['total'] = $ticket['total'];	
-			$ticket 						= $this->security->xss_clean( $ticket );
-			$guardar 						= $this->modelo_registro->anadir_tickets( $ticket );        	
-		} 
-		 redirect('/registro_ticket');  //comparta o no va a ir al registro de ticket
+		$ticket['redes'] = (int) ($puntos);
+		$ticket 						= $this->security->xss_clean( $ticket );
+		$guardar 						= $this->modelo_registro->actualizar_facebook( $ticket );        	
+		 
+		redirect('/record/'.$data["id_participante"]);
 	}	
 
 }

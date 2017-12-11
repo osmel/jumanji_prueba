@@ -90,6 +90,24 @@
 
 
 
+        //agregar participante
+        public function actualizar_facebook( $data ){
+            $timestamp = time();
+
+            $this->db->set( 'fecha_pc',  gmt_to_local( $timestamp, $this->timezone, TRUE) );  //fecha cdo se registro
+            $this->db->set( 'redes', "AES_ENCRYPT('{$data['redes']}','{$this->key_hash}')", FALSE );
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            $this->db->update($this->participantes );
+
+            if ($this->db->affected_rows() > 0){
+                    return TRUE;
+                } else {
+                    return FALSE;
+                }
+                $result->free_result();
+        }        
+
+
 
         public function listado_preguntas(){
             $this->db->select( 'id, pregunta, a, b,c, respuesta' );
@@ -541,38 +559,6 @@ redes
 
 
 
-        //agregar participante
-        public function anadir_tickets( $data ){
-            $timestamp = time();
-
-            $this->db->set( 'fecha_pc',  gmt_to_local( $timestamp, $this->timezone, TRUE) );  //fecha cdo se registro
-            
-            $id_participante = $this->session->userdata('id_participante');
-            $this->db->set( 'id_participante', '"'.$id_participante.'"',false); // id del usuario que se registro
-            $this->db->set( 'ticket', "AES_ENCRYPT('{$data['ticket']}','{$this->key_hash}')", FALSE );
-            $this->db->set( 'monto', "AES_ENCRYPT('{$data['monto']}','{$this->key_hash}')", FALSE );
-
-            $this->db->set( 'transaccion', "AES_ENCRYPT('{$data['transaccion']}','{$this->key_hash}')", FALSE );
-            //$this->db->set( 'clave_producto', "AES_ENCRYPT('{$data['clave_producto']}','{$this->key_hash}')", FALSE );
-
-
-
-            $this->db->set( 'puntos', "AES_ENCRYPT('{$data['puntos']}','{$this->key_hash}')", FALSE );
-            $this->db->set( 'compra', strtotime(date( "d-m-Y", strtotime($data['compra']) )) ,false);
-            //$this->db->set( 'id_litraje', $data['id_litraje'], FALSE );
-            $this->db->set( 'cantidad', $data['cantidad'], FALSE );
-            $this->db->insert($this->registro_participantes );
-
-
-            if ($this->db->affected_rows() > 0){
-                    self::registro_total_tickets($data);
-                    return TRUE;
-                } else {
-                    return FALSE;
-                }
-                $result->free_result();
-            
-        }        
 
 
 

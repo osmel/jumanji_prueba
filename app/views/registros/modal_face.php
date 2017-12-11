@@ -11,7 +11,7 @@
 	<div class="modal-body felicidadessi" style="background-image:url('<?php echo base_url()?>img/felicidades1.png'); background-size: 100%;
     background-repeat: no-repeat;">
 				
-				<h1 class="felic">¡Haz completado tu registro!</h1>				
+				<h1 class="felic">Comparte en Facebook y obtén más puntos</h1>				
 				<?php 
 				echo '<h4 class="text-center puntos-ganados">';
 					echo 'Gana tus primeros 100 puntos compartiendo tu registro en Facebook.';
@@ -31,6 +31,15 @@
 
 
 
+<!--
+	<input type="hidden" id="juego" name="juego" value="<?php echo $juego; ?>">
+	<input type="hidden" id="redes" name="redes" value="<?php echo $redes; ?>">
+	<input type="hidden" id="tiempo" name="tiempo" value="<?php echo $tiempo; ?>">
+	<input type="hidden" id="total_puntos" name="total_puntos" value="<?php echo $total_puntos; ?>">
+
+-->
+
+
 <script type="text/javascript">
 
 var $cantidad_puntos="100";
@@ -38,7 +47,7 @@ var $cantidad_puntos="100";
 
    window.fbAsyncInit = function() {
 	    FB.init({
-	      appId      : '469450303424001',
+	      appId      : '2000864566866195',
 			//	      channelUrl : '//165.227.77.136/',
 			//xfbml      : true,
 	      cookie     : false, 
@@ -55,11 +64,11 @@ var $cantidad_puntos="100";
 		     		
 				FB.ui({
 				      method: 'feed',
-				      name: 'Vamonos a españa con Calimax',
-				      link: 'https://www.vamonosaespanaconcalimax.com',
-				      picture: 'https://www.vamonosaespanaconcalimax.com/img/pepsi_fbshare.jpg',
-				      caption: 'Vigencia de la promoción: del 8 de septiembre a 30 de octubre de 2017',
-				      description: 'Gana uno de los 3 viajes dobles a Madrid'
+				      name: 'Liga de la Justicia',
+				      link: 'https://www.cinepremios.com/promojumanji',
+				      picture: 'https://www.cinepremios.com/promojumanji/img/logo2.png',
+				      caption: 'Vigencia de la promoción: del 17 al 30 de diciembre de 2017',
+				      description: ''
 				    },
 				    function(response) {
 						if (response !=null) { 	
@@ -81,11 +90,11 @@ var $cantidad_puntos="100";
      		} else if (response.status === 'not_authorized') { //cuando esta conectado pero no por la app
 				FB.ui({
 					      method: 'feed',
-					      name: 'Vamonos a españa con Calimax',
-					      link: 'https://www.vamonosaespanaconcalimax.com',
-					      picture: 'https://www.vamonosaespanaconcalimax.com/img/pepsi_fbshare.jpg',
-					      caption: 'Vigencia de la promoción: del 8 de septiembre a 30 de octubre de 2017',
-					      description: 'Gana uno de los 3 viajes dobles a Madrid'
+					      name: 'Liga de la Justicia',
+					      link: 'https://www.cinepremios.com/promojumanji',
+					      picture: 'https://www.cinepremios.com/promojumanji/img/logo2.png',
+					      caption: 'Vigencia de la promoción: del 17 al 30 de diciembre de 2017',
+					      description: ''
 				       },
 				       function(response) {
 							if (response !=null) { 	
@@ -103,11 +112,11 @@ var $cantidad_puntos="100";
      			$("#response").html("No hay sesión iniciada en facebook");
 				FB.ui({
 					      method: 'feed',
-					      name: 'Vamonos a españa con Calimax',
-					      link: 'https://www.vamonosaespanaconcalimax.com',
-					      picture: 'https://www.vamonosaespanaconcalimax.com/img/pepsi_fbshare.jpg',
-					      caption: 'Vigencia de la promoción: del 8 de septiembre a 30 de octubre de 2017',
-					      description: 'Gana uno de los 3 viajes dobles a Madrid'
+					      name: 'Liga de la Justicia',
+					      link: 'https://www.cinepremios.com/promojumanji',
+					      picture: 'https://www.cinepremios.com/promojumanji/img/logo2.png',
+					      caption: 'Vigencia de la promoción: del 17 al 30 de diciembre de 2017',
+					      description: ''
 				      },
 				      function(response) {
 							if (response !=null) { 	
@@ -139,5 +148,7 @@ var $cantidad_puntos="100";
 	}     
 
   </script>
+
+
 
 
