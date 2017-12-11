@@ -129,7 +129,7 @@ function validar_registros(){
 						$usuario 						= $this->security->xss_clean( $usuario );
 						$guardar 						= $this->modelo_registro->anadir_registro( $usuario );
 
-						
+						print_r($guardar);die;
 
 						
 						if ( $guardar !== FALSE ){  
@@ -142,14 +142,23 @@ function validar_registros(){
 									
 									//$desde = $this->session->userdata('c1');
 									$esp_nuevo = $usuario['email'];
-/*
-									$this->email->from('admin@cinepremios.com', 'Cine premios');
+
+									$login_checkeo = $this->modelo_registro->check_login($usuario);
+									$dato['id_jefe'] = $login_checkeo->id;
+									$this->email->from('admin@cinepremios.com', 'promojumanji');
 									$this->email->to( $esp_nuevo );
-									$this->email->subject('Cine premios'); //.$this->session->userdata('c2')
+									$this->email->subject('promojumanji'); //.$this->session->userdata('c2')
 									$this->email->message( $this->load->view('admin/correos/alta_usuario', $dato, TRUE ) );
 									$this->email->send();
 
-									*/
+
+									$this->email->from('admin@cinepremios.com', 'promojumanji');
+									$this->email->to( $usuario['email_invitado'] );
+									$this->email->subject('promojumanji'); //.$this->session->userdata('c2')
+									$this->email->message( $this->load->view('admin/correos/alta_usuarioinvitado', $dato, TRUE ) );
+									$this->email->send();
+
+									
 
 										 
 									//if ($this->email->send()) 
@@ -173,7 +182,7 @@ function validar_registros(){
 									
 									//checar el loguin y recoger datos de usuario registrado
 
-									$login_checkeo = $this->modelo_registro->check_login($usuario);
+									
 									//agrega al historico de acceso de participantes
 
 									$this->modelo_registro->anadir_historico_acceso($login_checkeo[0]);  

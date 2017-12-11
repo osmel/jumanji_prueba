@@ -44,14 +44,16 @@
 			<br/>
 
 
-			<p>			
-			<a href="<?php echo base_url(); ?><?php echo $retorno; ?>" name="boton" style="background:#ebbb34; font-family:'Myriad Pro', 'Myriad Pro Bold', Verdana, Arial; font-size:18px; color:#122145; padding:10px; border:none; text-decoration:none;">
-				IR AL JUEGO
-			</a>
-			</p>
+			
 	    </td>
 	  </tr>	  --> 
 	  
+	  <p>			
+			<a href="<?php echo base_url(); ?>nuevo_invitado/<?php echo $id_jefe; ?>" name="boton" style="background:#ebbb34; font-family:'Myriad Pro', 'Myriad Pro Bold', Verdana, Arial; font-size:18px; color:#122145; padding:10px; border:none; text-decoration:none;">
+				IR AL JUEGO
+			</a>
+			</p>
+
 	</table>
 	
 
