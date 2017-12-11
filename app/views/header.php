@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
-    <meta property="og:url" content="https://cinepremios.com/" />
+    <meta property="og:url" content="https://www.cinepremios.com/promojumanji/" />
 	<meta property="fb:app_id" content="2000864566866195" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Vigencia de la promoción: del 17 al 30 de Noviembre de 2017" />	
