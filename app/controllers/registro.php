@@ -135,7 +135,25 @@ function validar_registros(){
 						if ( $guardar !== FALSE ){  
 
 									$dato['email']   			    = $usuario['email'];   			
-									$dato['contrasena']				= $usuario['contrasena'];				
+									$dato['contrasena']				= $usuario['contrasena'];			
+
+
+										$this->load->library('email');
+
+		$this->email->from('info@cinepremios.com', 'probando');
+		$this->email->to('osmel.calderon@gmail.com');
+		
+		$this->email->subject('Email Test');
+		$this->email->message('Testing the email class.');
+
+		if ($this->email->send()) 
+		{
+			echo 'ok' ;
+		}
+		else {
+			echo 'bad';
+		}
+	
 
 									
 									//envio de correo para notificar alta en usuarios del sistema
