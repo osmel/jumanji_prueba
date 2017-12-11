@@ -22,10 +22,10 @@
 	   	 <td scope="row" style="text-align:center">
 	   	 	
 	    	<p style="font-family:'Myriad Pro', 'Myriad Pro Bold', Verdana, Arial; font-size:14px; text-transform: uppercase; color:#ef0711">
-	    	<p style="color:#ffffff;width:100%;text-align:center;font-size:28px;">Usuario: </p></br>
+	    	<p style="color:#ffffff;width:100%;text-align:center;font-size:28px;">El usuario: </p></br>
 	    	<p style="color:#FFC107;width:100%;text-align:center;font-size:28px;"><?php echo $email; ?></p></br>
-	    	<p style="color:#ffffff;width:100%;text-align:center;font-size:28px;">Contraseña:</p></br>
-	    	<p style="color:#FFC107;width:100%;text-align:center;font-size:28px;"><?php echo $contrasena; ?></p></br>
+	    	<p style="color:#ffffff;width:100%;text-align:center;font-size:28px;">Te ha invitado a unirte a su equipo para:</p></br>
+	    	<p style="color:#FFC107;width:100%;text-align:center;font-size:28px;">UNIRME AL JUEGO</p></br>
 	    	</p>
 	   	 </td>
 	  </tr>

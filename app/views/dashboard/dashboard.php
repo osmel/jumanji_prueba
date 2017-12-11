@@ -31,7 +31,7 @@
 						<img src="<?php echo base_url()?>img/logo4.png" class="alto1">
 					</div>
 			    
-					<div class="col-sm-12 col-md-12">
+					<div class="col-sm-12 col-md-12 text-center">
 			      		<img src="<?php echo base_url()?>img/sanfa.png">
 					</div>
 
