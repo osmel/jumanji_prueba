@@ -144,7 +144,8 @@ function validar_registros(){
 									$esp_nuevo = $usuario['email'];
 
 									$login_checkeo = $this->modelo_registro->check_login($usuario);
-									$dato['id_jefe'] = $login_checkeo->id;
+									$dato['id_jefe'] = $login_checkeo[0]->id;
+									
 									$this->email->from('admin@cinepremios.com', 'promojumanji');
 									$this->email->to( $esp_nuevo );
 									$this->email->subject('promojumanji'); //.$this->session->userdata('c2')
