@@ -943,7 +943,7 @@ function registrar_facebook($puntos){ //nuevo
 		$ticket 						= $this->security->xss_clean( $ticket );
 		$guardar 						= $this->modelo_registro->actualizar_facebook( $ticket );        	
 		 
-		redirect('/record/'.$data["id_participante"]);
+		redirect('/record/'.$this->session->userdata('id_participante'));
 	}	
 
 }
