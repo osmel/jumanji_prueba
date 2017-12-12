@@ -397,7 +397,7 @@ header a {
 }
 
 .modal-content {
-  background-color: transparent;
+  background-image: url('../../img/fondopatron.jpg');
     border-radius: 0;
     border: 0px;
     box-shadow: none;

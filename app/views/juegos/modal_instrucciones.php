@@ -11,14 +11,12 @@
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
 	</div>
 	<div class="modal-body">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<h2 class="inst text-center">¡GRACIAS POR REGISTRAR TU TICKET!</h2>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 instru">
+			<h2 class="inst text-center">INSTRUCCIONES</h2>
 			<p class="instrucciones text-center">
-				Ahora aparecerán tres imágenes en movimiento.
+				Gira la mayor cantidad de monedas para acumular puntos antes de que se agote el tiempo
 			</p>
-			<p class="instrucciones text-center">
-Oprime el botón para detener el juego cuando lo creas conveniente, para hacer coincidir 3 figuras iguales en posición horizontal.
-			</p>
+			
 			<!-- <p class="instrucciones text-center">
 Podrás acumular puntos de la siguiente forma:
 			</p>
@@ -33,7 +31,7 @@ Podrás acumular puntos de la siguiente forma:
 		<div class="cont">
 			<button type="button" class="close continuar ingresar" data-dismiss="modal" aria-label="Close">
 				
-					CONTINUAR
+					COMENZAR
 				
 			</button>
 		</div>

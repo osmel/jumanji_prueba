@@ -8,14 +8,13 @@
 	<div class="modal-header felicidadesmodal">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	</div>
-	<div class="modal-body felicidadessi" style="background-image:url('<?php echo base_url()?>img/felicidades1.png'); background-size: 100%;
-    background-repeat: no-repeat;">
+	<div class="modal-body felicidadessi">
 				
 				<h1 class="felic">Comparte en Facebook y obtén más puntos</h1>				
 				<?php 
-				echo '<h4 class="text-center puntos-ganados">';
+				echo '<p class="instrucciones text-center">';
 					echo 'Gana tus primeros 100 puntos compartiendo tu registro en Facebook.';
-				echo '</h4>';
+				echo '</p>';
 				?>
 
 				

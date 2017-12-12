@@ -31,14 +31,14 @@
                           
                           <div class="front" style="padding-bottom: 20px;"> 
                             <?php 
-                                $imagen = ( substr_count($tarjeta,$i.'+')>=1) ? 'card'.$cara[$i-1].'.jpg' : 'cara.jpg';
+                                $imagen = ( substr_count($tarjeta,$i.'+')>=1) ? 'card'.$cara[$i-1].'.png' : 'modena.png';
                             ?>
                                 <img  src="<?php echo base_url()?>img/fichas/<?php echo $imagen; ?>">
                                 <?php echo $misdatos[$i-1]; ?>
                           </div> 
                           <div class="back" style="padding-bottom: 20px; display: <?php echo ( substr_count($tarjeta,$i.'+')>=1) ? 'none': ''; ?>;">
                                 
-                                <img src="<?php echo base_url().'img/fichas/card'.$cara[$i-1].'.jpg'; ?>">
+                                <img src="<?php echo base_url().'img/fichas/card'.$cara[$i-1].'.png'; ?>">
                                 <?php echo $misdatos[$i-1]; ?>
                                
                           </div> 

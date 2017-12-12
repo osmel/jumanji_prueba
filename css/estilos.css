@@ -968,8 +968,18 @@ button.ingresarhome,a.ingresarhome,button.ingresar,button.ingresar:active,button
     margin-bottom: 30px;
     margin-top: 49px;
 }
-
-
+.close:hover, .close:focus{
+  color: #ebc886;
+}
+.instru .instrucciones p{
+  font-size: 34px;
+    color: #633727;
+    font-weight: bold;
+}
+.instru .inst{
+      color: #ffffff;
+    margin: 11px !important;
+}
 
 /*help block*/
 
