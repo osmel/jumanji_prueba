@@ -166,23 +166,23 @@ function validar_registros(){
 									$dato['id_jefe'] = $login_checkeo[0]->id;
 
 									/*
-											correos correctos
+											correos correctos */
 									$this->email->from('admin@cinepremios.com', 'promojumanji');
 									$this->email->to( $esp_nuevo );
-									$this->email->subject('promojumanji'); //.$this->session->userdata('c2')
+									$this->email->subject('Cinemex - Jumanji en la Selva'); //.$this->session->userdata('c2')
 									$this->email->message( $this->load->view('admin/correos/alta_usuario', $dato, TRUE ) );
 									$this->email->send();
 
 									
 									$this->email->from('admin@cinepremios.com', 'promojumanji');
 									$this->email->to( $usuario['email_invitado'] );
-									$this->email->subject('promojumanji'); //.$this->session->userdata('c2')
+									$this->email->subject('Cinemex - Te invitaron a Jumanji en la Selva'); //.$this->session->userdata('c2')
 									$this->email->message( $this->load->view('admin/correos/alta_usuarioinvitado', $dato, TRUE ) );
 									$this->email->send();
 
 									
 
-									*/
+									
 
 									
 									//checar el loguin y recoger datos de usuario registrado
