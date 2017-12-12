@@ -982,7 +982,24 @@ button.ingresarhome,a.ingresarhome,button.ingresar,button.ingresar:active,button
 .close:hover, .close:focus{
   color: #ebc886;
 }
-.instru .instrucciones p{
+.monedasvalor{
+  width: 100%;
+    text-align: left;
+    margin-left: 28px;
+    margin-bottom: 20px;
+}
+.monedasvalor img{
+
+}
+.monedasvalor span{
+  font-family: 'Batman';
+    color: #ffffff;
+    font-size: 20px;
+}
+.tablero div{
+  padding: 0px;
+}
+.instru p,.felicidadessi p{
   font-size: 34px;
     color: #633727;
     font-weight: bold;

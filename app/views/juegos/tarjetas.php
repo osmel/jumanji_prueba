@@ -20,13 +20,13 @@
 <br><br><br><br>
 
 <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">  
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 tablero">  
 
        
            <?php for ($i = 1; $i <= count($cara); $i++) {
 
             ?>
-                 <div class="col-md-2">
+                 <div class="col-xs-3 col-sm-2 col-md-1">
                     <div class="card<?php echo ( substr_count($tarjeta,$i.'+')>=1) ? 's': ''; ?>" valor="<?php echo ( substr_count($tarjeta,$i.'+')>=1) ? 's': 'n'; ?>" posicion="<?php echo $i; ?>" numero="<?php echo $misdatos[$i-1]; ?>" cara="<?php echo $cara[$i-1]; ?>" > 
                           
                           <div class="front" style="padding-bottom: 20px;"> 
@@ -34,12 +34,12 @@
                                 $imagen = ( substr_count($tarjeta,$i.'+')>=1) ? 'card'.$cara[$i-1].'.png' : 'modena.png';
                             ?>
                                 <img  src="<?php echo base_url()?>img/fichas/<?php echo $imagen; ?>">
-                                <?php echo $misdatos[$i-1]; ?>
+                                <?php //echo $misdatos[$i-1]; ?>
                           </div> 
                           <div class="back" style="padding-bottom: 20px; display: <?php echo ( substr_count($tarjeta,$i.'+')>=1) ? 'none': ''; ?>;">
                                 
                                 <img src="<?php echo base_url().'img/fichas/card'.$cara[$i-1].'.png'; ?>">
-                                <?php echo $misdatos[$i-1]; ?>
+                                <?php //echo $misdatos[$i-1]; ?>
                                
                           </div> 
                     </div>      
@@ -49,6 +49,23 @@
     </div> 
      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
                 <span class="reloj"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="r1 countdown"></span></span>
+    
+      <div class="monedasvalor">
+        <img src="<?php echo base_url(); ?>img/fichas/card1.png"><span> = 100 PTS</span>
+      </div> 
+      <div class="monedasvalor">
+        <img src="<?php echo base_url(); ?>img/fichas/card2.png"><span> = 75 PTS</span>
+      </div> 
+      <div class="monedasvalor">
+        <img src="<?php echo base_url(); ?>img/fichas/card3.png"><span> = 50 PTS</span>
+      </div> 
+      <div class="monedasvalor">
+        <img src="<?php echo base_url(); ?>img/fichas/card4.png"><span> = 25 PTS</span>
+      </div> 
+      <div class="monedasvalor">
+        <img src="<?php echo base_url(); ?>img/fichas/card5.png"><span> = 0 PTS</span>
+      </div> 
+
     </div>
 </div>
 

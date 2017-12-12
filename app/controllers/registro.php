@@ -889,7 +889,7 @@ function validar_invitado(){
 						$this->session->set_userdata('tiempo', $this->tiempo_comienzo);  //para poder ir descontando tiempo
 
 						if ($booleano) {
-					        $cant_fichas=30;
+					        $cant_fichas=60;
 					        $cant_caritas= $this->session->userdata('numImage'); //5
 					        
 					        $total = 0;	
