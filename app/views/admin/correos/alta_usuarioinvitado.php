@@ -16,9 +16,11 @@
 	<table border="0" cellspacing="0" cellpadding="0" style="margin:30px auto; background-color:#000000; padding:0px; max-width:580px; width:100%">
 	  
 	  <tr>
-	   
+	  	<a href="<?php echo base_url(); ?>nuevo_invitado/<?php echo $id_jefe; ?>" name="boton" style="">
+		   <img src="https://www.cinepremios.com/promojumanji/img/invitado.jpg" alt="imagenesdemail">
+		</a>
 	  </tr>
-	  <tr>
+	  <!-- <tr>
 	   	 <td scope="row" style="text-align:center">
 	   	 	
 	    	<p style="font-family:'Myriad Pro', 'Myriad Pro Bold', Verdana, Arial; font-size:14px; text-transform: uppercase; color:#ef0711">
@@ -28,7 +30,7 @@
 	    	<p style="color:#FFC107;width:100%;text-align:center;font-size:28px;">UNIRME AL JUEGO</p></br>
 	    	</p>
 	   	 </td>
-	  </tr>
+	  </tr> -->
 	  <tr>
 	   	
 	  </tr>

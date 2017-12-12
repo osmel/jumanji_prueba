@@ -16,16 +16,16 @@
 	<table border="0" cellspacing="0" cellpadding="0" style="margin:30px auto; background-color:#000000; padding:0px; max-width:580px; width:100%">
 	  
 	  <tr>
-	   
+	   <img src="https://www.cinepremios.com/promojumanji/img/header1.png" alt="imagenesdemail">
 	  </tr>
 	  <tr>
 	   	 <td scope="row" style="text-align:center">
 	   	 	
 	    	<p style="font-family:'Myriad Pro', 'Myriad Pro Bold', Verdana, Arial; font-size:14px; text-transform: uppercase; color:#ef0711">
 	    	<p style="color:#ffffff;width:100%;text-align:center;font-size:28px;">Usuario: </p></br>
-	    	<p style="color:#FFC107;width:100%;text-align:center;font-size:28px;"><?php echo $email; ?></p></br>
+	    	<p style="color:#ffce09;width:100%;text-align:center;font-size:28px;"><?php echo $email; ?></p></br>
 	    	<p style="color:#ffffff;width:100%;text-align:center;font-size:28px;">Contraseña:</p></br>
-	    	<p style="color:#FFC107;width:100%;text-align:center;font-size:28px;"><?php echo $contrasena; ?></p></br>
+	    	<p style="color:#ffce09;width:100%;text-align:center;font-size:28px;"><?php echo $contrasena; ?></p></br>
 	    	</p>
 	   	 </td>
 	  </tr>
