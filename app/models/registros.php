@@ -396,6 +396,7 @@ from
 
           $this->db->select("AES_DECRYPT(nombre, '{$this->key_hash}') AS nombre", FALSE);
           $this->db->select("AES_DECRYPT(Apellidos, '{$this->key_hash}') AS Apellidos", FALSE);
+          $this->db->select("AES_DECRYPT(equipo, '{$this->key_hash}') AS equipo", FALSE);
           $this->db->select("AES_DECRYPT(juego, '{$this->key_hash}') AS juego", FALSE);
           $this->db->select("AES_DECRYPT(tiempo_juego, '{$this->key_hash}') AS tiempo_juego", FALSE);
           $this->db->select("AES_DECRYPT(tarjeta, '{$this->key_hash}') AS tarjeta", FALSE);
@@ -427,6 +428,7 @@ public function record_invitado($data){
 
           $this->db->select("AES_DECRYPT(nombre, '{$this->key_hash}') AS nombre", FALSE);
           $this->db->select("AES_DECRYPT(Apellidos, '{$this->key_hash}') AS Apellidos", FALSE);
+          $this->db->select("AES_DECRYPT(equipo, '{$this->key_hash}') AS equipo", FALSE);
           $this->db->select("AES_DECRYPT(juego, '{$this->key_hash}') AS juego", FALSE);
           $this->db->select("AES_DECRYPT(tiempo_juego, '{$this->key_hash}') AS tiempo_juego", FALSE);
           $this->db->select("AES_DECRYPT(tarjeta, '{$this->key_hash}') AS tarjeta", FALSE);

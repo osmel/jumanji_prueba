@@ -11,7 +11,7 @@
 
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<h2 class="text-center">@NOMBRE DEL EQUIPO</h2>
+			<h2 class="text-center">@<?php echo $jefe->equipo?></h2>
 		</div>
 	</div>
 
@@ -49,8 +49,8 @@
 			}
 		
 			//echo $suma_jefe;
-			echo '<div class="col-md-8"><span class="textosmarcador text-center">PUNTOS JUGADOR 1: </span><span class="textosmarcador2 text-center">PEDRO PEREZ</span></div><div class="col-md-4"><span class="marcadorconte">'.$suma_jefe.'</span></div>';
-			echo '<div class="col-md-8"><span class="textosmarcador text-center">PUNTOS JUGADOR 2: </span><span class="textosmarcador2 text-center">PEDRO PEREZ</span></div><div class="col-md-4"><span class="marcadorconte">'.$suma_invitado.'</span></div>';
+			echo '<div class="col-md-8"><span class="textosmarcador text-center">PUNTOS JUGADOR 1: </span><span class="textosmarcador2 text-center">'.$jefe->nombre.' '.$jefe->Apellidos.'</span></div><div class="col-md-4"><span class="marcadorconte">'.$suma_jefe.'</span></div>';
+			echo '<div class="col-md-8"><span class="textosmarcador text-center">PUNTOS JUGADOR 2: </span><span class="textosmarcador2 text-center">'.(($invitado) ? $invitado->nombre.' '.$invitado->Apellidos : "Aún no se registra").'</span></div><div class="col-md-4"><span class="marcadorconte">'.$suma_invitado.'</span></div>';
 
 			echo '<div class="col-md-8"><span class="textosmarcador">PUNTOS TOTALES:</span></div><div class="col-md-4"><span class="marcadorconte">'.($suma_jefe+$suma_invitado).'</span></div>';
 
