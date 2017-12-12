@@ -2,7 +2,7 @@
 
 class Registro extends CI_Controller {
 
-	public function __construct(){ 
+	public function __construct(){  
 		parent::__construct();
 
 		$this->load->model('admin/modelo', 'modelo'); 
@@ -106,9 +106,26 @@ function validar_registros(){
 					$data['email_invitado']			=	$this->input->post('email_invitado');
 					$data['contrasena']		=	$this->input->post('pass_1');
 					$data 				= 	$this->security->xss_clean($data);  
-					$login_check = $this->modelo_registro->check_correo_existente($data);
 
-					if ( $login_check != FALSE ){		
+
+
+					//print_r($mis_errores); die;
+					//$login_check = $this->modelo_registro->check_correo_existente($data);
+
+					//if ( $login_check != FALSE ){		
+
+
+    if ( $data['email'] != $data['email_invitado'] ) {
+       if (  $this->modelo_registro->checando_correos($data['email'],'email') ) { 
+           if (  $this->modelo_registro->checando_correos($data['email'],'email_invitado') ) { 
+
+
+           		if (  $this->modelo_registro->checando_correos($data['email_invitado'],'email') ) { 
+		           if (  $this->modelo_registro->checando_correos($data['email_invitado'],'email_invitado') ) { 
+		           				//EXITO para que pueda pasar este es el exito
+
+
+
 						$usuario['nombre']   			= $this->input->post( 'nombre' );
 						$usuario['apellidos']   		= $this->input->post( 'apellidos' );
 
@@ -148,8 +165,8 @@ function validar_registros(){
 									$login_checkeo = $this->modelo_registro->check_login($usuario);
 									$dato['id_jefe'] = $login_checkeo[0]->id;
 
-									
-									
+									/*
+											correos correctos
 									$this->email->from('admin@cinepremios.com', 'promojumanji');
 									$this->email->to( $esp_nuevo );
 									$this->email->subject('promojumanji'); //.$this->session->userdata('c2')
@@ -165,24 +182,7 @@ function validar_registros(){
 
 									
 
-										 
-									//if ($this->email->send()) 
-										//{	//si se notifico al usuario, que envie a los administradores un correo
-										/*
-										$dato['email']   			    = $usuario['email'];   			
-										$dato['contrasena']				= $usuario['contrasena'];				
-										$dato['nombre']   			    = $usuario['nombre'];   			
-										$dato['apellidos']				= $usuario['apellidos'];
-										$dato['celular']   			    = $usuario['celular'];   			
-
-											
-										$this->load->library('email');
-										$this->email->from('admin@cinepremios.com', 'Información Calimax');
-										$this->email->to('guerreroadrian1111@gmail.com,carlos.ramirez@lostres.mx');	
-
-										$this->email->subject('Nuevo usuario en Vamonos a España Calimax');
-										$this->email->message( $this->load->view('admin/correos/alta_usuarios', $dato, TRUE ) );
-										$this->email->send();*/
+									*/
 
 									
 									//checar el loguin y recoger datos de usuario registrado
@@ -237,16 +237,70 @@ function validar_registros(){
 					} else {  //if ( $guardar !== FALSE ){  
 						
 							 	 
-							 
+							 //hubo un error al guardar
 						
 					}
-				} else { //if ( $login_check != FALSE ){
+
+
+
+
+				/*} else { //if ( $login_check != FALSE ){
 					
 					$mis_errores["general"] = '<span class="error">El <b>Correo electrónico</b> ya se encuentra registrado.</span>';		 	
 							 
 						
 					
-				}
+				}*/
+
+
+
+
+ } else {
+		              //2.1-Si ya fu invitado -> msg, ya el usuario ha sido invitado
+		           	$mis_errores["email_invitado"] = '<span class="error">El <b>Correo electrónico</b> ya ha sido invitado.</span>';	
+		           }
+		       } else {
+		       	  //2.2-Si ya es jefe -> el usuario invitado ya fue dado de alta
+		       		$mis_errores["email_invitado"] = '<span class="error">El <b>Correo electrónico</b> ya se encuentra registrado.</span>';	
+		       }
+
+
+
+
+
+           } else {
+              //3.1- si ya fue invitado ->msg, usted ya ha sido invitado "click para darse de alta"
+           	//'/record/'.$this->session->userdata('id_participante')
+
+           	
+
+           	$url = 'nuevo_invitado/'.$this->modelo_registro->correo_id($data['email'],'email_invitado');
+           	$url = '<a href="'.base_url().$url.'">Click Aqui</a>';
+
+           	$mis_errores["email"] = '<span class="error">El <b>Correo electrónico</b> es invitado '.$url.'.</span>';	
+           }
+       } else {
+       	  //3.2- si ya es jefe -->msg, usted ya ha sido dado de alta
+       		$mis_errores["email"] = '<span class="error">El <b>Correo electrónico</b> ya se encuentra registrado.</span>';		 
+
+       }
+
+    } else {
+    	//1- los 2 correos no coincidan
+
+		$mis_errores["general"] = '<span class="error">Los Correos coinciden.</span>';		 	
+							 
+    }
+
+
+
+
+
+
+
+
+
+
 			} else {	//if ($this->input->post( 'pass_1' ) === $this->input->post( 'pass_2' ) ){		
 				
 					$mis_errores["general"] = '<span class="error">No coinciden la Contraseña </b> y su <b>Confirmación</b> </span>';
