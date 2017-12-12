@@ -25,7 +25,7 @@ class Home extends CI_Controller {
 			$preg = $this->modelo_registro->get_datos();
 
 			
-			if ( ( substr_count($preg->tarjeta,';') <5) && ($preg->tiempo_juego!='0:00') ) {
+			if ( ( substr_count($preg->tarjeta,';') <59) && ($preg->tiempo_juego!='0:00') ) {
 				 $data['tarjeta'] = $preg->tarjeta;
 				 
 				 $preg_cara= str_replace("[", "", $preg->cara);
@@ -80,7 +80,7 @@ class Home extends CI_Controller {
 		$data 		  		= $this->security->xss_clean( $data );
 		$guardar	 		= $this->modelo_registro->actualizar_respuesta_tarjeta( $data );
 		
-		if  ( substr_count($guardar,';') <5) {
+		if  ( substr_count($guardar,';') <59) {
 				$data['redireccion']='no'; //tarjetas
 		} else {
 				$data['redireccion'] = '';	
