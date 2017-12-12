@@ -12,16 +12,22 @@
  echo form_open('validar_registros', $attr);
 ?>		
 <div class="container registro text-center">	
-	<h2>Registro de Cuenta</h2>
+	<h2>Registro de Usuarios</h2>
 	<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 transparenciaformularios" style="float:none;margin:0px auto;">
 			
 			<div class="panel-body">
 				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
 
-					<div class="col-md-8">
+					<!-- <div class="col-md-8">
 								<a href="<?php echo base_url(); ?>recuperar_invitado"><span class="textosmarcador" style="color:red;">¿Eres Invitado?</span></a>
-							</div>
+							</div> -->
+					<div class="form-group">
+						
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 tituloinvitado text-left">
+							<span>PARTICIPANTE 1</span>
+						</div>
+					</div>
 
 
 					<div class="form-group">
@@ -78,30 +84,6 @@
 						</div>
 					</div>
 
-					<!--nombre del equipo -->
-					<div class="form-group">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<label for="equipo" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label">Nombre de Equipo:</label>
-							<input type="text" class="form-control" id="equipo" name="equipo">
-							<span class="help-block" style="color:white;" id="msg_equipo"> </span> 
-						</div>
-					</div>
-
-					<!--correo invitado -->
-					<div class="form-group">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<label for="email_invitado" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label">Correo electrónico Invitado:</label>
-							<input type="email_invitado" class="form-control" id="email_invitado" name="email_invitado">
-							<span class="help-block" style="color:white;" id="msg_email_invitado"> </span> 
-						</div>
-					</div>
-
-		
-				</div>
-
-
-				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-						
 					<div class="form-group">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<label for="celular" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label">Número telefónico:</label>
@@ -110,6 +92,7 @@
 						</div>
 					</div>
 
+					<!--correo mio -->
 					<div class="form-group">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<label for="email" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label">Correo electrónico:</label>
@@ -117,9 +100,41 @@
 							<span class="help-block" style="color:white;" id="msg_email"> </span> 
 						</div>
 					</div>
-			
 
 					
+
+		
+				</div>
+
+
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						
+					<div class="form-group">
+						
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 tituloinvitado  text-left">
+							<span>INVITAR PARTICIPANTE 2</span> <span style="font-size:14px">(OBLIGATORIO)</span>
+						</div>
+					</div>
+
+					<!--correo invitado -->
+					<div class="form-group">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label for="email_invitado" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label">Correo electrónico del invitado:</label>
+							<input type="email_invitado" class="form-control" id="email_invitado" name="email_invitado">
+							<span class="help-block" style="color:white;" id="msg_email_invitado"> </span> 
+						</div>
+					</div>
+					
+			
+
+					<!--nombre del equipo -->
+					<div class="form-group">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label for="equipo" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label">Nombre del Equipo:</label>
+							<input type="text" class="form-control" id="equipo" name="equipo">
+							<span class="help-block" style="color:white;" id="msg_equipo"> </span> 
+						</div>
+					</div>
 
 					<div class="form-group">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -176,7 +191,7 @@
 
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 				<button type="submit" class="btn btn-info" value="REGISTRARME"/>
-					<span class="registrarm">REGISTRARME</span>
+					<span class="registrarm"><img src="<?php echo base_url()?>img/registrarmeboton.png"></span>
 				</button>
 		</div>
 </div>

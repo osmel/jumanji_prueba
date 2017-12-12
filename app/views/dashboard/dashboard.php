@@ -5,7 +5,10 @@
 .logoderecha{
 	display: none;
 }
-
+body{
+	background-image: url(img/fondo1.jpg);
+            background-position: center center;
+}
 
 </style>
  <?php 
@@ -30,22 +33,26 @@
 					<div class="col-sm-4 col-sm-4 col-md-4">
 						<img src="<?php echo base_url()?>img/logo4.png" class="alto1">
 					</div>
+				</div>
+				<div class="col-sm-12 col-md-12">	
+					<div class="col-sm-2 col-md-2">
+			    	</div>
 			    
-					<div class="col-sm-12 col-md-12 text-center">
+					<div class="col-sm-8 col-md-8 text-center">
 			      		<img src="<?php echo base_url()?>img/sanfa.png">
 					</div>
 
 			    	<div class="col-sm-3 col-md-3">
 			    	</div>
 
-			    	<div class="col-sm-6 col-md-6" style="margin-bottom: 25px;margin-top: 25px;">
+			    	<!-- <div class="col-sm-6 col-md-6" style="margin-bottom: 25px;margin-top: 25px;">
 			            <video width="100%" height="280" controls>
 			            <source src="<?php echo base_url()?>img/video.mp4" type="video/mp4">
 			            Your browser does not support the video tag.
 			            </video>
 				    </div>
-
-				    <div class="col-sm-3 col-md-3">
+ -->
+				    <!-- <div class="col-sm-3 col-md-3">
 				    </div>
 
 				    <div class="col-sm-12 col-md-12">
@@ -57,13 +64,15 @@
 
 				    <div class="col-sm-4 col-md-4">
 				      <img src="<?php echo base_url()?>img/prox.png">
-				    </div>
+				    </div> -->
 
-				    <div class="col-sm-4 col-md-4">
-				    </div>
+				    
 
 				</div>
-
+				<div class="col-sm-12 col-md-12 text-center login">	
+					<a href="<?php echo base_url(); ?>ingresar_usuario" class=""><img src="<?php echo base_url()?>img/login.png"></a>
+			    	<a href="<?php echo base_url(); ?>registro_usuario" class="registro1">REGISTRARME</a>
+			    </div>
 
 
 

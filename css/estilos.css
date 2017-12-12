@@ -60,7 +60,9 @@
     padding: 12px 0px;
     margin-bottom: 25px;
 }
-
+p{
+  color: #ffffff;
+}
 
   .generalsinborde img{
     width: 100%;
@@ -105,6 +107,11 @@
     padding: 12px 9px;
     font-size: 14px;
     
+   }
+   .containersinb img{
+    padding: 0px;
+    margin-bottom: 35px !important;
+    margin-top: 0px !important;
    }
    .logo1a{
         width: 254px;
@@ -151,6 +158,9 @@
 
 .amarillo{
   color: yellow;
+}
+.login{
+  margin-top: 150px;
 }
 @font-face {
     font-family: 'Intersate';
@@ -328,12 +338,12 @@ body {
 }
 h1{
   font-family: 'Batman';
-  color: #ffffff;
+  color: #ffce09;
       font-size: 34px;
 }
 h2 {
   font-family: 'Batman';
-  color: #ffffff;
+  color: #ffce09;
     font-size: 40px;
     font-weight: bold;
     margin-bottom: 30px;
@@ -354,23 +364,7 @@ h2 {
   }
 }
 span.registrarm{
-  background: #46443c;
-    background-image: -webkit-linear-gradient(top, #fffefd, #4c4c4c);
-    background-image: -moz-linear-gradient(top, #fffefd, #4c4c4c);
-    background-image: -ms-linear-gradient(top, #fffefd, #4c4c4c);
-    background-image: -o-linear-gradient(top, #fffefd, #4c4c4c);
-    background-image: linear-gradient(to bottom, #fffefd, #4c4c4c);
-    -webkit-border-radius: 17;
-    -moz-border-radius: 17;
-    border-radius: 0px;
-    color: #313132;
-    font-size: 22px;
-    padding: 10px 20px 6px 20px;
-    border: solid #fff 3px;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: Bebasbold;
-    display: inline-flex;
+  cursor: pointer;
 }
 .logo_promo_movil {
   display: none;
@@ -753,29 +747,27 @@ p.datos span:nth-child(2) {
 }
 
 #form_reg_participantes input {
-      padding-top: 6px;
+         padding-top: 6px;
     padding-bottom: 6px;
     color: #ffffff !important;
     height: auto;
     font-size: 15px;
     font-weight: bold;
-    /*text-transform: capitalize;*/
-    background-color: rgba(241, 239, 234, 0.21);
+    background-color: #b98b0fcf;
     border-radius: 0px;
-    border: 3px solid;
+    border: 0px;
   
 }
 #form_reg_participantes select {
-  padding-top: 6px;
+     padding-top: 6px;
     padding-bottom: 6px;
     color: #ffffff !important;
     height: auto;
     font-size: 15px;
     font-weight: bold;
-    text-transform: capitalize;
-    background-color: rgba(241, 239, 234, 0.21);
+    background-color: #b98b0fcf;
     border-radius: 0px;
-    border: 3px solid;
+    border: 0px;
   
 }
 #id_estado option, .day option, .month option, .year option{
@@ -900,16 +892,15 @@ p.amarillo {
 #form_logueo_participante input[type="text"],
 #form_logueo_participante input[type="email"],
 #form_logueo_participante input[type="password"] {
-     padding-top: 6px;
+    padding-top: 6px;
     padding-bottom: 6px;
     color: #ffffff !important;
     height: auto;
     font-size: 15px;
     font-weight: bold;
-    
-    background-color: rgba(241, 239, 234, 0.21);
+    background-color: #b98b0fcf;
     border-radius: 0px;
-    border: 3px solid;
+    border: 0px;
   
 }
 input[type="text"]::-webkit-input-placeholder,input[type="email"]::-webkit-input-placeholder,input[type="password"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -949,25 +940,34 @@ a.ingresar{
       display: inline-block;
   }
 button.ingresarhome,a.ingresarhome,button.ingresar,button.ingresar:active,button.ingresar:focus,a.ingresar,a.ingresar:active, a.ingresar:focus {
-      background: #46443c;
-    background-image: -webkit-linear-gradient(top, #fffefd, #4c4c4c);
-    background-image: -moz-linear-gradient(top, #fffefd, #4c4c4c);
-    background-image: -ms-linear-gradient(top, #fffefd, #4c4c4c);
-    background-image: -o-linear-gradient(top, #fffefd, #4c4c4c);
-    background-image: linear-gradient(to bottom, #fffefd, #4c4c4c);
-    -webkit-border-radius: 17;
-    -moz-border-radius: 17;
-    border-radius: 0px;
-    color: #313132;
-    font-size: 22px;
-    padding: 10px 20px 6px 20px;
-    border: solid #fff 3px;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: Bebasbold;
-    display: inline-flex;
+    background: #cfa207;
+  background-image: -webkit-linear-gradient(top, #cfa207, #a23502);
+  background-image: -moz-linear-gradient(top, #cfa207, #a23502);
+  background-image: -ms-linear-gradient(top, #cfa207, #a23502);
+  background-image: -o-linear-gradient(top, #cfa207, #a23502);
+  background-image: linear-gradient(to bottom, #cfa207, #a23502);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  text-shadow: 2px 2px 5px #0f0e0f;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+  font-family: Arial;
+  color: #ebc886;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border: 0px;
 }
-
+.tituloinvitado span{
+  font-family: 'Batman';
+    color: #ffce09;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 49px;
+}
 
 
 
@@ -1130,12 +1130,22 @@ footer .vigencia {
 button.navbar-toggle.collapsed{
   margin-right: 0px;
 }
+.registro1{
+      font-size: 35px;
+    text-decoration: underline;
+    color: #ffffff;
+    margin-top: 12px;
+    display: block;
+}
 @media screen and (max-width: 768px) {
   .ventana-ejemplos .exp span {
     display: block;
     text-align: left !important;
     padding-left: 20px;
   }
+  .login{
+  margin-top: 70px;
+}
   .contenedorpregu{
     padding: 0px !important;
   }
