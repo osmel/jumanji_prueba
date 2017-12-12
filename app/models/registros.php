@@ -646,6 +646,45 @@ redes
 			$login->free_result();
 		}
 
+/*
+select 
+  AES_DECRYPT( email,'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5') AS email,
+  AES_DECRYPT( email_invitado,'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5') AS email_invitado,
+  AES_DECRYPT( tarjeta,'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5') AS tarjeta
+from 
+  calimax_participantes
+
+*/
+
+    public function checando_correos($correo1,$correo2){
+      $this->db->select("AES_DECRYPT(email,'{$this->key_hash}') AS email", FALSE);      
+      $this->db->from($this->participantes);
+
+      $this->db->where($correo2,"AES_ENCRYPT('{$correo1}','{$this->key_hash}')",FALSE);
+    
+      $login = $this->db->get();
+      if ($login->num_rows() > 0)
+        return FALSE;
+      else
+        return TRUE;
+      $login->free_result();
+    }
+
+
+    public function correo_id($correo1,$correo2){
+      $this->db->select("id");      
+      $this->db->from($this->participantes);
+
+      $this->db->where($correo2,"AES_ENCRYPT('{$correo1}','{$this->key_hash}')",FALSE);
+    
+      $login = $this->db->get();
+      if ($login->num_rows() > 0)
+        return $login->row()->id;
+      else
+        return TRUE;
+      $login->free_result();
+    }
+
 
 		//Recuperar contraseña	del participante
 	    public function recuperar_contrasena($data){
