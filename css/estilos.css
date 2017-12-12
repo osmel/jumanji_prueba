@@ -47,13 +47,17 @@
 }
 .textosmarcador{
   font-family: 'batman';
-  font-size: 30px;
+  font-size: 25px;
   color: #ffffff;
+  width: 100%;
+      display: inline-block;
 }
-.textosmarcador{
+.textosmarcador2{
   font-family: 'batman';
-  font-size: 30px;
+  font-size: 25px;
   color: #ffce09;
+  width: 100%;
+      display: inline-block;
 }
 .marcadorconte{
   width: 100%;
@@ -758,7 +762,8 @@ p.datos span:nth-child(2) {
     height: auto;
     font-size: 15px;
     font-weight: bold;
-    background-color: #b98b0fcf;
+    background-color: rgba(185, 139, 15, 0.8117647058823529);
+   
     border-radius: 0px;
     border: 0px;
   
@@ -770,7 +775,8 @@ p.datos span:nth-child(2) {
     height: auto;
     font-size: 15px;
     font-weight: bold;
-    background-color: #b98b0fcf;
+     background-color: rgba(185, 139, 15, 0.8117647058823529);
+  
     border-radius: 0px;
     border: 0px;
   
