@@ -999,6 +999,12 @@ button.ingresarhome,a.ingresarhome,button.ingresar,button.ingresar:active,button
 .tablero div{
   padding: 0px;
 }
+.tablero{
+      margin-top: 33px;
+    padding: 58px;
+    background-image: url(../img/fondotablero.png);
+    background-size: 100% 100%;
+}
 .instru p,.felicidadessi p{
   font-size: 34px;
     color: #633727;

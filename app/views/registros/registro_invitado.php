@@ -12,10 +12,21 @@
  echo form_open('validar_invitado', $attr);
 ?>		
 <div class="container registro text-center">	
-	<h2>Registro de Cuenta</h2>
+	<h2>Registro de Usuarios</h2>
 	<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 transparenciaformularios" style="float:none;margin:0px auto;">
 			
 			<div class="panel-body">
+
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+<div class="form-group">
+						
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 tituloinvitado text-left">
+							<span>PARTICIPANTE 2</span>
+						</div>
+					</div>
+
+</div>
 				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
 					
@@ -85,7 +96,7 @@
 					<div class="form-group">
 						<fieldset disabled>
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<label for="equipo" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label">Nombre de Equipo:</label>
+								<label for="equipo" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label">Tu Equipo es:</label>
 								<input value="<?php echo $jefe_equipo->equipo; ?>" type="text" class="form-control" id="equipo" name="equipo">
 								<span class="help-block" style="color:white;" id="msg_equipo"> </span> 
 							</div>
@@ -96,7 +107,7 @@
 					<div class="form-group">
 						<fieldset disabled>
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<label for="email_invitado" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label">Jefe Equipo:</label>
+								<label for="email_invitado" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label">Te invito:</label>
 								<input value="<?php echo $jefe_equipo->email; ?>" type="email_invitado" class="form-control" id="email_invitado" name="email_invitado">
 								<span class="help-block" style="color:white;" id="msg_email_invitado"> </span> 
 							</div>
@@ -185,7 +196,7 @@
 
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 				<button type="submit" class="btn btn-info" value="REGISTRARME"/>
-					<span class="registrarm">REGISTRARME</span>
+					<span class="registrarm"><img src="<?php echo base_url()?>img/registrarmeboton.png"></span>
 				</button>
 		</div>
 </div>
