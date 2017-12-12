@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="">								
-		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12 mimarcador transparenciaformularios">
+		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12 mimarcador">
 			<?php 	
 			$suma_invitado =0;
 			$suma_jefe =0;
@@ -49,7 +49,7 @@
 			}
 		
 			//echo $suma_jefe;
-			echo '<div class="col-md-6"><span class="textosmarcador">PUNTOS JUGADOR 1:</span></div><div class="col-md-6"><span class="marcadorconte">'.$suma_jefe.'</span></div>';
+			echo '<div class="col-md-6"><span class="textosmarcador">PUNTOS JUGADOR 1:</span><span class="textosmarcador2">PEDRO PEREZ</span></div><div class="col-md-6"><span class="marcadorconte">'.$suma_jefe.'</span></div>';
 			echo '<div class="col-md-6"><span class="textosmarcador">PUNTOS JUGADOR 1:</span></div><div class="col-md-6"><span class="marcadorconte">'.$suma_invitado.'</span></div>';
 
 			echo '<div class="col-md-6"><span class="textosmarcador">PUNTOS TOTALES:</span></div><div class="col-md-6"><span class="marcadorconte">'.($suma_jefe+$suma_invitado).'</span></div>';
@@ -58,7 +58,7 @@
 			
 
 			?>
-			<h1>Conserva tu boleto de entrada; debes presentarlo si resultas ganador</h1>
+			
 		</div>
 	</div>	
 
