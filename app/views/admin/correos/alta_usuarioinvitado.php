@@ -19,6 +19,9 @@
 	  	<a href="<?php echo base_url(); ?>nuevo_invitado/<?php echo $id_jefe; ?>" name="boton" style="">
 		   <img src="https://www.cinepremios.com/promojumanji/img/invitado.jpg" alt="imagenesdemail">
 		</a>
+		<a href="<?php echo base_url(); ?>nuevo_invitado/<?php echo $id_jefe; ?>" style="background:#ebbb34; font-family:'Myriad Pro', 'Myriad Pro Bold', Verdana, Arial; font-size:18px; color:#122145; padding:10px; border:none; text-decoration:none; text-align: center;">
+				Si no puedes visualizar la imagen puedes hacer clic aquí para registrarte
+			</a>
 	  </tr>
 	  <!-- <tr>
 	   	 <td scope="row" style="text-align:center">
