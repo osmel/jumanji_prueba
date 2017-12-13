@@ -167,14 +167,14 @@ function validar_registros(){
 
 									/*
 											correos correctos */
-									$this->email->from('admin@cinepremios.com', 'promojumanji');
+									$this->email->from('admin@cinepremios.com', 'Cinemex');
 									$this->email->to( $esp_nuevo );
 									$this->email->subject('Cinemex - Jumanji en la Selva'); //.$this->session->userdata('c2')
 									$this->email->message( $this->load->view('admin/correos/alta_usuario', $dato, TRUE ) );
 									$this->email->send();
 
 									
-									$this->email->from('admin@cinepremios.com', 'promojumanji');
+									$this->email->from('admin@cinepremios.com', 'Cinemex');
 									$this->email->to( $usuario['email_invitado'] );
 									$this->email->subject('Cinemex - Te invitaron a Jumanji en la Selva'); //.$this->session->userdata('c2')
 									$this->email->message( $this->load->view('admin/correos/alta_usuarioinvitado', $dato, TRUE ) );
