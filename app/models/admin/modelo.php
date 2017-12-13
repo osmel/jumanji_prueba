@@ -824,7 +824,7 @@ public function buscador_participantes($data){
 
                $where = "(  ( AES_DECRYPT(p.tarjeta,'{$this->key_hash}') <> '' ) 
                  
-              )" ;     // AND ( AES_DECRYPT(p.juego,'{$this->key_hash}') <> '' ) 
+              )" ;    
 
   
           $this->db->where($where);
@@ -863,38 +863,21 @@ public function buscador_participantes($data){
                                     $arreglo=array(0,0,0,0,0,0,0);
                                     $cantidad=array(0,0,0,0,0,0,0);
                                     $imagen=array("","","","","","","");
-                                    //$imagen=array(,,,,,,,,);
+                                    
                                     if ($row->tarjeta!='')
                                     foreach ($matriz as $key => $value) { //
                                         $ma1=explode( "+",$value);  
                                         $ma2=explode( "|",$ma1[1]); 
-                                        //$suma = $suma + (int)$this->session->userdata('ip'.$ma2[1]);
-                                        $suma = 2; //$ma2[1];
-
-                                        /*$arreglo[$ma2[1]] = array(
-                                                $ma2[1]  => $ma2[1] += $ma2[1],
-
-                                          );
-                                          */
-
-                                          //$arreglo[$ma2[1]] +=$ma2[1];
+                                        
                                           $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
 
                                           $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
 
-                                          $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); //'<img src="'.base_url().$this->session->userdata("i".$ma2[1]).'" border="0" width="25" height="25">';
+                                          $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
 
                                     } 
 
-                                    
-
-                                  
-                                    /*
-                                 $suma = strtotime('00:'.date("i:s", $suma));
-                                //$resto = strtotime('00:00:05');
-                                $resto = ($row->redes==1) ? strtotime('00:00:05') : strtotime('00:00:00');
-                                $suma= ($suma <=$resto ) ? 0 : $suma-$resto; 
-                                */
+                              
 
                                 $imagenes='';
                                 for ($i=1; $i <=5 ; $i++) { 
@@ -935,8 +918,6 @@ public function buscador_participantes($data){
                     
               }   
               else {
-                  //cuando este vacio la tabla que envie este
-                //http://www.datatables.net/forums/discussion/21311/empty-ajax-response-wont-render-in-datatables-1-10
                   $output = array(
                   "draw" =>  intval( $data['draw'] ),
                   "recordsTotal" => 0,
@@ -1650,8 +1631,10 @@ public function buscador_listado_completo($data){
           $this->db->select("AES_DECRYPT(contrasena, '{$this->key_hash}') AS contrasena", FALSE);
           //$this->db->select("AES_DECRYPT(puntos, '{$this->key_hash}') AS puntos", FALSE);
           $this->db->select("redes,p.fecha_mac");
-       
-          $this->db->select("AES_DECRYPT(p.ciudad, '{$this->key_hash}') AS ciudad", FALSE);  
+          //$this->db->select("c.nombre estado");
+          $this->db->select("p.id_jefe");
+
+          $this->db->select("AES_DECRYPT(p.ciudad, '{$this->key_hash}') AS ciudad", FALSE); 
 
 
 ///////////////////fin new
@@ -1688,19 +1671,13 @@ public function buscador_listado_completo($data){
             )";       
 
              $where = "(  ( AES_DECRYPT(p.tarjeta,'{$this->key_hash}') <> '' ) 
-                  AND ( AES_DECRYPT(p.juego,'{$this->key_hash}') <> '' ) 
+                  
               )" ;    
 
   
           $this->db->where($where);       
 
-          //OR ( r.cant_botones LIKE  '%".$cadena."%' ) 
-          //$this->db->where($where);
-    
-          //ordenacion
-          //$this->db->order_by('cant_botones', 'asc'); 
-
-          //agrupar
+          
           $this->db->group_by('p.id'); 
 
           $result = $this->db->get();
@@ -1710,40 +1687,40 @@ public function buscador_listado_completo($data){
 
                         foreach ($result->result() as $row) {
 
-                            $caritas = $row->juego;
-                            $c1 =  (int) ($caritas / 100);
-                            $c2 =   (int) (($caritas % 100) / 10 );
-                            $c3 =   (int) (($caritas % 10)  );
-                          $imagen1 ='<img src="'.base_url().$this->session->userdata("i".$c1).'" border="0" width="25" height="25">';
-                          $imagen2 = '<img src="'.base_url().$this->session->userdata("i".$c2).'" border="0" width="25" height="25">';
-                           $imagen3 = '<img src="'.base_url().$this->session->userdata("i".$c3).'" border="0" width="25" height="25">';
+                           $suma_invitado =0;
+                                    $suma_jefe =0;
+                                    $suma =0;
 
-                                //para sacar aciertos y suma de tiempo
-                                $matriz = explode( ";",substr($row->tarjeta, 0, -1));
-                                $suma =0;
-                                $cant=0;
-                                
-                                foreach ($matriz as $key => $value) { //3+c-0*5|00:00:01;1+a-1*12|00:00:10;2+c-0*8|00:00:0...
-                                  if ($key <=4) {
-                                      $ma1=explode( "+",$value);   //Array ( [0] => 3 [1] => c-0*5|00:00:01 )  -->fig 1,2,3,4,5
-                                      $ma2=explode( "-",$ma1[1]);   //Array ( [0] => c [1] => 0*5|00:00:01 )   --> resp a, b o c
-                                      $ma3=explode( "*",$ma2[1]);   //Array ( [0] => 0 [1] => 5|00:00:01 )   -->si o no
-                                      $ma4=explode( "|",$ma3[1]);   //Array ( [0] => 5 [1] => 00:00:01 )     --> id_preg
-                                      $ma5=explode( "|",$ma4[1]);
-                                      if ($ma3[0]==1) {
-                                        $cant++;
-                                      }
-                                      $suma = ($suma==0) ? (strtotime($ma5[0])) : $suma+strtotime($ma5[0]) ; 
-                                  }    
-                                 }
+                                    
+                                    $matriz = explode( ";",substr(trim($row->tarjeta), 0, -1));
+                                    
+
+                                    $arreglo=array(0,0,0,0,0,0,0);
+                                    $cantidad=array(0,0,0,0,0,0,0);
+                                    $imagen=array("","","","","","","");
+                                    
+                                    if ($row->tarjeta!='')
+                                    foreach ($matriz as $key => $value) { //
+                                        $ma1=explode( "+",$value);  
+                                        $ma2=explode( "|",$ma1[1]); 
+                                        
+                                          $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
+
+                                          $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
+
+                                          $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
+
+                                    } 
+
+                              
+
+                                $imagenes='';
+                                for ($i=1; $i <=5 ; $i++) { 
+                                    $imagenes.=$i.' --- '.$cantidad[$i].' --- '.$arreglo[$i].'<br/>';  
+                                }
 
 
-                                 $suma = strtotime('00:'.date("i:s", $suma));
-                                //$resto = strtotime('00:00:05');
-                                $resto = ($row->redes==1) ? strtotime('00:00:05') : strtotime('00:00:00');
-                                $suma= ($suma <=$resto ) ? 0 : $suma-$resto; 
-                                $row->tiempo_juego =date("i:s", $suma);
-                                $row->respuesta_aceptada =$cant;
+                                $row->imagenes =$imagenes;
 
                           }      
                   return $result->result();
