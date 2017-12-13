@@ -447,14 +447,13 @@ jQuery('#tabla_participantes').dataTable( {
 			    	
 			    	{ 
 		                "render": function ( data, type, row ) {
-		                		return row[13]; //Fecha creación
+		                		return row[12]; //Fecha creación
 		                },
 		                "targets": [0] 
 		            },		            
-		           // 
 					{ 
 		                "render": function ( data, type, row ) {
-		                		return row[2]+row[3]; //nombre
+		                		return row[2]+' '+row[3]; //nombre y apellidos
 		                },
 		                "targets": [1] 
 		            },
@@ -483,16 +482,6 @@ jQuery('#tabla_participantes').dataTable( {
 		                },
 		                "targets": [5] 
 		            },
-				
-		            /*
-
-			    	{ 
-		                "render": function ( data, type, row ) {
-		                			return row[11]; //puntos
-		                },
-		                "targets": [6] 
-		            },*/
-
 
 			    	{ 
 		                "render": function ( data, type, row ) {
@@ -507,7 +496,6 @@ jQuery('#tabla_participantes').dataTable( {
 		                },
 		                "targets": [7]  
 		            },
-
 		            
 			    	{ 
 		                "render": function ( data, type, row ) {
@@ -515,20 +503,12 @@ jQuery('#tabla_participantes').dataTable( {
 		                },
 		                "targets": [8] 
 		            },
-		            /*
-		            { 
-		                "render": function ( data, type, row ) {
-		                			return row[14]; //TARJETA
-		                },
-		                "targets": [9] 
-		            },*/
-		           
 
 					{ 
 
 
 		                 "visible": false,
-		                 "targets": [9] //6
+		                 "targets": [9,10,11,12,13] //6
 		                
 		            }
 		            

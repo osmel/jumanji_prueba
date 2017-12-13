@@ -53,10 +53,9 @@
 									<th class="text-center cursora" width="9%">Email </th>
 									<th class="text-center cursora" width="6%">Celular</th>			
 									<th class="text-center cursora" width="8%">Estado</th>
-									<!--<th class="text-center cursora" width="5%">puntos</th> -->
 									<th class="text-center cursora" width="10%">Juegos</th>
 									<th class="text-center cursora" width="6%">Tiempo Juego</th>
-									<th class="text-center cursora" width="6%">Respuesta acertada</th>
+									<th class="text-center cursora" width="6%">Tipo</th>
 									
 									
 
