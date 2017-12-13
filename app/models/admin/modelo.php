@@ -664,7 +664,7 @@ public function buscador_participantes($data){
           $columa_order = $data['order'][0]['column'];
                  $order = $data['order'][0]['dir'];
 
-
+/*
           switch ($columa_order) {
                       case '0':
                         $columna = 'fecha_pc_compra';
@@ -748,7 +748,7 @@ public function buscador_participantes($data){
                      break;
                  }             
 
-
+*/
 
                                       
 
@@ -793,6 +793,7 @@ public function buscador_participantes($data){
           
           
           //filtro de busqueda
+          /*
             $where = "(
 
                       (
@@ -820,7 +821,7 @@ public function buscador_participantes($data){
                         
                         
                        )
-            )";              
+            )";   */           
 
                $where = "(  ( AES_DECRYPT(p.tarjeta,'{$this->key_hash}') <> '' ) 
                  
