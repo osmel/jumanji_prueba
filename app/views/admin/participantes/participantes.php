@@ -57,7 +57,7 @@
 									<th class="text-center cursora" width="10%">Juegos</th>
 									<th class="text-center cursora" width="6%">Tiempo Juego</th>
 									<th class="text-center cursora" width="6%">Respuesta acertada</th>
-									<th class="text-center cursora" width="10%">Tarjetas</th>
+									
 									
 
 
