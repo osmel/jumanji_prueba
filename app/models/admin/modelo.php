@@ -771,9 +771,10 @@ public function buscador_participantes($data){
           $this->db->select("AES_DECRYPT(email, '{$this->key_hash}') AS email", FALSE);
           $this->db->select("AES_DECRYPT(contrasena, '{$this->key_hash}') AS contrasena", FALSE);
           //$this->db->select("AES_DECRYPT(puntos, '{$this->key_hash}') AS puntos", FALSE);
-          $this->db->select("redes,p.fecha_mac");
+          $this->db->select("p.fecha_mac");
           //$this->db->select("c.nombre estado");
           $this->db->select("p.id_jefe");
+  $this->db->select("AES_DECRYPT(redes, '{$this->key_hash}') AS redes", FALSE);
 
           $this->db->select("AES_DECRYPT(p.ciudad, '{$this->key_hash}') AS ciudad", FALSE);
   
@@ -902,10 +903,9 @@ public function buscador_participantes($data){
                                       10=>$row->contrasena,
                                       11=>$row->redes,
                                       12=>$row->fecha_mac,
-                                      13=>$row->tarjeta,
+                                      13=>$row->tarjeta
                                     );
                       }
-
 
 
 
