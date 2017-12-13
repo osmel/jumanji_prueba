@@ -49,13 +49,15 @@
 
 									<th class="text-center cursora" width="5%">Fecha Creación</th>
 									<th class="text-center cursora" width="15%">Nombre</th>
+									<th class="text-center cursora" width="9%">Equipo</th>
+									<th class="text-center cursora" width="9%">Total</th>
 									<th class="text-center cursora" width="9%">Contraseña</th>
 									<th class="text-center cursora" width="9%">Email </th>
-									<th class="text-center cursora" width="6%">Celular</th>			
-									<th class="text-center cursora" width="8%">Estado</th>
-									<th class="text-center cursora" width="10%">Juegos</th>
-									<th class="text-center cursora" width="6%">Tiempo Juego</th>
-									<th class="text-center cursora" width="6%">Tipo</th>
+									<th class="text-center cursora" width="9%">Celular</th>			
+									<th class="text-center cursora" width="9%">Estado</th>
+									<th class="text-center cursora" width="12%">Juegos</th>
+									<th class="text-center cursora" width="7%">Tiempo Juego</th>
+									<th class="text-center cursora" width="7%">Tipo</th>
 									
 									
 

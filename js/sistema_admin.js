@@ -457,58 +457,72 @@ jQuery('#tabla_participantes').dataTable( {
 		                },
 		                "targets": [1] 
 		            },
+
 					{ 
 		                "render": function ( data, type, row ) {
-		                		return row[10]; //contrasena
+		                		return row[2]; //equipo
 		                },
-		                "targets": [2] 
-		            },
+		                "targets": [14] 
+		            },		         
+
 					{ 
 		                "render": function ( data, type, row ) {
-		                		return row[9]; //email
+		                		return row[15]; //total
 		                },
 		                "targets": [3] 
 		            },		            
 					{ 
 		                "render": function ( data, type, row ) {
-		                		return row[5]; //celular
+		                		return row[10]; //contrasena
 		                },
 		                "targets": [4] 
+		            },
+					{ 
+		                "render": function ( data, type, row ) {
+		                		return row[9]; //email
+		                },
+		                "targets": [5] 
+		            },		            
+					{ 
+		                "render": function ( data, type, row ) {
+		                		return row[5]; //celular
+		                },
+		                "targets": [6] 
 		            },
 
 					{ 
 		                "render": function ( data, type, row ) {
 		                		return row[1]; //estado
 		                },
-		                "targets": [5] 
+		                "targets": [7] 
 		            },
 
 			    	{ 
 		                "render": function ( data, type, row ) {
 		                			return row[6]; //JUEGO
 		                },
-		                "targets": [6] 
+		                "targets": [8] 
 		            },
 
 			    	{ 
 		                "render": function ( data, type, row ) {
 		                			return row[7]; //TIEMPO JUEGO
 		                },
-		                "targets": [7]  
+		                "targets": [9]  
 		            },
 		            
 			    	{ 
 		                "render": function ( data, type, row ) {
 		                			return row[8]; //jefe o invitado
 		                },
-		                "targets": [8] 
+		                "targets": [10] 
 		            },
 
 					{ 
 
 
 		                 "visible": false,
-		                 "targets": [9,10,11,12,13] //6
+		                 "targets": [11,12,13,14,15] //6
 		                
 		            }
 		            

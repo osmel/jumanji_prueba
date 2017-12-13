@@ -770,7 +770,7 @@ public function buscador_participantes($data){
           $this->db->select("AES_DECRYPT(tarjeta, '{$this->key_hash}') AS tarjeta", FALSE);
           $this->db->select("AES_DECRYPT(email, '{$this->key_hash}') AS email", FALSE);
           $this->db->select("AES_DECRYPT(contrasena, '{$this->key_hash}') AS contrasena", FALSE);
-          //$this->db->select("AES_DECRYPT(puntos, '{$this->key_hash}') AS puntos", FALSE);
+          $this->db->select("AES_DECRYPT(equipo, '{$this->key_hash}') AS equipo", FALSE);
           $this->db->select("p.fecha_mac");
           //$this->db->select("c.nombre estado");
           $this->db->select("p.id_jefe");
@@ -794,37 +794,19 @@ public function buscador_participantes($data){
           
           
           //filtro de busqueda
-          /*
-            $where = "(
+              // OR ( DATE_FORMAT(FROM_UNIXTIME(p.fecha_pc),'%d-%m-%Y %H:%i:%s') LIKE  '%".$cadena."%' ) 
 
-                      (
-                        (  CONCAT( AES_DECRYPT(p.nombre,'{$this->key_hash}'),' ',AES_DECRYPT(p.apellidos,'{$this->key_hash}') ) LIKE  '%".$cadena."%' )
+               $where = "(  
+                ( AES_DECRYPT(p.tarjeta,'{$this->key_hash}') <> '' )  AND
+
+                (
+                        (  CONCAT( AES_DECRYPT(p.nombre,'{$this->key_hash}'),' ',AES_DECRYPT(p.Apellidos,'{$this->key_hash}') ) LIKE  '%".$cadena."%' )
                         OR ( AES_DECRYPT(p.email,'{$this->key_hash}') LIKE  '%".$cadena."%' ) 
-                        OR ( AES_DECRYPT(p.telefono,'{$this->key_hash}') LIKE  '%".$cadena."%' ) 
                         OR ( AES_DECRYPT(p.celular,'{$this->key_hash}') LIKE  '%".$cadena."%' )
-                         OR ( AES_DECRYPT(p.calle,'{$this->key_hash}') LIKE  '%".$cadena."%' ) 
-                         OR ( p.numero LIKE  '%".$cadena."%' ) 
-                         OR ( AES_DECRYPT(p.colonia,'{$this->key_hash}') LIKE  '%".$cadena."%' ) 
-                         OR ( AES_DECRYPT(p.municipio,'{$this->key_hash}') LIKE  '%".$cadena."%' )
-                         OR ( AES_DECRYPT(p.cp,'{$this->key_hash}') LIKE  '%".$cadena."%' )
                          OR ( AES_DECRYPT(p.ciudad,'{$this->key_hash}') LIKE  '%".$cadena."%' )
-                        OR ( DATE_FORMAT(FROM_UNIXTIME(p.fecha_pc),'%d-%m-%Y %H:%i:%s') LIKE  '%".$cadena."%' ) 
-                       
-                        
-                        OR ( r.monto LIKE  '%".$cadena."%' ) 
-                        OR ( AES_DECRYPT(r.ticket,'{$this->key_hash}') LIKE  '%".$cadena."%' )
-                        
-                        
-                        OR ( CONCAT('@',AES_DECRYPT(p.nick,'{$this->key_hash}') )LIKE  '%".$cadena."%' ) 
-
-                        OR ( AES_DECRYPT(p.contrasena,'{$this->key_hash}') LIKE  '%".$cadena."%' )
-
-                        
-                        
-                       )
-            )";   */           
-
-               $where = "(  ( AES_DECRYPT(p.tarjeta,'{$this->key_hash}') <> '' ) 
+                         OR ( AES_DECRYPT(p.equipo,'{$this->key_hash}') LIKE  '%".$cadena."%' )
+                         OR ( AES_DECRYPT(p.contrasena,'{$this->key_hash}') LIKE  '%".$cadena."%' )
+                       )                
                  
               )" ;    
 
@@ -856,7 +838,7 @@ public function buscador_participantes($data){
 
                                     $suma_invitado =0;
                                     $suma_jefe =0;
-                                    $suma =0;
+                                    $total =0;
 
                                     
                                     $matriz = explode( ";",substr(trim($row->tarjeta), 0, -1));
@@ -876,6 +858,8 @@ public function buscador_participantes($data){
                                           $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
 
                                           $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
+                                          
+                                          $total+= (int)$this->session->userdata('ip'.$ma2[1]);
 
                                     } 
 
@@ -887,7 +871,7 @@ public function buscador_participantes($data){
                                 }
                                 
 
-                               // return json_encode($imagenes) ;
+                               
 
                                $dato[]= array(
                                       0=>$row->id,
@@ -903,7 +887,10 @@ public function buscador_participantes($data){
                                       10=>$row->contrasena,
                                       11=>$row->redes,
                                       12=>$row->fecha_mac,
-                                      13=>$row->tarjeta
+                                      13=>$row->tarjeta,
+                                      14=>$row->equipo,
+                                      15=>$total
+
                                     );
                       }
 
@@ -1623,13 +1610,13 @@ public function buscador_listado_completo($data){
 
           $this->db->select("AES_DECRYPT(p.nombre, '{$this->key_hash}') AS nombre", FALSE);
           $this->db->select("AES_DECRYPT(Apellidos, '{$this->key_hash}') AS apellidos", FALSE);
+          $this->db->select("AES_DECRYPT(equipo, '{$this->key_hash}') AS equipo", FALSE);
           $this->db->select("AES_DECRYPT(celular, '{$this->key_hash}') AS celular", FALSE);
           $this->db->select("AES_DECRYPT(juego, '{$this->key_hash}') AS juego", FALSE);
           $this->db->select("AES_DECRYPT(tiempo_juego, '{$this->key_hash}') AS tiempo_juego", FALSE);
           $this->db->select("AES_DECRYPT(tarjeta, '{$this->key_hash}') AS tarjeta", FALSE);
           $this->db->select("AES_DECRYPT(email, '{$this->key_hash}') AS email", FALSE);
           $this->db->select("AES_DECRYPT(contrasena, '{$this->key_hash}') AS contrasena", FALSE);
-          //$this->db->select("AES_DECRYPT(puntos, '{$this->key_hash}') AS puntos", FALSE);
           $this->db->select("redes,p.fecha_mac");
           //$this->db->select("c.nombre estado");
           $this->db->select("p.id_jefe");
@@ -1689,7 +1676,7 @@ public function buscador_listado_completo($data){
 
                            $suma_invitado =0;
                                     $suma_jefe =0;
-                                    $suma =0;
+                                    $total =0;
 
                                     
                                     $matriz = explode( ";",substr(trim($row->tarjeta), 0, -1));
@@ -1709,6 +1696,7 @@ public function buscador_listado_completo($data){
                                           $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
 
                                           $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
+                                          $total+= (int)$this->session->userdata('ip'.$ma2[1]);
 
                                     } 
 
@@ -1721,6 +1709,7 @@ public function buscador_listado_completo($data){
 
 
                                 $row->imagenes =$imagenes;
+                                $row->total =$total;
 
                           }      
                   return $result->result();
