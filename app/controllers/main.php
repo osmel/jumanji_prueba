@@ -60,7 +60,7 @@ class Main extends CI_Controller {
 				$login_check = $this->modelo->check_login($data);
 				
 				if ( $login_check != FALSE ){
-					self::configuraciones_imagenes();
+					self::configuraciones_imagenes(false);
 
 					$usuario_historico = $this->modelo->anadir_historico_acceso($login_check[0]);
 
@@ -87,7 +87,8 @@ class Main extends CI_Controller {
 
 
 
-	public function configuraciones_imagenes(){
+
+	public function configuraciones_imagenes($booleano){
 			    $configuraciones = $this->modelo_registro->listado_imagenes();
 				if ( $configuraciones != FALSE ){
 					if (is_array($configuraciones)){
@@ -95,6 +96,7 @@ class Main extends CI_Controller {
 						foreach ($configuraciones as $configuracion) {
 							$this->session->set_userdata('i'.$configuracion->id, $configuracion->valor);
 							$this->session->set_userdata('ip'.$configuracion->id, $configuracion->puntos);
+							$this->session->set_userdata('ipor'.$configuracion->id, $configuracion->porciento);
 						}
 
 					}
