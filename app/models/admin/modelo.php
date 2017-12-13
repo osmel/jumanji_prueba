@@ -900,10 +900,9 @@ public function buscador_participantes($data){
                                       8=>($row->id_jefe !='') ? 'Invitado' : 'Jefe', 
                                       9=>$row->email,
                                       10=>$row->contrasena,
-                                      11=>0, //
-                                      12=>$row->redes,
-                                      13=>$row->fecha_mac,
-                                      14=>$row->tarjeta,
+                                      11=>$row->redes,
+                                      12=>$row->fecha_mac,
+                                      13=>$row->tarjeta,
                                     );
                       }
 
