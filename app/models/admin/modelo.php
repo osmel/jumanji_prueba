@@ -897,7 +897,7 @@ public function buscador_participantes($data){
                                       5=>$row->celular,
                                       6=>$imagenes,
                                       7=>$row->tiempo_juego,
-                                      8=>($row->id_jefe !='') ? 'Invitado' : 'Jefe', 
+                                      8=>($row->id_jefe !='') ? 'Invitado' : 'Lider', 
                                       9=>$row->email,
                                       10=>$row->contrasena,
                                       11=>$row->redes,
