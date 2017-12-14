@@ -988,8 +988,19 @@ function record($id_participante){
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
+
+
+//llama a la modal para presentar el facebook
+ public function proc_modal_facebook(){ //nuevo
+		  if ( $this->session->userdata('session_participante') !== TRUE ) {
+		      redirect('');
+		    } else {
+               $this->load->view( 'registros/modal_face' );
+		   }   			
+}
+
  
-//new ok
+//Si comparte la modal
 function registrar_facebook($puntos){ //nuevo
 	if ( $this->session->userdata( 'session_participante' ) == TRUE ){
 		
@@ -1002,16 +1013,11 @@ function registrar_facebook($puntos){ //nuevo
 
 }
 
-//new ok
- public function proc_modal_facebook(){ //nuevo
-		  if ( $this->session->userdata('session_participante') !== TRUE ) {
-		      redirect('');
-		    } else {
-               $this->load->view( 'registros/modal_face' );
-		   }   			
-}
 
 
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
 
  public function compartir_imagen(){
 		  if ( $this->session->userdata('session_participante') !== TRUE ) {
