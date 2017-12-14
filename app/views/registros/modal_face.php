@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
  
  
- $cantidad_puntos="100";
+ $cantidad_puntos="1";
 
  ?>
 
