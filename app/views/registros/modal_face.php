@@ -41,7 +41,7 @@
 
 <script type="text/javascript">
 
-var $cantidad_puntos="100";
+var $cantidad_puntos="1";
    
 
    window.fbAsyncInit = function() {

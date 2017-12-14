@@ -24,7 +24,6 @@ class Home extends CI_Controller {
 
 			$preg = $this->modelo_registro->get_datos();
 			
-			print_r(((int)$preg->redes==1)				);die;
 
 			if ((int)$preg->redes==1) {  //si ya compartio
 				$mitarjeta = $preg->tarjeta2;
