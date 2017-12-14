@@ -453,6 +453,7 @@ from
 
       public function record_personal($data){
 
+          $this->db->select("( CASE WHEN p.creacion = 0 THEN '' ELSE DATE_FORMAT(FROM_UNIXTIME(p.creacion),'%d-%m-%Y %H:%i:%s') END ) AS creacion", FALSE);   
           $this->db->select("AES_DECRYPT(nombre, '{$this->key_hash}') AS nombre", FALSE);
           $this->db->select("AES_DECRYPT(Apellidos, '{$this->key_hash}') AS Apellidos", FALSE);
           $this->db->select("AES_DECRYPT(equipo, '{$this->key_hash}') AS equipo", FALSE);

@@ -831,7 +831,6 @@ public function buscador_participantes($data){
           $result = $this->db->get();
 
               if ( $result->num_rows() > 0 ) {
-
                     $cantidad_consulta = $this->db->query("SELECT FOUND_ROWS() as cantidad");
                     $found_rows = $cantidad_consulta->row(); 
                     $registros_filtrados =  ( (int) $found_rows->cantidad);
