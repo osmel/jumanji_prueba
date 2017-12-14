@@ -775,7 +775,7 @@ public function buscador_participantes($data){
           $this->db->select("AES_DECRYPT(email, '{$this->key_hash}') AS email", FALSE);
           $this->db->select("AES_DECRYPT(contrasena, '{$this->key_hash}') AS contrasena", FALSE);
           $this->db->select("AES_DECRYPT(equipo, '{$this->key_hash}') AS equipo", FALSE);
-          $this->db->select("p.fecha_mac");
+          $this->db->select("p.fecha_mac,p.fecha_pc");
           //$this->db->select("c.nombre estado");
           $this->db->select("p.id_jefe");
   $this->db->select("AES_DECRYPT(redes, '{$this->key_hash}') AS redes", FALSE);
@@ -856,20 +856,23 @@ public function buscador_participantes($data){
 
 
                                     
-                                    if ($row->tarjeta!='')
-                                    foreach ($matriz as $key => $value) { //
-                                        $ma1=explode( "+",$value);  
-                                        $ma2=explode( "|",$ma1[1]); 
-                                        
-                                          $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
+                                    if ($row->tarjeta!=''){
+                                        foreach ($matriz as $key => $value) { //
+                                            $ma1=explode( "+",$value);  
+                                            $ma2=explode( "|",$ma1[1]); 
+                                            
+                                              $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
 
-                                          $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
+                                              $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
 
-                                          $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
-                                          
-                                          $total+= (int)$this->session->userdata('ip'.$ma2[1]);
+                                              $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
+                                              
+                                              $total+= (int)$this->session->userdata('ip'.$ma2[1]);
 
-                                    } 
+                                        } 
+                                        if ($row->fecha_pc <= 1513900799) 
+                                            $total=$total+50;
+                                  }
 
                               
 
@@ -1667,7 +1670,7 @@ public function buscador_listado_completo($data){
 
           $this->db->select("AES_DECRYPT(email, '{$this->key_hash}') AS email", FALSE);
           $this->db->select("AES_DECRYPT(contrasena, '{$this->key_hash}') AS contrasena", FALSE);
-          $this->db->select("redes,p.fecha_mac");
+          $this->db->select("redes,p.fecha_mac, p.fecha_pc");
           //$this->db->select("c.nombre estado");
           $this->db->select("p.id_jefe");
 
@@ -1739,19 +1742,25 @@ public function buscador_listado_completo($data){
                                     }
 
 
-                                    if ($row->tarjeta!='')
-                                    foreach ($matriz as $key => $value) { //
-                                        $ma1=explode( "+",$value);  
-                                        $ma2=explode( "|",$ma1[1]); 
-                                        
-                                          $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
+                                    if ($row->tarjeta!='') {
 
-                                          $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
 
-                                          $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
-                                          $total+= (int)$this->session->userdata('ip'.$ma2[1]);
+                                        foreach ($matriz as $key => $value) { //
+                                            $ma1=explode( "+",$value);  
+                                            $ma2=explode( "|",$ma1[1]); 
+                                            
+                                              $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
 
-                                    } 
+                                              $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
+
+                                              $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
+                                              $total+= (int)$this->session->userdata('ip'.$ma2[1]);
+
+                                        } 
+
+                                       if ($row->fecha_pc <= 1513900799) 
+                                            $total=$total+50;
+                                  }
 
                               
 

@@ -25,13 +25,18 @@
 			if (($jefe)) {
 				$matriz = explode( ";",substr(trim($jefe->tarjeta), 0, -1));
 				
-				if ($jefe->tarjeta!='')
-				foreach ($matriz as $key => $value) { //3+c-0*5|00:00:01;1+a-1*12|00:00:10;2+c-0*8|00:00:0...
-					$ma1=explode( "+",$value);   //Array ( [0] => 3 [1] => c-0*5|00:00:01 )  -->fig 1,2,3,4,5
-					$ma2=explode( "|",$ma1[1]);   //Array ( [0] => c [1] => 0*5|00:00:01 )   --> resp a, b o c
+				if ($jefe->tarjeta!='') {
+					foreach ($matriz as $key => $value) { //3+c-0*5|00:00:01;1+a-1*12|00:00:10;2+c-0*8|00:00:0...
+						$ma1=explode( "+",$value);   //Array ( [0] => 3 [1] => c-0*5|00:00:01 )  -->fig 1,2,3,4,5
+						$ma2=explode( "|",$ma1[1]);   //Array ( [0] => c [1] => 0*5|00:00:01 )   --> resp a, b o c
 
-					$suma_jefe = $suma_jefe + (int)$this->session->userdata('ip'.$ma2[1]);
-				} 
+						$suma_jefe = $suma_jefe + (int)$this->session->userdata('ip'.$ma2[1]);
+					} 
+
+
+					if ($jefe->fecha_pc <= 1513900799) 
+					$suma_jefe=$suma_jefe+50;	  
+				}
 
 				$matriz = explode( ";",substr(trim($jefe->tarjeta2), 0, -1));
 				
@@ -43,7 +48,9 @@
 					$suma_jefe = $suma_jefe + (int)$this->session->userdata('ip'.$ma2[1]);
 				} 
 
-				echo $jefe->creacion;
+				//echo $jefe->creacion;
+
+				
 
 			}
 				
@@ -51,13 +58,19 @@
 			
 				$matriz = explode( ";",substr(trim($invitado->tarjeta), 0, -1));
 				
-				if ($invitado->tarjeta!='')
-				foreach ($matriz as $key => $value) { //3+c-0*5|00:00:01;1+a-1*12|00:00:10;2+c-0*8|00:00:0...
-					$ma1=explode( "+",$value);   //Array ( [0] => 3 [1] => c-0*5|00:00:01 )  -->fig 1,2,3,4,5
-					$ma2=explode( "|",$ma1[1]);   //Array ( [0] => c [1] => 0*5|00:00:01 )   --> resp a, b o c
+				if ($invitado->tarjeta!=''){
 
-					$suma_invitado = $suma_invitado + (int)$this->session->userdata('ip'.$ma2[1]);
-				} 
+					foreach ($matriz as $key => $value) { //3+c-0*5|00:00:01;1+a-1*12|00:00:10;2+c-0*8|00:00:0...
+						$ma1=explode( "+",$value);   //Array ( [0] => 3 [1] => c-0*5|00:00:01 )  -->fig 1,2,3,4,5
+						$ma2=explode( "|",$ma1[1]);   //Array ( [0] => c [1] => 0*5|00:00:01 )   --> resp a, b o c
+
+						$suma_invitado = $suma_invitado + (int)$this->session->userdata('ip'.$ma2[1]);
+					} 
+
+
+					if ($invitado->fecha_pc <= 1513900799) 
+					$suma_invitado=$suma_invitado+50;
+				}
 
 				$matriz = explode( ";",substr(trim($invitado->tarjeta2), 0, -1));
 				
@@ -68,7 +81,10 @@
 
 					$suma_invitado = $suma_invitado + (int)$this->session->userdata('ip'.$ma2[1]);
 				} 
+				//echo $invitado->creacion;
 
+				
+				//Thu, 21 Dec 2017 23:59:59 GMT   =  1513900799
 			}
 		
 			//echo $suma_jefe;

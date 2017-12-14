@@ -65,7 +65,10 @@
 
         public function agregar_datos($data){
 
-             //$this->db->set( 'cara', "AES_ENCRYPT('{$data['juego']}','{$this->key_hash}')", FALSE );
+             $timestamp = time();
+
+              $this->db->set( 'fecha_pc',  gmt_to_local( $timestamp, $this->timezone, TRUE) );  
+
              $this->db->set( 'cara', "AES_ENCRYPT('{$data['cara']}','{$this->key_hash}')", FALSE );
              $this->db->set( 'misdatos', "AES_ENCRYPT('{$data['misdatos']}','{$this->key_hash}')", FALSE );
              
@@ -113,6 +116,11 @@
             //return $preg->row();
 
             $data["formato"] =trim($preg->row()->tarjeta).trim($data["formato"]);
+
+
+            $timestamp = time();
+
+            $this->db->set( 'fecha_pc',  gmt_to_local( $timestamp, $this->timezone, TRUE) );  
             $this->db->set( 'tarjeta', "AES_ENCRYPT(' {$data["formato"]}  ','{$this->key_hash}')", FALSE );
             $this->db->set( 'tiempo_juego', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );  
             $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
@@ -135,6 +143,10 @@
             //return $preg->row();
 
             $data["formato"] =trim($preg->row()->tarjeta2).trim($data["formato"]);
+
+            $timestamp = time();
+
+            $this->db->set( 'fecha_pc',  gmt_to_local( $timestamp, $this->timezone, TRUE) );  
             $this->db->set( 'tarjeta2', "AES_ENCRYPT(' {$data["formato"]}  ','{$this->key_hash}')", FALSE );
             $this->db->set( 'tiempo_juego2', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );  
             $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
@@ -160,6 +172,11 @@
                $redes = $preg->row()->redes;
             else
                $redes = False;
+
+
+             $timestamp = time();
+
+             $this->db->set( 'fecha_pc',  gmt_to_local( $timestamp, $this->timezone, TRUE) );  
 
              if ($data['red']==1) {
                 $this->db->set( 'tiempo_juego2', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );    
@@ -453,7 +470,9 @@ from
 
       public function record_personal($data){
 
-          $this->db->select("( CASE WHEN p.creacion = 0 THEN '' ELSE DATE_FORMAT(FROM_UNIXTIME(p.creacion),'%d-%m-%Y %H:%i:%s') END ) AS creacion", FALSE);   
+          //$this->db->select("( CASE WHEN p.creacion = 0 THEN '' ELSE DATE_FORMAT(FROM_UNIXTIME(p.creacion),'%d-%m-%Y') END ) AS creacion", FALSE);   
+
+          $this->db->select("p.fecha_pc");   
           $this->db->select("AES_DECRYPT(nombre, '{$this->key_hash}') AS nombre", FALSE);
           $this->db->select("AES_DECRYPT(Apellidos, '{$this->key_hash}') AS Apellidos", FALSE);
           $this->db->select("AES_DECRYPT(equipo, '{$this->key_hash}') AS equipo", FALSE);
@@ -491,6 +510,9 @@ from
 
 
 public function record_invitado($data){
+          //$this->db->select("( CASE WHEN p.creacion = 0 THEN '' ELSE DATE_FORMAT(FROM_UNIXTIME(p.creacion),'%d-%m-%Y') END ) AS creacion", FALSE);   
+
+          $this->db->select("p.fecha_pc");   
 
           $this->db->select("AES_DECRYPT(nombre, '{$this->key_hash}') AS nombre", FALSE);
           $this->db->select("AES_DECRYPT(Apellidos, '{$this->key_hash}') AS Apellidos", FALSE);
