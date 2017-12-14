@@ -85,12 +85,14 @@ class Home extends CI_Controller {
 		
 		
 		if  ( substr_count($guardar,';') <59) {
+				$data['redireccion'] = 8;
+		} else {
+
 				$data['redireccion']=$preg->redes; //tarjetas
 				if ($preg->redes==1) {
 					redirect('record/'.$this->session->userdata('id_participante'));	
 				} 
-		} else {
-				$data['redireccion'] = 8;	
+					
 		}	
 
 		echo json_encode($data);        

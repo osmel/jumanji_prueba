@@ -96,14 +96,16 @@
                         //localStorage.setItem('tiempo_fondo', '00:00:00');
                        
 
-                       // localStorage.clear();
+                        
                           
                           if (data.redireccion==8) {
                               //no hace nada se mantiene en tarjeta
                            } else if (data.redireccion==1) {
                               //va para record directamente porque las redes sociales ya pasaron
+                              localStorage.clear();
                               window.location.href = '/promojumanji/'+data.redireccion;        
                            } else  {
+                                localStorage.clear();
                                 var url = "/promojumanji/proc_modal_facebook";
                                 //alert(url);
                                 jQuery('#modalMessage_face').modal({
@@ -126,7 +128,7 @@
 
         //si es la primera vez entonces
         if (!(localStorage.getItem('tiempo_fondo'))) {
-            localStorage.setItem('tiempo_fondo', '00:05' );
+            localStorage.setItem('tiempo_fondo', '00:25' );
             $('span.r1').html(localStorage.getItem('tiempo_fondo'));
         }
 
