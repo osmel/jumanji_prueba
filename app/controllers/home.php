@@ -112,10 +112,13 @@ class Home extends CI_Controller {
 			$data['redes']		= $this->modelo_registro->actualizar_tiempo( $data );
 			
 			if ($preg->redes==1) {
-					redirect('record/'.$this->session->userdata('id_participante'));	
+					$data['redireccion'] = 'record/'.$this->session->userdata('id_participante');
+					//redirect('record/'.$this->session->userdata('id_participante'));	
 			} else {
-				echo json_encode($data); //retorna para dar posibilidad a compartir en facebook   	
+				$data['redireccion'] ='';
+				 //retorna para dar posibilidad a compartir en facebook   	
 			} 
+			echo json_encode($data);
 
 
 	}	

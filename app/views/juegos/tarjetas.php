@@ -182,13 +182,19 @@
                                     clearInterval(interval);  //limpiar el intervalo
                                     localStorage.clear();  //quitar las variables del localStorage
 
-                                     //new ok 
-                                    var url = "/promojumanji/proc_modal_facebook";
-                                    //alert(url);
-                                    jQuery('#modalMessage_face').modal({
-                                          show:'true',
-                                        remote:url,
-                                    });
+                                    if (data.redireccion ==''){
+                                            var url = "/promojumanji/proc_modal_facebook";
+                                          //alert(url);
+                                          jQuery('#modalMessage_face').modal({
+                                                show:'true',
+                                              remote:url,
+                                          });
+                                          //new ok 
+                                    } else {
+                                        //window.location.href = '/promojumanji/'+$catalogo;
+                                        window.location.href = '/promojumanji/'+data.redireccion;                                   
+                                    }
+                                    
 
 
                                       return false;
