@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://www.cinepremios.com/promojumanji/" />
 	<meta property="fb:app_id" content="2000864566866195" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Vigencia de la promoción: del 17 al 30 de Noviembre de 2017" />	
+	<meta property="og:title" content="Vigencia de la promoción: del 15 de Diciembre de 2017 al 2 de Enero de 2018" />	
 	<meta property="og:image" content="<?php echo base_url(); ?>img/img_facebook.png"  /> 
 	<meta property="og:image:alt" content="image"/>
 	<meta property="og:description" content="descripción"/>

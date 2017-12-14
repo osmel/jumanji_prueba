@@ -63,10 +63,10 @@ var $cantidad_puntos="1";
 		     		
 				FB.ui({
 				      method: 'feed',
-				      name: 'Liga de la Justicia',
+				      name: 'Jumanji en la Selva',
 				      link: 'https://www.cinepremios.com/promojumanji',
 				      picture: 'https://www.cinepremios.com//promojumanji/img/img_facebook.png',
-				      caption: 'Vigencia de la promoción: del 17 al 30 de diciembre de 2017',
+				      caption: 'Vigencia de la promoción: del 15 de Diciembre de 2017 al 2 de Enero de 2018',
 				      description: ''
 				    },
 				    function(response) {
@@ -91,10 +91,10 @@ var $cantidad_puntos="1";
      		} else if (response.status === 'not_authorized') { //cuando esta conectado pero no por la app
 				FB.ui({
 					      method: 'feed',
-					      name: 'Liga de la Justicia',
+					      name: 'Jumanji en la Selva',
 					      link: 'https://www.cinepremios.com/promojumanji',
 					      picture: 'https://www.cinepremios.com//promojumanji/img/img_facebook.png',
-					      caption: 'Vigencia de la promoción: del 17 al 30 de diciembre de 2017',
+					      caption: 'Vigencia de la promoción: del 15 de Diciembre de 2017 al 2 de Enero de 2018',
 					      description: ''
 				       },
 				       function(response) {
@@ -115,10 +115,10 @@ var $cantidad_puntos="1";
      			$("#response").html("No hay sesión iniciada en facebook");
 				FB.ui({
 					      method: 'feed',
-					      name: 'Liga de la Justicia',
+					      name: 'Jumanji en la Selva',
 					      link: 'https://www.cinepremios.com/promojumanji',
 					      picture: 'https://www.cinepremios.com//promojumanji/img/img_facebook.png',
-					      caption: 'Vigencia de la promoción: del 17 al 30 de diciembre de 2017',
+					      caption: 'Vigencia de la promoción: del 15 de Diciembre de 2017 al 2 de Enero de 2018',
 					      description: ''
 				      },
 				      function(response) {
