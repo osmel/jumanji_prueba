@@ -179,6 +179,7 @@
                                 type : 'POST',
                                 dataType : 'json',
                                 success : function(data) {  
+                                    console.log(data);
                                     clearInterval(interval);  //limpiar el intervalo
                                     localStorage.clear();  //quitar las variables del localStorage
                                      //new ok 
@@ -204,8 +205,10 @@
                                           
                                           
                                           
-
+     //si cancela el facebook  entonces va a record     
     jQuery("body").on('hide.bs.modal','#modalMessage_face[ventana="facebook"]',function(e){  
+        //clearInterval(interval);  //limpiar el intervalo
+        localStorage.clear();  //quitar las variables del localStorage
         $catalogo = jQuery(this).attr('valor'); //e.target.name;
         window.location.href = '/promojumanji/'+$catalogo;                           
         //window.location.href = '/promojumanji/sukarne/registrar_facebook/0';

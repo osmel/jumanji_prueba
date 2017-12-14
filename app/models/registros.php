@@ -333,15 +333,25 @@ from
 
         public function actualizar_tiempo($data){
 
+            $this->db->select("AES_DECRYPT(redes,'{$this->key_hash}') AS redes", FALSE);      
+            $this->db->from($this->participantes);
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            $preg = $this->db->get();
+
+             if ( $preg->num_rows() > 0 )
+               $redes = $preg->row()->redes;
+            else
+               $redes = False;
+
             $this->db->set( 'tiempo_juego', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );  
             $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
             
-             $this->db->update($this->participantes );
+             $this->db->update($this->participantes);
   
               if ($this->db->affected_rows() > 0){
-                    return true;
+                    return $redes;
                 } else {
-                    return FALSE;
+                    return $redes;
                 }
                 $result->free_result();
 
