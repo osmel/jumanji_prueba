@@ -768,6 +768,10 @@ public function buscador_participantes($data){
           $this->db->select("AES_DECRYPT(juego, '{$this->key_hash}') AS juego", FALSE);
           $this->db->select("AES_DECRYPT(tiempo_juego, '{$this->key_hash}') AS tiempo_juego", FALSE);
           $this->db->select("AES_DECRYPT(tarjeta, '{$this->key_hash}') AS tarjeta", FALSE);
+          $this->db->select("AES_DECRYPT(tiempo_juego2, '{$this->key_hash}') AS tiempo_juego2", FALSE);
+          $this->db->select("AES_DECRYPT(tarjeta2, '{$this->key_hash}') AS tarjeta2", FALSE);
+
+
           $this->db->select("AES_DECRYPT(email, '{$this->key_hash}') AS email", FALSE);
           $this->db->select("AES_DECRYPT(contrasena, '{$this->key_hash}') AS contrasena", FALSE);
           $this->db->select("AES_DECRYPT(equipo, '{$this->key_hash}') AS equipo", FALSE);
@@ -836,8 +840,6 @@ public function buscador_participantes($data){
                   foreach ($result->result() as $row) {
                        
 
-                                    $suma_invitado =0;
-                                    $suma_jefe =0;
                                     $total =0;
 
                                     
@@ -871,7 +873,38 @@ public function buscador_participantes($data){
                                 }
                                 
 
-                               
+                                //redes
+                                $matriz = explode( ";",substr(trim($row->tarjeta2), 0, -1));
+                                    
+
+                                    $arreglo=array(0,0,0,0,0,0,0);
+                                    $cantidad=array(0,0,0,0,0,0,0);
+                                    $imagen=array("","","","","","","");
+                                    
+                                    if ($row->tarjeta2!='')
+                                    foreach ($matriz as $key => $value) { //
+                                        $ma1=explode( "+",$value);  
+                                        $ma2=explode( "|",$ma1[1]); 
+                                        
+                                          $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
+
+                                          $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
+
+                                          $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
+                                          
+                                          $total+= (int)$this->session->userdata('ip'.$ma2[1]);
+
+                                    } 
+
+                              
+
+                                $imagenes2='';
+                                for ($i=1; $i <=5 ; $i++) { 
+                                    $imagenes.=$cantidad[$i].' <img src="'.base_url().$imagen[$i].'" border="0" width="25" height="25"> '.$arreglo[$i].'<br/>';  
+                                }
+                                                               
+
+
 
                                $dato[]= array(
                                       0=>$row->id,
@@ -889,7 +922,8 @@ public function buscador_participantes($data){
                                       12=>$row->fecha_mac,
                                       13=>$row->tarjeta,
                                       14=>$row->equipo,
-                                      15=>$total
+                                      15=>$total,
+                                      16=>$imagenes,
 
                                     );
                       }
@@ -1674,8 +1708,6 @@ public function buscador_listado_completo($data){
 
                         foreach ($result->result() as $row) {
 
-                           $suma_invitado =0;
-                                    $suma_jefe =0;
                                     $total =0;
 
                                     
