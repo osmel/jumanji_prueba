@@ -1739,8 +1739,43 @@ public function buscador_listado_completo($data){
                                     $imagenes.=$i.' --- '.$cantidad[$i].' --- '.$arreglo[$i].'<br/>';  
                                 }
 
-
                                 $row->imagenes =$imagenes;
+                                //$row->total =$total;
+
+
+                                //redes
+
+                                 $matriz = explode( ";",substr(trim($row->tarjeta2), 0, -1));
+                                    
+
+                                    $arreglo=array(0,0,0,0,0,0,0);
+                                    $cantidad=array(0,0,0,0,0,0,0);
+                                    $imagen=array("","","","","","","");
+                                    
+                                    if ($row->tarjeta2!='')
+                                    foreach ($matriz as $key => $value) { //
+                                        $ma1=explode( "+",$value);  
+                                        $ma2=explode( "|",$ma1[1]); 
+                                        
+                                          $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
+
+                                          $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
+
+                                          $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
+                                          $total+= (int)$this->session->userdata('ip'.$ma2[1]);
+
+                                    } 
+
+                              
+
+                                $imagenes_redes='';
+                                for ($i=1; $i <=5 ; $i++) { 
+                                    $imagenes_redes.=$i.' --- '.$cantidad[$i].' --- '.$arreglo[$i].'<br/>';  
+                                }
+
+
+
+                                $row->imagenes_redes =$imagenes_redes;
                                 $row->total =$total;
 
                           }      
