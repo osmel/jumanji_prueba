@@ -1649,6 +1649,9 @@ public function buscador_listado_completo($data){
           $this->db->select("AES_DECRYPT(juego, '{$this->key_hash}') AS juego", FALSE);
           $this->db->select("AES_DECRYPT(tiempo_juego, '{$this->key_hash}') AS tiempo_juego", FALSE);
           $this->db->select("AES_DECRYPT(tarjeta, '{$this->key_hash}') AS tarjeta", FALSE);
+          $this->db->select("AES_DECRYPT(tiempo_juego2, '{$this->key_hash}') AS tiempo_juego2", FALSE);
+          $this->db->select("AES_DECRYPT(tarjeta2, '{$this->key_hash}') AS tarjeta2", FALSE);
+
           $this->db->select("AES_DECRYPT(email, '{$this->key_hash}') AS email", FALSE);
           $this->db->select("AES_DECRYPT(contrasena, '{$this->key_hash}') AS contrasena", FALSE);
           $this->db->select("redes,p.fecha_mac");
