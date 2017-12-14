@@ -65,7 +65,7 @@ var $cantidad_puntos="100";
 				      method: 'feed',
 				      name: 'Liga de la Justicia',
 				      link: 'https://www.cinepremios.com/promojumanji',
-				      picture: 'https://www.cinepremios.com/promojumanji/img/img_facebook.png',
+				      picture: 'https://www.cinepremios.com//promojumanji/img/img_facebook.png',
 				      caption: 'Vigencia de la promoción: del 17 al 30 de diciembre de 2017',
 				      description: ''
 				    },
@@ -73,11 +73,11 @@ var $cantidad_puntos="100";
 						if (response !=null) { 	
 					        // El usuario publico en el muro
 							console.log('El usuario publico en el muro');
-							window.location.href = 'registrar_facebook/'+($cantidad_puntos);
+							window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 					      } else {
 					        // El usuario cancelo y no publico nada
 							console.log('El usuario cancelo y no publico nada');
-							window.location.href = 'registrar_facebook/'+($cantidad_puntos);
+							window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 					      }
 				     }
 			    );
@@ -91,7 +91,7 @@ var $cantidad_puntos="100";
 					      method: 'feed',
 					      name: 'Liga de la Justicia',
 					      link: 'https://www.cinepremios.com/promojumanji',
-					      picture: 'https://www.cinepremios.com/promojumanji/img/img_facebook.png',
+					      picture: 'https://www.cinepremios.com//promojumanji/img/img_facebook.png',
 					      caption: 'Vigencia de la promoción: del 17 al 30 de diciembre de 2017',
 					      description: ''
 				       },
@@ -99,11 +99,11 @@ var $cantidad_puntos="100";
 							if (response !=null) { 	
 						        // El usuario publico en el muro
 								console.log('El usuario publico en el muro');
-								window.location.href = 'registrar_facebook/'+($cantidad_puntos);
+								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 						    } else {
 						        // El usuario cancelo y no publico nada
 								console.log('El usuario cancelo y no publico nada');
-								window.location.href = 'registrar_facebook/'+($cantidad_puntos);
+								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 						    }
 					    }
 				);
@@ -113,7 +113,7 @@ var $cantidad_puntos="100";
 					      method: 'feed',
 					      name: 'Liga de la Justicia',
 					      link: 'https://www.cinepremios.com/promojumanji',
-					      picture: 'https://www.cinepremios.com/promojumanji/img/img_facebook.png',
+					      picture: 'https://www.cinepremios.com//promojumanji/img/img_facebook.png',
 					      caption: 'Vigencia de la promoción: del 17 al 30 de diciembre de 2017',
 					      description: ''
 				      },
@@ -121,11 +121,11 @@ var $cantidad_puntos="100";
 							if (response !=null) { 	
 						        // El usuario publico en el muro
 								console.log('El usuario publico en el muro');
-								window.location.href = 'registrar_facebook/'+($cantidad_puntos);
+								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 						      } else {
 						        // El usuario cancelo y no publico nada
 								console.log('El usuario cancelo y no publico nada');
-								window.location.href = 'registrar_facebook/'+($cantidad_puntos);
+								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 						      }
 				       }
 				);
