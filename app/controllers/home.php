@@ -23,6 +23,8 @@ class Home extends CI_Controller {
 		if ( ($this->session->userdata( 'session_participante' ) == TRUE )   ) { //(no registrado) o (registrado y completado)
 
 			$preg = $this->modelo_registro->get_datos();
+			
+			print_r(((int)$preg->redes==1)				);die;
 
 			if ((int)$preg->redes==1) {  //si ya compartio
 				$mitarjeta = $preg->tarjeta2;
