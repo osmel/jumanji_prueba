@@ -854,12 +854,6 @@ function validar_invitado(){
 
 
 
-
-
-
-
-
-
 	public function desconectar_participante(){
 		$this->session->sess_destroy();
 		redirect('');
@@ -921,42 +915,39 @@ function validar_invitado(){
 				       
 
 	}
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////	
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 
 
-	public function num_conteo(){
-		   if ( $this->session->userdata( 'session_participante' ) == TRUE ){
-		   		$data['started']		=	$this->input->post('started');
-		   		
-		   		if  ( isset($_POST["started"]) ) {
-		   			$this->session->set_userdata('numImage', $this->input->post('started') );
-		   		} else {
+//llama a la modal para presentar el facebook
+ public function proc_modal_facebook(){ //nuevo
+		  if ( $this->session->userdata('session_participante') !== TRUE ) {
+		      redirect('');
+		    } else {
+               $this->load->view( 'registros/modal_face' );
+		   }   			
+}
 
-		   			//no se establece 	numImage
-		   		}
+ 
+//Si comparte la modal
+function registrar_facebook($puntos){ //nuevo
+	if ( $this->session->userdata( 'session_participante' ) == TRUE ){
+		
+		$ticket['redes'] = (int) ($puntos);
+		$ticket 						= $this->security->xss_clean( $ticket );
+		$guardar 						= $this->modelo_registro->actualizar_facebook( $ticket );        	
+		 
+		//redirect('/record/'.$this->session->userdata('id_participante'));
+		redirect('/tarjetas');
+	}	
 
-		   		$data['tiempo'] = 	$this->session->userdata('tiempo'); 
-		   		$data['tiempo_comienzo'] = $this->tiempo_comienzo; 
-			   	$data['num'] = $this->session->userdata('numImage'); 
-
-			   	//$data['registro_ticket'] = $this->session->userdata('registro_ticket'); 
-			   	$this->session->set_userdata('tiempo', "0:00");
-			   	echo  json_encode($data);
-		   }	
-			
-    }	
-
-    /*
-		data.num
-		data.registro_ticket
-		data.tiempo
-		data.tiempo_comienzo
-
-    */
+}
 
 
-////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////record personal///////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
+
+
 
 function record($id_participante){
 	if ( $this->session->userdata( 'session_participante' ) == TRUE ){
@@ -990,31 +981,8 @@ function record($id_participante){
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-//llama a la modal para presentar el facebook
- public function proc_modal_facebook(){ //nuevo
-		  if ( $this->session->userdata('session_participante') !== TRUE ) {
-		      redirect('');
-		    } else {
-               $this->load->view( 'registros/modal_face' );
-		   }   			
-}
-
- 
-//Si comparte la modal
-function registrar_facebook($puntos){ //nuevo
-	if ( $this->session->userdata( 'session_participante' ) == TRUE ){
-		
-		$ticket['redes'] = (int) ($puntos);
-		$ticket 						= $this->security->xss_clean( $ticket );
-		$guardar 						= $this->modelo_registro->actualizar_facebook( $ticket );        	
-		 
-		redirect('/record/'.$this->session->userdata('id_participante'));
-	}	
-
-}
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
@@ -1053,6 +1021,8 @@ function registrar_facebook($puntos){ //nuevo
 }
 
 
+
+
 function publico($puntos){
 	if ( $this->session->userdata( 'session_participante' ) == TRUE ){
 		
@@ -1078,6 +1048,38 @@ function tabla_general(){
 
 }	
 
+
+
+
+	public function num_conteo(){
+		   if ( $this->session->userdata( 'session_participante' ) == TRUE ){
+		   		$data['started']		=	$this->input->post('started');
+		   		
+		   		if  ( isset($_POST["started"]) ) {
+		   			$this->session->set_userdata('numImage', $this->input->post('started') );
+		   		} else {
+
+		   			//no se establece 	numImage
+		   		}
+
+		   		$data['tiempo'] = 	$this->session->userdata('tiempo'); 
+		   		$data['tiempo_comienzo'] = $this->tiempo_comienzo; 
+			   	$data['num'] = $this->session->userdata('numImage'); 
+
+			   	//$data['registro_ticket'] = $this->session->userdata('registro_ticket'); 
+			   	$this->session->set_userdata('tiempo', "0:00");
+			   	echo  json_encode($data);
+		   }	
+			
+    }	
+
+    /*
+		data.num
+		data.registro_ticket
+		data.tiempo
+		data.tiempo_comienzo
+
+    */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

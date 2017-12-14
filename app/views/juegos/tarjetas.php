@@ -97,24 +97,20 @@
                        
 
                        // localStorage.clear();
-                        
-                          if   (data.redireccion!='no') {
-                                                            //new ok 
+                          
+                          if (data.redireccion==8) {
+                              //no hace nada se mantiene en tarjeta
+                           } else if (data.redireccion==1) {
+                              //va para record directamente porque las redes sociales ya pasaron
+                              window.location.href = '/promojumanji/'+data.redireccion;        
+                           } else  {
                                 var url = "/promojumanji/proc_modal_facebook";
                                 //alert(url);
                                 jQuery('#modalMessage_face').modal({
                                       show:'true',
                                     remote:url,
                                 }); 
-                                
-                          } else {
-                            //window.location.href = '/promojumanji/'+data.redireccion;        
-                          }
-                            
-
-
-                            
-                          
+                           }
                           return false;
 
                     }
@@ -180,7 +176,7 @@
                                 dataType : 'json',
                                 success : function(data) {  
                                     
-                                    console.log(data);
+                                    //console.log(data);
                                     clearInterval(interval);  //limpiar el intervalo
                                     localStorage.clear();  //quitar las variables del localStorage
 
@@ -192,7 +188,7 @@
                                         remote:url,
                                     });
 
-                                    
+
                                       return false;
 
                                 }

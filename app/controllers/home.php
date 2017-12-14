@@ -24,9 +24,17 @@ class Home extends CI_Controller {
 
 			$preg = $this->modelo_registro->get_datos();
 
+			if ((int)$preg->redes==1) {  //si ya compartio
+				$mitarjeta = $preg->tarjeta2;
+				$mitiempo=$preg->tiempo_juego2;
+			} else {
+				$mitarjeta = $preg->tarjeta;	
+				$mitiempo=$preg->tiempo_juego;
+			}
 			
-			if ( ( substr_count($preg->tarjeta,';') <59) && ($preg->tiempo_juego!='0:00') ) {
-				 $data['tarjeta'] = $preg->tarjeta;
+
+			if ( ( substr_count($mitarjeta,';') <59) && ($mitiempo!='0:00') ) {
+				 $data['tarjeta'] = $mitarjeta;
 				 
 				 $preg_cara= str_replace("[", "", $preg->cara);
 				 $preg_cara= str_replace("]", "", $preg_cara);
@@ -53,43 +61,63 @@ class Home extends CI_Controller {
 	}
 
 
-	
-
-	function tiempo_juego(){ 
-			$data['tiempo'] =  $this->input->post( 'tiempo' );
-			$data 		  		= $this->security->xss_clean( $data );
-			//actualiza y devuelve las redes
-			$data['redes']		= $this->modelo_registro->actualizar_tiempo( $data );
-			echo json_encode($data);   
-
-
-	}	
-
 	//formato  fig+resp-tiempo;
+	//cada vez que vire la tarjeta pues que guarde la "cadena [tarjeta] y el [tiempo]", 
 	function respuesta_tarjeta(){ 
-		
-
 		$posicion =  $this->input->post( 'posicion' );
 		$numero =  $this->input->post( 'numero' );
 		$cara =  $this->input->post( 'cara' );
-
 		$data['tiempo'] =  $this->input->post( 'tiempo' );
-
 		$data['formato'] = $posicion.'+'.$numero.'|'.$cara.';';
+
+		$preg = $this->modelo_registro->get_datos();
 
 		//if guarda bien entonces
 		$data 		  		= $this->security->xss_clean( $data );
-		$guardar	 		= $this->modelo_registro->actualizar_respuesta_tarjeta( $data );
+
+		if ((int)$preg->redes==1) {  //si ya compartio
+			$guardar	 		= $this->modelo_registro->actualizar_respuesta_tarjeta2( $data );
+		} else {
+			$guardar	 		= $this->modelo_registro->actualizar_respuesta_tarjeta( $data );
+		}
+
+
+		
 		
 		if  ( substr_count($guardar,';') <59) {
-				$data['redireccion']='no'; //tarjetas
+				$data['redireccion']=$preg->redes; //tarjetas
+				if ($preg->redes==1) {
+					redirect('record/'.$this->session->userdata('id_participante'));	
+				} 
 		} else {
-				$data['redireccion'] = '';	
+				$data['redireccion'] = 8;	
 		}	
 
 		echo json_encode($data);        
                            
 	}
+
+	
+	//este es cuando el tiempo se agota a 0:00
+	function tiempo_juego(){ 
+			$preg = $this->modelo_registro->get_datos();
+			$data['red'] = ((int)$preg->redes);
+
+			$data['tiempo'] =  $this->input->post( 'tiempo' );
+			$data 		  		= $this->security->xss_clean( $data );
+			//actualiza y devuelve las redes
+			$data['redes']		= $this->modelo_registro->actualizar_tiempo( $data );
+			
+			if ($preg->redes==1) {
+					redirect('record/'.$this->session->userdata('id_participante'));	
+			} else {
+				echo json_encode($data); //retorna para dar posibilidad a compartir en facebook   	
+			} 
+
+
+	}	
+
+
 
 
 

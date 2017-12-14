@@ -35,6 +35,34 @@
 		}
 
 
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+        public function get_datos(){
+            
+            $this->db->select("AES_DECRYPT(cara,'{$this->key_hash}') AS cara", FALSE);      
+            $this->db->select("AES_DECRYPT(misdatos,'{$this->key_hash}') AS misdatos", FALSE);      
+            $this->db->select("AES_DECRYPT(tarjeta,'{$this->key_hash}') AS tarjeta", FALSE);      
+            $this->db->select("AES_DECRYPT(tiempo_juego,'{$this->key_hash}') AS tiempo_juego", FALSE);      
+
+            $this->db->select("AES_DECRYPT(tarjeta2,'{$this->key_hash}') AS tarjeta2", FALSE);      
+            $this->db->select("AES_DECRYPT(tiempo_juego2,'{$this->key_hash}') AS tiempo_juego2", FALSE);      
+
+            $this->db->select("AES_DECRYPT(redes,'{$this->key_hash}') AS redes", FALSE);      
+
+
+            $this->db->from($this->participantes);
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            $preg = $this->db->get();
+            if ($preg->num_rows() > 0)
+              return $preg->row();
+            else
+              return TRUE;
+            $login->free_result();
+        }
+
         public function agregar_datos($data){
 
              //$this->db->set( 'cara', "AES_ENCRYPT('{$data['juego']}','{$this->key_hash}')", FALSE );
@@ -56,41 +84,7 @@
         }
 
 
-        public function get_datos(){
-            
-            $this->db->select("AES_DECRYPT(cara,'{$this->key_hash}') AS cara", FALSE);      
-            $this->db->select("AES_DECRYPT(misdatos,'{$this->key_hash}') AS misdatos", FALSE);      
-            $this->db->select("AES_DECRYPT(tarjeta,'{$this->key_hash}') AS tarjeta", FALSE);      
-            $this->db->select("AES_DECRYPT(tiempo_juego,'{$this->key_hash}') AS tiempo_juego", FALSE);      
-
-            $this->db->from($this->participantes);
-            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
-            $preg = $this->db->get();
-            if ($preg->num_rows() > 0)
-              return $preg->row();
-            else
-              return TRUE;
-            $login->free_result();
-        }
-
-
-
-    //Recuperar contraseña  del participante
-      public function recuperar_invitado($data){
-         $this->db->select("p.id");           
-        $this->db->from($this->participantes.' as p');
-        $this->db->where('p.email_invitado',"AES_ENCRYPT('{$data['email_invitado']}','{$this->key_hash}')",FALSE);
-        $login = $this->db->get();
-        if ($login->num_rows() > 0)
-          return $login->row();
-        else 
-          return FALSE;
-        $login->free_result();    
-      } 
-
-
-
-        //agregar participante
+     //agregar participante
         public function actualizar_facebook( $data ){
             $timestamp = time();
 
@@ -106,35 +100,90 @@
                 }
                 $result->free_result();
         }        
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////        
 
-
-
-        public function listado_preguntas(){
-            $this->db->select( 'id, pregunta, a, b,c, respuesta' );
-            $preguntas = $this->db->get($this->catalogo_preguntas );
-            if ($preguntas->num_rows() > 0 )
-                 
-
-               return $preguntas->result();
-            else
-               return FALSE;
-            $estados->free_result();
-        }   
-
-
-
-        public function get_preguntas($id){
-            $this->db->select( 'id, pregunta, a, b,c, respuesta' );
-            $this->db->from($this->catalogo_preguntas);
-            $this->db->where('id', $id); //
+        //cada vez que vire la tarjeta pues que guarde la "cadena [tarjeta] y el [tiempo]", 
+      public function actualizar_respuesta_tarjeta($data){
+            $this->db->select("AES_DECRYPT(tarjeta,'{$this->key_hash}') AS tarjeta", FALSE);      
+            $this->db->from($this->participantes);
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
             $preg = $this->db->get();
-            if ($preg->num_rows() > 0)
-              return $preg->row();
-            else
-              return TRUE;
-            $login->free_result();
+            //return $preg->row();
+
+            $data["formato"] =trim($preg->row()->tarjeta).trim($data["formato"]);
+            $this->db->set( 'tarjeta', "AES_ENCRYPT(' {$data["formato"]}  ','{$this->key_hash}')", FALSE );
+            $this->db->set( 'tiempo_juego', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );  
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            $this->db->update($this->participantes );
+  
+            if ($this->db->affected_rows() > 0){
+                  return json_encode($data["formato"]);
+              } else {
+                  return FALSE;
+              }
+              $result->free_result();
         }
 
+
+        public function actualizar_respuesta_tarjeta2($data){
+            $this->db->select("AES_DECRYPT(tarjeta2,'{$this->key_hash}') AS tarjeta2", FALSE);      
+            $this->db->from($this->participantes);
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            $preg = $this->db->get();
+            //return $preg->row();
+
+            $data["formato"] =trim($preg->row()->tarjeta2).trim($data["formato"]);
+            $this->db->set( 'tarjeta2', "AES_ENCRYPT(' {$data["formato"]}  ','{$this->key_hash}')", FALSE );
+            $this->db->set( 'tiempo_juego2', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );  
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            $this->db->update($this->participantes );
+  
+            if ($this->db->affected_rows() > 0){
+                  return json_encode($data["formato"]);
+              } else {
+                  return FALSE;
+              }
+              $result->free_result();
+        }        
+
+        //este es cuando el tiempo se agota a 0:00
+        public function actualizar_tiempo($data){
+
+            $this->db->select("AES_DECRYPT(redes,'{$this->key_hash}') AS redes", FALSE);      
+            $this->db->from($this->participantes);
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            $preg = $this->db->get();
+
+             if ( $preg->num_rows() > 0 )
+               $redes = $preg->row()->redes;
+            else
+               $redes = False;
+
+             if ($data['red']==1) {
+                $this->db->set( 'tiempo_juego2', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );    
+             } else {
+                $this->db->set( 'tiempo_juego', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );  
+             }
+            
+            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
+            
+             $this->db->update($this->participantes);
+  
+              if ($this->db->affected_rows() > 0){
+                    return $redes;
+                } else {
+                    return $redes;
+                }
+                $result->free_result();
+
+        }        
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////        
+       
     //agregar participante
     public function anadir_registro( $data ){
             $timestamp = time();
@@ -155,7 +204,7 @@
 
 
             //$this->db->set( 'id_estado', $data['id_estado']);
-	          $this->db->set( 'ciudad', "AES_ENCRYPT('{$data['ciudad']}','{$this->key_hash}')", FALSE );
+            $this->db->set( 'ciudad', "AES_ENCRYPT('{$data['ciudad']}','{$this->key_hash}')", FALSE );
             $this->db->set( 'celular', "AES_ENCRYPT('{$data['celular']}','{$this->key_hash}')", FALSE );
             $this->db->set( 'email', "AES_ENCRYPT('{$data['email']}','{$this->key_hash}')", FALSE );
 
@@ -243,7 +292,21 @@
           else 
             return FALSE;
           $login->free_result();
-        }        
+        } 
+
+
+    //Recuperar contraseña  del participante
+      public function recuperar_invitado($data){
+         $this->db->select("p.id");           
+        $this->db->from($this->participantes.' as p');
+        $this->db->where('p.email_invitado',"AES_ENCRYPT('{$data['email_invitado']}','{$this->key_hash}')",FALSE);
+        $login = $this->db->get();
+        if ($login->num_rows() > 0)
+          return $login->row();
+        else 
+          return FALSE;
+        $login->free_result();    
+      } 
 
 
         public function datos_jefe_equipo($id){
@@ -277,6 +340,41 @@
           $login->free_result();
         }   
 
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+        public function listado_preguntas(){
+            $this->db->select( 'id, pregunta, a, b,c, respuesta' );
+            $preguntas = $this->db->get($this->catalogo_preguntas );
+            if ($preguntas->num_rows() > 0 )
+                 
+
+               return $preguntas->result();
+            else
+               return FALSE;
+            $estados->free_result();
+        }   
+
+
+
+        public function get_preguntas($id){
+            $this->db->select( 'id, pregunta, a, b,c, respuesta' );
+            $this->db->from($this->catalogo_preguntas);
+            $this->db->where('id', $id); //
+            $preg = $this->db->get();
+            if ($preg->num_rows() > 0)
+              return $preg->row();
+            else
+              return TRUE;
+            $login->free_result();
+        }
+
+       
+
+
+
       //agregar a la bitacora de participante sus accesos  
        public function anadir_historico_acceso($data){
             $timestamp = time();
@@ -306,56 +404,7 @@ from
   calimax_participantes
   */
 
-        public function actualizar_respuesta_tarjeta($data){
-
-            $this->db->select("AES_DECRYPT(tarjeta,'{$this->key_hash}') AS tarjeta", FALSE);      
-            $this->db->from($this->participantes);
-            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
-            $preg = $this->db->get();
-              //return $preg->row();
-
-
-            $data["formato"] =trim($preg->row()->tarjeta).trim($data["formato"]);
-            $this->db->set( 'tarjeta', "AES_ENCRYPT(' {$data["formato"]}  ','{$this->key_hash}')", FALSE );
-            $this->db->set( 'tiempo_juego', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );  
-            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
-            
-             $this->db->update($this->participantes );
-  
-              if ($this->db->affected_rows() > 0){
-                    return json_encode($data["formato"]);
-                } else {
-                    return FALSE;
-                }
-                $result->free_result();
-
-        }
-
-        public function actualizar_tiempo($data){
-
-            $this->db->select("AES_DECRYPT(redes,'{$this->key_hash}') AS redes", FALSE);      
-            $this->db->from($this->participantes);
-            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
-            $preg = $this->db->get();
-
-             if ( $preg->num_rows() > 0 )
-               $redes = $preg->row()->redes;
-            else
-               $redes = False;
-
-            $this->db->set( 'tiempo_juego', "AES_ENCRYPT('{$data['tiempo']}','{$this->key_hash}')", FALSE );  
-            $this->db->where("id", '"'.$this->session->userdata('id_participante').'"',false);  
-            
-             $this->db->update($this->participantes);
-  
-              if ($this->db->affected_rows() > 0){
-                    return $redes;
-                } else {
-                    return $redes;
-                }
-                $result->free_result();
-
-        }
+        
 
 
 ////////////////////////////////////////////////////////////////////////////////////
