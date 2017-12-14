@@ -942,7 +942,7 @@ function registrar_facebook($puntos){ //nuevo
 		//redirect('/record/'.$this->session->userdata('id_participante'));
 		//redirect('/tarjetas');
 
-		redirect('osmel');
+		redirect('tarjetas');
 	}	
 
 }
