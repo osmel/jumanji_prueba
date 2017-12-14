@@ -33,6 +33,18 @@
 					$suma_jefe = $suma_jefe + (int)$this->session->userdata('ip'.$ma2[1]);
 				} 
 
+				$matriz = explode( ";",substr(trim($jefe->tarjeta2), 0, -1));
+				
+				if ($jefe->tarjeta2!='')
+				foreach ($matriz as $key => $value) { //3+c-0*5|00:00:01;1+a-1*12|00:00:10;2+c-0*8|00:00:0...
+					$ma1=explode( "+",$value);   //Array ( [0] => 3 [1] => c-0*5|00:00:01 )  -->fig 1,2,3,4,5
+					$ma2=explode( "|",$ma1[1]);   //Array ( [0] => c [1] => 0*5|00:00:01 )   --> resp a, b o c
+
+					$suma_jefe = $suma_jefe + (int)$this->session->userdata('ip'.$ma2[1]);
+				} 
+
+
+
 			}
 				
 			if (($invitado)) {
@@ -46,6 +58,17 @@
 
 					$suma_invitado = $suma_invitado + (int)$this->session->userdata('ip'.$ma2[1]);
 				} 
+
+				$matriz = explode( ";",substr(trim($invitado->tarjeta2), 0, -1));
+				
+				if ($invitado->tarjeta2!='')
+				foreach ($matriz as $key => $value) { //3+c-0*5|00:00:01;1+a-1*12|00:00:10;2+c-0*8|00:00:0...
+					$ma1=explode( "+",$value);   //Array ( [0] => 3 [1] => c-0*5|00:00:01 )  -->fig 1,2,3,4,5
+					$ma2=explode( "|",$ma1[1]);   //Array ( [0] => c [1] => 0*5|00:00:01 )   --> resp a, b o c
+
+					$suma_invitado = $suma_invitado + (int)$this->session->userdata('ip'.$ma2[1]);
+				} 
+
 			}
 		
 			//echo $suma_jefe;

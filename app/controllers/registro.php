@@ -969,11 +969,6 @@ function record($id_participante){
 		   $datu['jefe']	=   $this->modelo_registro->record_personal($data);
 		}
 
-		//print_r($datu['jefe']);die;
-
-		//print_r($dato['jefe']);die;
-		
-
 		$this->load->view( 'juegos/record',$datu );
 	}	
 }	
