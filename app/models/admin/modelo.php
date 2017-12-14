@@ -849,6 +849,13 @@ public function buscador_participantes($data){
                                     $arreglo=array(0,0,0,0,0,0,0);
                                     $cantidad=array(0,0,0,0,0,0,0);
                                     $imagen=array("","","","","","","");
+
+                                    for ($i=1; $i <=5 ; $i++) { 
+                                        $imagen[$i] = $this->session->userdata("i".$i); 
+                                      
+                                    }
+
+
                                     
                                     if ($row->tarjeta!='')
                                     foreach ($matriz as $key => $value) { //
@@ -880,6 +887,13 @@ public function buscador_participantes($data){
                                     $arreglo=array(0,0,0,0,0,0,0);
                                     $cantidad=array(0,0,0,0,0,0,0);
                                     $imagen=array("","","","","","","");
+
+                                    for ($i=1; $i <=5 ; $i++) { 
+                                        $imagen[$i] = $this->session->userdata("i".$i); 
+                                      
+                                    }
+
+
                                     
                                     if ($row->tarjeta2!='')
                                     foreach ($matriz as $key => $value) { //
@@ -1720,7 +1734,12 @@ public function buscador_listado_completo($data){
                                     $arreglo=array(0,0,0,0,0,0,0);
                                     $cantidad=array(0,0,0,0,0,0,0);
                                     $imagen=array("","","","","","","");
-                                    
+                                    for ($i=1; $i <=5 ; $i++) { 
+                                        $imagen[$i] = $this->session->userdata("i".$i); 
+                                      
+                                    }
+
+
                                     if ($row->tarjeta!='')
                                     foreach ($matriz as $key => $value) { //
                                         $ma1=explode( "+",$value);  
@@ -1754,6 +1773,13 @@ public function buscador_listado_completo($data){
                                     $arreglo=array(0,0,0,0,0,0,0);
                                     $cantidad=array(0,0,0,0,0,0,0);
                                     $imagen=array("","","","","","","");
+
+                                    for ($i=1; $i <=5 ; $i++) { 
+                                        $imagen[$i] = $this->session->userdata("i".$i); 
+                                      
+                                    }
+
+
                                     
                                     if ($row->tarjeta2!='')
                                     foreach ($matriz as $key => $value) { //
