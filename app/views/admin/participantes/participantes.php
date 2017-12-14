@@ -56,6 +56,7 @@
 									<th class="text-center cursora" width="9%">Celular</th>			
 									<th class="text-center cursora" width="9%">Estado</th>
 									<th class="text-center cursora" width="12%">Juegos</th>
+									<th class="text-center cursora" width="12%">Redes</th>
 									<th class="text-center cursora" width="7%">Tiempo Juego</th>
 									<th class="text-center cursora" width="7%">Tipo</th>
 									

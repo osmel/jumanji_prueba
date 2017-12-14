@@ -504,25 +504,32 @@ jQuery('#tabla_participantes').dataTable( {
 		                "targets": [8] 
 		            },
 
+		            { 
+		                "render": function ( data, type, row ) {
+		                			return row[16]; //JUEGO
+		                },
+		                "targets": [9] 
+		            },
+
 			    	{ 
 		                "render": function ( data, type, row ) {
 		                			return row[7]; //TIEMPO JUEGO
 		                },
-		                "targets": [9]  
+		                "targets": [10]  
 		            },
 		            
 			    	{ 
 		                "render": function ( data, type, row ) {
 		                			return row[8]; //jefe o invitado
 		                },
-		                "targets": [10] 
+		                "targets": [11] 
 		            },
 
 					{ 
 
 
 		                 "visible": false,
-		                 "targets": [11,12,13,14,15] //6
+		                 "targets": [12,13,14,15,16] //6
 		                
 		            }
 		            

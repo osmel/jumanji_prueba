@@ -900,7 +900,7 @@ public function buscador_participantes($data){
 
                                 $imagenes2='';
                                 for ($i=1; $i <=5 ; $i++) { 
-                                    $imagenes.=$cantidad[$i].' <img src="'.base_url().$imagen[$i].'" border="0" width="25" height="25"> '.$arreglo[$i].'<br/>';  
+                                    $imagenes2.=$cantidad[$i].' <img src="'.base_url().$imagen[$i].'" border="0" width="25" height="25"> '.$arreglo[$i].'<br/>';  
                                 }
                                                                
 
@@ -923,7 +923,7 @@ public function buscador_participantes($data){
                                       13=>$row->tarjeta,
                                       14=>$row->equipo,
                                       15=>$total,
-                                      16=>$imagenes,
+                                      16=>$imagenes2,
 
                                     );
                       }
