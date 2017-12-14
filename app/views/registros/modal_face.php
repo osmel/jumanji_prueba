@@ -73,10 +73,12 @@ var $cantidad_puntos="1";
 						if (response !=null) { 	
 					        // El usuario publico en el muro
 							console.log('El usuario publico en el muro');
+							localStorage.setItem('tiempo_fondo', '00:20' );
 							window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 					      } else {
 					        // El usuario cancelo y no publico nada
 							console.log('El usuario cancelo y no publico nada');
+							localStorage.setItem('tiempo_fondo', '00:20' );
 							window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 					      }
 				     }
@@ -99,10 +101,12 @@ var $cantidad_puntos="1";
 							if (response !=null) { 	
 						        // El usuario publico en el muro
 								console.log('El usuario publico en el muro');
+								localStorage.setItem('tiempo_fondo', '00:20' );
 								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 						    } else {
 						        // El usuario cancelo y no publico nada
 								console.log('El usuario cancelo y no publico nada');
+								localStorage.setItem('tiempo_fondo', '00:20' );
 								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 						    }
 					    }
@@ -121,10 +125,12 @@ var $cantidad_puntos="1";
 							if (response !=null) { 	
 						        // El usuario publico en el muro
 								console.log('El usuario publico en el muro');
+								localStorage.setItem('tiempo_fondo', '00:20' );
 								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 						      } else {
 						        // El usuario cancelo y no publico nada
 								console.log('El usuario cancelo y no publico nada');
+								localStorage.setItem('tiempo_fondo', '00:20' );
 								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
 						      }
 				       }

@@ -34,7 +34,7 @@ class Home extends CI_Controller {
 			}
 			
 
-			if ( ( substr_count($mitarjeta,';') <59) && ($mitiempo!='0:00') ) {
+			if ( ( substr_count($mitarjeta,';') <90) && ($mitiempo!='0:00') ) {
 				 $data['tarjeta'] = $mitarjeta;
 				 
 				 $preg_cara= str_replace("[", "", $preg->cara);
@@ -85,7 +85,7 @@ class Home extends CI_Controller {
 
 		
 		
-		if  ( substr_count($guardar,';') <59) {
+		if  ( substr_count($guardar,';') <90) {
 				$data['redireccion'] = 8;
 		} else {
 

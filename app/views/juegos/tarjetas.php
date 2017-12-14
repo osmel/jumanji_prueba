@@ -128,7 +128,7 @@
 
         //si es la primera vez entonces
         if (!(localStorage.getItem('tiempo_fondo'))) {
-            localStorage.setItem('tiempo_fondo', '00:25' );
+            localStorage.setItem('tiempo_fondo', '00:45' );
             $('span.r1').html(localStorage.getItem('tiempo_fondo'));
         }
 
