@@ -58,6 +58,7 @@ class Home extends CI_Controller {
 	function tiempo_juego(){ 
 			$data['tiempo'] =  $this->input->post( 'tiempo' );
 			$data 		  		= $this->security->xss_clean( $data );
+			//actualiza y devuelve las redes
 			$data['redes']		= $this->modelo_registro->actualizar_tiempo( $data );
 			echo json_encode($data);   
 

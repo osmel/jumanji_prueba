@@ -76,7 +76,7 @@
     jQuery(document).ready(function($) {
 
          
-
+         //cada vez que vira una carta
         jQuery('body').on('click','.card[valor="n"]', function (e) {               
           jQuery(this).attr('valor','s');
           jQuery(this).off('.flip'); //no flipear
@@ -179,9 +179,11 @@
                                 type : 'POST',
                                 dataType : 'json',
                                 success : function(data) {  
+                                    
                                     console.log(data);
                                     clearInterval(interval);  //limpiar el intervalo
                                     localStorage.clear();  //quitar las variables del localStorage
+
                                      //new ok 
                                     var url = "/promojumanji/proc_modal_facebook";
                                     //alert(url);
@@ -189,6 +191,8 @@
                                           show:'true',
                                         remote:url,
                                     });
+
+                                    
                                       return false;
 
                                 }
