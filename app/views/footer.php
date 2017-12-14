@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="row">
 			 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 copy text-left">
-         <p class="vigencia">Vigencia del 15 de diciembre de 2017 al 5 de enero de 2017. Válido en toda la República Mexicana. Consulta Bases, términos y condiciones.</p>
+         <p class="vigencia">Vigencia del 15 de Diciembre de 2017 al 2 de Enero de 2018. Válido en toda la República Mexicana. Consulta Bases, términos y condiciones.</p>
       </div>
        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 copy text-right">
          <p class="vigencia">© 2017 Columbia TriStar Marketing Group, Inc. All Rights Reserved.</p>
