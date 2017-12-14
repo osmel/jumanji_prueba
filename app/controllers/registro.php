@@ -940,7 +940,9 @@ function registrar_facebook($puntos){ //nuevo
 		$guardar 						= $this->modelo_registro->actualizar_facebook( $ticket );        	
 		 
 		//redirect('/record/'.$this->session->userdata('id_participante'));
-		redirect('/tarjetas');
+		//redirect('/tarjetas');
+
+		redirect('osmel');
 	}	
 
 }
