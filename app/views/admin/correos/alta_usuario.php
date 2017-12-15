@@ -16,7 +16,7 @@
 	<table border="0" cellspacing="0" cellpadding="0" style="margin:30px auto; background-color:#000000; padding:0px; max-width:580px; width:100%">
 	  
 	  <tr>
-	   <img src="https://www.cinepremios.com/promojumanji/img/header1.png" alt="imagenesdemail">
+	   <img src="https://www.cinepremios.com/jumanji/img/header1.png" alt="imagenesdemail">
 	  </tr>
 	  <tr>
 	   	 <td scope="row" style="text-align:center">

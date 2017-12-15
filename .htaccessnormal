@@ -13,11 +13,11 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 RewriteCond %{REQUEST_URI} ^core.*
-RewriteRule ^(.*)$ /promojumanji/index.php?/$1 [L]
+RewriteRule ^(.*)$ /jumanji/index.php?/$1 [L]
 RewriteCond %{REQUEST_URI} ^app.*
-RewriteRule ^(.*)$ /promojumanji/index.php?/$1 [L]
+RewriteRule ^(.*)$ /jumanji/index.php?/$1 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond $1 !^(index\.php|css|js|img|robots\.txt)
-RewriteRule ^(.*)$ /promojumanji/index.php/$1 [L]
+RewriteRule ^(.*)$ /jumanji/index.php/$1 [L]
 

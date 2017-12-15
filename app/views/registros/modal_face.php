@@ -64,8 +64,8 @@ var $cantidad_puntos="1";
 				FB.ui({
 				      method: 'feed',
 				      name: 'Jumanji en la Selva',
-				      link: 'https://www.cinepremios.com/promojumanji',
-				      picture: 'https://www.cinepremios.com//promojumanji/img/img_facebook.png',
+				      link: 'https://www.cinepremios.com/jumanji',
+				      picture: 'https://www.cinepremios.com//jumanji/img/img_facebook.png',
 				      caption: 'Vigencia de la promoción: del 15 de Diciembre de 2017 al 2 de Enero de 2018',
 				      description: ''
 				    },
@@ -74,12 +74,12 @@ var $cantidad_puntos="1";
 					        // El usuario publico en el muro
 							console.log('El usuario publico en el muro');
 							//localStorage.setItem('tiempo_fondo', '00:20' );
-							window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
+							window.location.href = '/jumanji/registrar_facebook/'+($cantidad_puntos);
 					      } else {
 					        // El usuario cancelo y no publico nada
 							console.log('El usuario cancelo y no publico nada');
 							//localStorage.setItem('tiempo_fondo', '00:20' );
-							window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
+							window.location.href = '/jumanji/registrar_facebook/'+($cantidad_puntos);
 					      }
 				     }
 			    );
@@ -92,8 +92,8 @@ var $cantidad_puntos="1";
 				FB.ui({
 					      method: 'feed',
 					      name: 'Jumanji en la Selva',
-					      link: 'https://www.cinepremios.com/promojumanji',
-					      picture: 'https://www.cinepremios.com//promojumanji/img/img_facebook.png',
+					      link: 'https://www.cinepremios.com/jumanji',
+					      picture: 'https://www.cinepremios.com//jumanji/img/img_facebook.png',
 					      caption: 'Vigencia de la promoción: del 15 de Diciembre de 2017 al 2 de Enero de 2018',
 					      description: ''
 				       },
@@ -102,12 +102,12 @@ var $cantidad_puntos="1";
 						        // El usuario publico en el muro
 								console.log('El usuario publico en el muro');
 								//localStorage.setItem('tiempo_fondo', '00:20' );
-								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
+								window.location.href = '/jumanji/registrar_facebook/'+($cantidad_puntos);
 						    } else {
 						        // El usuario cancelo y no publico nada
 								console.log('El usuario cancelo y no publico nada');
 								//localStorage.setItem('tiempo_fondo', '00:20' );
-								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
+								window.location.href = '/jumanji/registrar_facebook/'+($cantidad_puntos);
 						    }
 					    }
 				);
@@ -116,8 +116,8 @@ var $cantidad_puntos="1";
 				FB.ui({
 					      method: 'feed',
 					      name: 'Jumanji en la Selva',
-					      link: 'https://www.cinepremios.com/promojumanji',
-					      picture: 'https://www.cinepremios.com//promojumanji/img/img_facebook.png',
+					      link: 'https://www.cinepremios.com/jumanji',
+					      picture: 'https://www.cinepremios.com//jumanji/img/img_facebook.png',
 					      caption: 'Vigencia de la promoción: del 15 de Diciembre de 2017 al 2 de Enero de 2018',
 					      description: ''
 				      },
@@ -126,12 +126,12 @@ var $cantidad_puntos="1";
 						        // El usuario publico en el muro
 								console.log('El usuario publico en el muro');
 								//localStorage.setItem('tiempo_fondo', '00:20' );
-								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
+								window.location.href = '/jumanji/registrar_facebook/'+($cantidad_puntos);
 						      } else {
 						        // El usuario cancelo y no publico nada
 								console.log('El usuario cancelo y no publico nada');
 								//localStorage.setItem('tiempo_fondo', '00:20' );
-								window.location.href = '/promojumanji/registrar_facebook/'+($cantidad_puntos);
+								window.location.href = '/jumanji/registrar_facebook/'+($cantidad_puntos);
 						      }
 				       }
 				);

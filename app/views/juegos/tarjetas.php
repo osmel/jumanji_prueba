@@ -83,7 +83,7 @@
           jQuery(this).attr('valor','s');
           jQuery(this).off('.flip'); //no flipear
           jQuery.ajax({ //guardar en la cookie el conteo
-                    url : '/promojumanji/respuesta_tarjeta',
+                    url : '/jumanji/respuesta_tarjeta',
                     data : { 
                            posicion: $(this).attr('posicion'),
                         numero: $(this).attr('numero'),
@@ -105,10 +105,10 @@
                            } else if (data.redireccion==1) {
                               //va para record directamente porque las redes sociales ya pasaron
                               localStorage.clear();
-                              window.location.href = '/promojumanji/'+data.redireccion;        
+                              window.location.href = '/jumanji/'+data.redireccion;        
                            } else  {
                                 localStorage.clear();
-                                var url = "/promojumanji/proc_modal_facebook";
+                                var url = "/jumanji/proc_modal_facebook";
                                 //alert(url);
                                 jQuery('#modalMessage_face').modal({
                                       show:'true',
@@ -192,7 +192,7 @@
                                        
 
                                              jQuery.ajax({ //guardar en la cookie el conteo
-                                                    url : '/promojumanji/tiempo_juego',
+                                                    url : '/jumanji/tiempo_juego',
                                                     data : { 
                                                         tiempo   :  $('span.r1').text(),
                                                     },
@@ -205,7 +205,7 @@
                                                         localStorage.clear();  //quitar las variables del localStorage
 
                                                         if (data.redireccion ==''){
-                                                                var url = "/promojumanji/proc_modal_facebook";
+                                                                var url = "/jumanji/proc_modal_facebook";
                                                               //alert(url);
                                                               jQuery('#modalMessage_face').modal({
                                                                     show:'true',
@@ -213,8 +213,8 @@
                                                               });
                                                               //new ok 
                                                         } else {
-                                                            //window.location.href = '/promojumanji/'+$catalogo;
-                                                            window.location.href = '/promojumanji/'+data.redireccion;                                   
+                                                            //window.location.href = '/jumanji/'+$catalogo;
+                                                            window.location.href = '/jumanji/'+data.redireccion;                                   
                                                         }
                                                         
 
@@ -291,7 +291,7 @@
                    
 
                          jQuery.ajax({ //guardar en la cookie el conteo
-                                url : '/promojumanji/tiempo_juego',
+                                url : '/jumanji/tiempo_juego',
                                 data : { 
                                     tiempo   :  $('span.r1').text(),
                                 },
@@ -304,7 +304,7 @@
                                     localStorage.clear();  //quitar las variables del localStorage
 
                                     if (data.redireccion ==''){
-                                            var url = "/promojumanji/proc_modal_facebook";
+                                            var url = "/jumanji/proc_modal_facebook";
                                           //alert(url);
                                           jQuery('#modalMessage_face').modal({
                                                 show:'true',
@@ -312,8 +312,8 @@
                                           });
                                           //new ok 
                                     } else {
-                                        //window.location.href = '/promojumanji/'+$catalogo;
-                                        window.location.href = '/promojumanji/'+data.redireccion;                                   
+                                        //window.location.href = '/jumanji/'+$catalogo;
+                                        window.location.href = '/jumanji/'+data.redireccion;                                   
                                     }
                                     
 
@@ -339,8 +339,8 @@
         //clearInterval(interval);  //limpiar el intervalo
         localStorage.clear();  //quitar las variables del localStorage
         $catalogo = jQuery(this).attr('valor'); //e.target.name;
-        window.location.href = '/promojumanji/'+$catalogo;                           
-        //window.location.href = '/promojumanji/sukarne/registrar_facebook/0';
+        window.location.href = '/jumanji/'+$catalogo;                           
+        //window.location.href = '/jumanji/sukarne/registrar_facebook/0';
     }); 
 
 

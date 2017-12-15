@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
 						spinner.stop();
 						jQuery('#foo').css('display','none');
 
-						window.location.href = '/promojumanji/admin';
+						window.location.href = '/jumanji/admin';
 				}
 			}
 		});
@@ -59,7 +59,7 @@ jQuery(document).ready(function($) {
 						$catalogo = e.target.name;
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-						window.location.href = '/promojumanji/'+$catalogo;				
+						window.location.href = '/jumanji/'+$catalogo;				
 				}
 			} 
 		});
@@ -80,7 +80,7 @@ jQuery('#tabla_usuarios').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/promojumanji/procesando_usuarios",
+	            	"url" : "/jumanji/procesando_usuarios",
 	         		"type": "POST",
 	         		
 	     },   
@@ -139,7 +139,7 @@ jQuery('#tabla_usuarios').dataTable( {
 		                "render": function ( data, type, row ) {
 
 						texto='<td>';
-							texto+='<a href="/promojumanji/editar_usuario/'+jQuery.base64.encode(row[0])+'" type="button"'; 
+							texto+='<a href="/jumanji/editar_usuario/'+jQuery.base64.encode(row[0])+'" type="button"'; 
 							texto+=' class="btn btn-warning btn-sm btn-block" >';
 								texto+=' <span class="glyphicon glyphicon-edit"></span>';
 							texto+=' </a>';
@@ -158,7 +158,7 @@ jQuery('#tabla_usuarios').dataTable( {
 
 		                	if (true) {  //row[4]==0
 	   							texto='	<td>';								
-									texto+=' <a href="/promojumanji/eliminar_usuario/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[2]+' '+row[3])+ '"'; 
+									texto+=' <a href="/jumanji/eliminar_usuario/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[2]+' '+row[3])+ '"'; 
 									texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
 									texto+=' <span class="glyphicon glyphicon-remove"></span>';
 									texto+=' </a>';
@@ -200,7 +200,7 @@ jQuery('#tabla_acceso_usuario').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/promojumanji/procesando_historico_accesos",
+	            	"url" : "/jumanji/procesando_historico_accesos",
 	         		"type": "POST",
 	         		
 	     },   
@@ -305,7 +305,7 @@ jQuery('#tabla_listado_completo').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/promojumanji/procesando_listado_completo",
+	            	"url" : "/jumanji/procesando_listado_completo",
 	         		"type": "POST",
 	         		
 	     },   
@@ -415,7 +415,7 @@ jQuery('#tabla_participantes').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/promojumanji/procesando_participantes",
+	            	"url" : "/jumanji/procesando_participantes",
 	         		"type": "POST",
 	     },   
 		"language": {  //tratamiento de lenguaje
@@ -551,7 +551,7 @@ jQuery('#tabla_detalle_participantes').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/promojumanji/procesando_detalle_participantes",
+	            	"url" : "/jumanji/procesando_detalle_participantes",
 	         		"type": "POST",
 	         		"data": function ( d ) {
 	         		 	d.id = jQuery('#id').val();  
@@ -692,7 +692,7 @@ jQuery('#tabla_bitacora_participante').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/promojumanji/procesando_historico_participantes",
+	            	"url" : "/jumanji/procesando_historico_participantes",
 	         		"type": "POST",
 	         		
 	     },   
@@ -788,7 +788,7 @@ jQuery('#tabla_cat_premios').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-                "url" : "/promojumanji/procesando_cat_premios",
+                "url" : "/jumanji/procesando_cat_premios",
               "type": "POST",
               
        },   
@@ -844,7 +844,7 @@ jQuery('#tabla_cat_premios').dataTable( {
                 {
                     "render": function ( data, type, row ) {
 				            texto='<td>';
-				              texto+='<a href="promojumanji/editar_premio/'+jQuery.base64.encode(row[0])+'" type="button"'; 
+				              texto+='<a href="jumanji/editar_premio/'+jQuery.base64.encode(row[0])+'" type="button"'; 
 				              texto+=' class="btn btn-warning btn-sm btn-block" >';
 				                texto+=' <span class="glyphicon glyphicon-edit"></span>';
 				              texto+=' </a>';
@@ -858,7 +858,7 @@ jQuery('#tabla_cat_premios').dataTable( {
                     "render": function ( data, type, row ) {
 		                      if (row[4]==0) {
 					                  texto=' <td>';                
-					                  texto+=' <a href="promojumanji/eliminar_premio/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
+					                  texto+=' <a href="jumanji/eliminar_premio/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
 					                  texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
 					                  texto+=' <span class="glyphicon glyphicon-remove"></span>';
 					                  texto+=' </a>';
@@ -890,7 +890,7 @@ jQuery('#tabla_cat_imagenes').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-                "url" : "/promojumanji/procesando_cat_imagenes",
+                "url" : "/jumanji/procesando_cat_imagenes",
               "type": "POST",
               
        },   
@@ -946,7 +946,7 @@ jQuery('#tabla_cat_imagenes').dataTable( {
                 {
                     "render": function ( data, type, row ) {
 				            texto='<td>';
-				              texto+='<a href="promojumanji/editar_imagen/'+(row[0])+'" type="button"'; 
+				              texto+='<a href="jumanji/editar_imagen/'+(row[0])+'" type="button"'; 
 				              texto+=' class="btn btn-warning btn-sm btn-block" >';
 				                texto+=' <span class="glyphicon glyphicon-edit"></span>';
 				              texto+=' </a>';
@@ -960,7 +960,7 @@ jQuery('#tabla_cat_imagenes').dataTable( {
                     "render": function ( data, type, row ) {
 		                      if (row[4]==0) {
 					                  texto=' <td>';                
-					                  texto+=' <a href="promojumanji/eliminar_imagen/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
+					                  texto+=' <a href="jumanji/eliminar_imagen/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
 					                  texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
 					                  texto+=' <span class="glyphicon glyphicon-remove"></span>';
 					                  texto+=' </a>';
@@ -992,7 +992,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-                "url" : "/promojumanji/procesando_cat_litrajes",
+                "url" : "/jumanji/procesando_cat_litrajes",
               "type": "POST",
               
        },   
@@ -1037,7 +1037,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
                     "render": function ( data, type, row ) {
 
             texto='<td>';
-              texto+='<a href="promojumanji/editar_litraje/'+(row[0])+'" type="button"'; 
+              texto+='<a href="jumanji/editar_litraje/'+(row[0])+'" type="button"'; 
               texto+=' class="btn btn-warning btn-sm btn-block" >';
                 texto+=' <span class="glyphicon glyphicon-edit"></span>';
               texto+=' </a>';
@@ -1055,7 +1055,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
 
                       if (row[2]==0) {
                   texto=' <td>';                
-                  texto+=' <a href="promojumanji/eliminar_litraje/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
+                  texto+=' <a href="jumanji/eliminar_litraje/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
                   texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
                   texto+=' <span class="glyphicon glyphicon-remove"></span>';
                   texto+=' </a>';
@@ -1093,7 +1093,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-                "url" : "/promojumanji/procesando_cat_estados",
+                "url" : "/jumanji/procesando_cat_estados",
               "type": "POST",
               
        },   
@@ -1138,7 +1138,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
                     "render": function ( data, type, row ) {
 
             texto='<td>';
-              texto+='<a href="promojumanji/editar_estado/'+(row[0])+'" type="button"'; 
+              texto+='<a href="jumanji/editar_estado/'+(row[0])+'" type="button"'; 
               texto+=' class="btn btn-warning btn-sm btn-block" >';
                 texto+=' <span class="glyphicon glyphicon-edit"></span>';
               texto+=' </a>';
@@ -1156,7 +1156,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
 
                       if (row[2]==0) {
                   texto=' <td>';                
-                  texto+=' <a href="promojumanji/eliminar_estado/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
+                  texto+=' <a href="jumanji/eliminar_estado/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
                   texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
                   texto+=' <span class="glyphicon glyphicon-remove"></span>';
                   texto+=' </a>';
@@ -1208,7 +1208,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
 						$catalogo = e.target.name;
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-						window.location.href = '/promojumanji/'+$catalogo;				
+						window.location.href = '/jumanji/'+$catalogo;				
 				}
 			} 
 		});
