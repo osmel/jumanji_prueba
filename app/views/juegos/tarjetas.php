@@ -76,7 +76,7 @@
 //https://nnattawat.github.io/flip/
     jQuery(document).ready(function($) {
 
-         
+         $(document).bind("contextmenu",function(e){ return false; });
          //cada vez que vira una carta
         jQuery('body').on('click','.card[valor="n"]', function (e) {               
           jQuery(this).attr('valor','s');
@@ -143,6 +143,8 @@
                                 jQuery('#btn_tiempo').css('display','none');
                                 jQuery('.reloj').css('display','block');
                                   $('.tablero').css('pointer-events','auto');
+
+                                  $(document).bind("contextmenu",function(e){ return true; }); 
 
                               //var timer2 = localStorage.getItem('tiempo_fondo');      
                             
@@ -241,7 +243,8 @@
           //var timer2 = localStorage.getItem('tiempo_fondo'); 
           jQuery('#btn_tiempo').css('display','none');
           jQuery('.reloj').css('display','block');
-          $('.tablero').css('pointer-events','auto');     
+          $('.tablero').css('pointer-events','auto');  
+          $(document).bind("contextmenu",function(e){ return true; });   
         
           var interval = setInterval(function() {
             var timer = localStorage.getItem('tiempo_fondo').split(':');
