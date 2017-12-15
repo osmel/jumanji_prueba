@@ -26,7 +26,7 @@
            <?php for ($i = 1; $i <= count($cara); $i++) {
 
             ?>
-                 <div class="col-xs-3 col-sm-2 col-md-1">
+                 <div class="col-xs-3 col-sm-2 col-md-1 moneda" style="opacity: 0.5;">
                     <div class="card<?php echo ( substr_count($tarjeta,$i.'+')>=1) ? 's': ''; ?>" valor="<?php echo ( substr_count($tarjeta,$i.'+')>=1) ? 's': 'n'; ?>" posicion="<?php echo $i; ?>" numero="<?php echo $misdatos[$i-1]; ?>" cara="<?php echo $cara[$i-1]; ?>" > 
                           
                           <div class="front" style="padding-bottom: 20px;"> 
@@ -144,6 +144,9 @@
                                 jQuery('.reloj').css('display','block');
                                   $('.tablero').css('pointer-events','auto');
 
+                                  
+                                  jQuery('.moneda').css('opacity',1);
+
                                   $(document).bind("contextmenu",function(e){ return true; }); 
 
                               //var timer2 = localStorage.getItem('tiempo_fondo');      
@@ -244,6 +247,7 @@
           jQuery('#btn_tiempo').css('display','none');
           jQuery('.reloj').css('display','block');
           $('.tablero').css('pointer-events','auto');  
+          jQuery('.moneda').css('opacity',1);
           $(document).bind("contextmenu",function(e){ return true; });   
         
           var interval = setInterval(function() {
