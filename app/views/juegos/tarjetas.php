@@ -133,9 +133,9 @@
         jQuery("body").on('click','#btn_tiempo',function(e){  
             
             if  ($('#jgo').val() == 1) {
-              localStorage.setItem('tiempo_fondo', '02:45' );  
+              localStorage.setItem('tiempo_fondo', '00:45' );  
             } else {
-              localStorage.setItem('tiempo_fondo', '01:20' );
+              localStorage.setItem('tiempo_fondo', '00:20' );
             }
             
             $('span.r1').html(localStorage.getItem('tiempo_fondo'));
