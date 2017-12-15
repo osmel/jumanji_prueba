@@ -123,12 +123,17 @@ jQuery(document).ready(function($) {
 						//window.location.href = '/promojumanji/'+data.redireccion;    //$catalogo;				
 
 						//new ok 
-						var url = "/promojumanji/proc_modal_instrucciones";
-						//alert(url);
-						jQuery('#modalInstrucciones').modal({
-							  show:'true',
-							remote:url,
-						}); 	
+						//alert(data.jugo);
+						if (data.jugo!= true) {
+								var url = "/promojumanji/proc_modal_instrucciones";
+								//alert(url);
+								jQuery('#modalInstrucciones').modal({
+									  show:'true',
+									remote:url,
+								}); 	
+						} else {
+							window.location.href = '/promojumanji/';    
+						}
 				}
 			} 
 		});

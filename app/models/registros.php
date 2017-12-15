@@ -293,6 +293,7 @@
           $this->db->select("AES_DECRYPT(p.contrasena,'{$this->key_hash}') AS contrasena", FALSE);
 
           $this->db->select("AES_DECRYPT(p.tarjeta,'{$this->key_hash}') AS tarjeta", FALSE);
+          $this->db->select("AES_DECRYPT(p.tiempo_juego,'{$this->key_hash}') AS tiempo_juego", FALSE);
           $this->db->select("AES_DECRYPT(p.juego,'{$this->key_hash}') AS juego", FALSE);
 
           $this->db->select("AES_DECRYPT(p.email_invitado,'{$this->key_hash}') AS email_invitado", FALSE);      

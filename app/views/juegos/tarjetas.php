@@ -20,7 +20,7 @@
 <br><br><br><br>
 
 <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 tablero">  
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 tablero" style="pointer-events: none;">  
 
        
            <?php for ($i = 1; $i <= count($cara); $i++) {
@@ -48,7 +48,8 @@
 
     </div> 
      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-                <span class="reloj"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="r1 countdown"></span></span>
+                 <button class="btn btn-danger" name="btn_tiempo" id="btn_tiempo">Comenzar</button> 
+                <span class="reloj"  style="display: none;"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="r1 countdown"></span></span>
     
       <div class="monedasvalor">
         <img src="<?php echo base_url(); ?>img/fichas/card1.png"><span> = 100 PTS</span>
@@ -126,15 +127,121 @@
 
         //tiempo
 
+        //jQuery('#btn_tiempo')
+
+        jQuery("body").on('click','#btn_tiempo',function(e){  
+            localStorage.setItem('tiempo_fondo', '00:45' );
+            $('span.r1').html(localStorage.getItem('tiempo_fondo'));
+
+
+
+
+
+
+
+                      if ((localStorage.getItem('tiempo_fondo'))) {
+                                jQuery('#btn_tiempo').css('display','none');
+                                jQuery('.reloj').css('display','block');
+                                  $('.tablero').css('pointer-events','auto');
+
+                              //var timer2 = localStorage.getItem('tiempo_fondo');      
+                            
+                              var interval = setInterval(function() {
+                                var timer = localStorage.getItem('tiempo_fondo').split(':');
+                                console.log(localStorage.getItem('tiempo_fondo'));
+                                //return false;
+
+                                  var minutes = parseInt(timer[0], 10);
+                                  var seconds = parseInt(timer[1], 10);
+                                  --seconds;
+                                  minutes = (seconds < 0) ? --minutes : minutes;
+                                  if (minutes < 0) clearInterval(interval);
+                                  seconds = (seconds < 0) ? 59 : seconds;
+                                  seconds = (seconds < 10) ? '0' + seconds : seconds;
+                                  //minutes = (minutes < 10) ?  minutes : minutes;
+
+
+                                //minutes = (minutes < 10) ?  minutes : minutes;
+                                  if (localStorage.getItem('tiempo_fondo').substring(0, 1) !="-"){
+                                      $('.countdown').html(minutes + ':' + seconds);
+                                  } else {
+                                      $('.countdown').html('0:00');
+                                  } 
+                                  timer2 = minutes + ':' + seconds;
+                                  localStorage.setItem('tiempo_fondo', minutes + ':' + seconds);
+
+
+
+                                  if (localStorage.getItem('tiempo_fondo').substring(0, 1) =="-"){
+                                      $('.countdown').html('0:00');
+                                  } 
+
+                                  if (minutes == 0 && seconds == 0) {
+                                       
+
+                                             jQuery.ajax({ //guardar en la cookie el conteo
+                                                    url : '/promojumanji/tiempo_juego',
+                                                    data : { 
+                                                        tiempo   :  $('span.r1').text(),
+                                                    },
+                                                    type : 'POST',
+                                                    dataType : 'json',
+                                                    success : function(data) {  
+                                                        
+                                                        //console.log(data);
+                                                        clearInterval(interval);  //limpiar el intervalo
+                                                        localStorage.clear();  //quitar las variables del localStorage
+
+                                                        if (data.redireccion ==''){
+                                                                var url = "/promojumanji/proc_modal_facebook";
+                                                              //alert(url);
+                                                              jQuery('#modalMessage_face').modal({
+                                                                    show:'true',
+                                                                  remote:url,
+                                                              });
+                                                              //new ok 
+                                                        } else {
+                                                            //window.location.href = '/promojumanji/'+$catalogo;
+                                                            window.location.href = '/promojumanji/'+data.redireccion;                                   
+                                                        }
+                                                        
+
+
+                                                          return false;
+
+                                                    }
+
+                                            }); 
+
+                                  }
+                               
+                               
+                            }, 1000);
+
+
+ }
+
+
+
+
+
+
+         }); 
         //si es la primera vez entonces
+        /*
         if (!(localStorage.getItem('tiempo_fondo'))) {
             localStorage.setItem('tiempo_fondo', '00:45' );
             $('span.r1').html(localStorage.getItem('tiempo_fondo'));
         }
+        */
 
 
+        if ((localStorage.getItem('tiempo_fondo'))) {
 
-          //var timer2 = localStorage.getItem('tiempo_fondo');      
+          //var timer2 = localStorage.getItem('tiempo_fondo'); 
+          jQuery('#btn_tiempo').css('display','none');
+          jQuery('.reloj').css('display','block');
+          $('.tablero').css('pointer-events','auto');     
         
           var interval = setInterval(function() {
             var timer = localStorage.getItem('tiempo_fondo').split(':');
@@ -209,7 +316,7 @@
         }, 1000);
 
 
-
+ } // aqui termina
                                           
                                           
                                           

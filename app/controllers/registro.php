@@ -665,6 +665,7 @@ function validar_invitado(){
 				    "email" => '',
 				    "contrasena" => '',
 				    'general'=> '',
+				    'jugo' => false,
 				);
 
 		$this->form_validation->set_rules( 'email', 'Correo', 'trim|required|valid_email|xss_clean');
@@ -692,6 +693,12 @@ function validar_invitado(){
 							$this->session->set_userdata('nombre_participante', $element->nombre.' '.$element->apellidos);
 							$this->session->set_userdata('tarjeta_participante', $element->tarjeta);
 							$this->session->set_userdata('juego_participante', $element->juego);
+
+							if   ( ( substr_count($element->tarjeta,';') <90) && ($element->tiempo_juego!='0:00') ) {
+								$mis_errores['jugo'] = $element->tarjeta;	
+							} else {
+								$mis_errores['jugo'] = true;	
+							}	
 						}					
 
 										
