@@ -48,7 +48,7 @@
 
     </div> 
      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-                 <button class="btn btn-danger" name="btn_tiempo" id="btn_tiempo">Comenzar</button> 
+                 <button class="btn btn-danger" name="btn_tiempo" id="btn_tiempo">JUGAR AHORA</button> 
                 <span class="reloj"  style="display: none;"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="r1 countdown"></span></span>
     
       <div class="monedasvalor">
