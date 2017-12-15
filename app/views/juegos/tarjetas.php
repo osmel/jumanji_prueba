@@ -14,6 +14,7 @@
  ?>   
 
 
+  <input type="hidden" id="jgo" name="jgo" value="<?php echo $jgo; ?>">
 
 <div class="container mecanica">
 
@@ -130,7 +131,13 @@
         //jQuery('#btn_tiempo')
 
         jQuery("body").on('click','#btn_tiempo',function(e){  
-            localStorage.setItem('tiempo_fondo', '00:45' );
+            
+            if  ($('#jgo').val() == 1) {
+              localStorage.setItem('tiempo_fondo', '00:45' );  
+            } else {
+              localStorage.setItem('tiempo_fondo', '00:20' );
+            }
+            
             $('span.r1').html(localStorage.getItem('tiempo_fondo'));
 
 

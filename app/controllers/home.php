@@ -28,9 +28,11 @@ class Home extends CI_Controller {
 			if ((int)$preg->redes==1) {  //si ya compartio
 				$mitarjeta = $preg->tarjeta2;
 				$mitiempo=$preg->tiempo_juego2;
+				$data['jgo'] =2;
 			} else {
 				$mitarjeta = $preg->tarjeta;	
 				$mitiempo=$preg->tiempo_juego;
+				$data['jgo'] =1;
 			}
 			
 
