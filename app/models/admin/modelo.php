@@ -849,6 +849,9 @@ public function buscador_participantes($data){
                                     $cantidad=array(0,0,0,0,0,0,0);
                                     $imagen=array("","","","","","","");
 
+                                    
+                                    $maximo=array(0,5,10,15,20,40,0);
+
                                     for ($i=1; $i <=5 ; $i++) { 
                                         $imagen[$i] = $this->session->userdata("i".$i); 
                                       
@@ -860,14 +863,14 @@ public function buscador_participantes($data){
                                         foreach ($matriz as $key => $value) { //
                                             $ma1=explode( "+",$value);  
                                             $ma2=explode( "|",$ma1[1]); 
-                                            
-                                              $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
-
-                                              $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
+                                              
+                                              $arreglo[$ma2[1]]  =$arreglo[$ma2[1]]+ ($cantidad[$ma2[1]]<$maximo[$ma2[1]])*((int)$this->session->userdata('ip'.$ma2[1]));
+                                              $total =$total+ ($cantidad[$ma2[1]]<$maximo[$ma2[1]])*((int)$this->session->userdata('ip'.$ma2[1]));
+                                              $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+($cantidad[$ma2[1]]<$maximo[$ma2[1]]*1);
 
                                               $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
                                               
-                                              $total+= (int)$this->session->userdata('ip'.$ma2[1]);
+                                              
 
                                         } 
                                         if ($row->fecha_pc <= 1513900799) 
@@ -1736,6 +1739,8 @@ public function buscador_listado_completo($data){
                                     $arreglo=array(0,0,0,0,0,0,0);
                                     $cantidad=array(0,0,0,0,0,0,0);
                                     $imagen=array("","","","","","","");
+                                    $maximo=array(0,5,10,15,20,40,0);
+
                                     for ($i=1; $i <=5 ; $i++) { 
                                         $imagen[$i] = $this->session->userdata("i".$i); 
                                       
@@ -1749,12 +1754,16 @@ public function buscador_listado_completo($data){
                                             $ma1=explode( "+",$value);  
                                             $ma2=explode( "|",$ma1[1]); 
                                             
-                                              $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
+                                               
+                                              $arreglo[$ma2[1]]  =$arreglo[$ma2[1]]+ ($cantidad[$ma2[1]]<$maximo[$ma2[1]])*((int)$this->session->userdata('ip'.$ma2[1]));
+                                              $total =$total+ ($cantidad[$ma2[1]]<$maximo[$ma2[1]])*((int)$this->session->userdata('ip'.$ma2[1]));
+                                              $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+($cantidad[$ma2[1]]<$maximo[$ma2[1]]*1);
 
-                                              $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
+
+                                              
 
                                               $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
-                                              $total+= (int)$this->session->userdata('ip'.$ma2[1]);
+                                              //$total+= (int)$this->session->userdata('ip'.$ma2[1]);
 
                                         } 
 
@@ -1780,6 +1789,7 @@ public function buscador_listado_completo($data){
 
                                     $arreglo=array(0,0,0,0,0,0,0);
                                     $cantidad=array(0,0,0,0,0,0,0);
+                                    $maximo=array(0,5,10,15,20,40,0); 
                                     $imagen=array("","","","","","","");
 
                                     for ($i=1; $i <=5 ; $i++) { 
@@ -1794,14 +1804,19 @@ public function buscador_listado_completo($data){
                                         $ma1=explode( "+",$value);  
                                         $ma2=explode( "|",$ma1[1]); 
                                         
-                                          $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+1;
+                                            
+                                                 
+                                              $arreglo[$ma2[1]]  =$arreglo[$ma2[1]]+ ($cantidad[$ma2[1]]<$maximo[$ma2[1]])*((int)$this->session->userdata('ip'.$ma2[1]));
+                                              $total =$total+ ($cantidad[$ma2[1]]<$maximo[$ma2[1]])*((int)$this->session->userdata('ip'.$ma2[1]));
+                                              $cantidad[$ma2[1]] =$cantidad[$ma2[1]]+($cantidad[$ma2[1]]<$maximo[$ma2[1]]*1);
 
-                                          $arreglo[$ma2[1]]  += (int)$this->session->userdata('ip'.$ma2[1]);
+                                              
 
-                                          $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
-                                          $total+= (int)$this->session->userdata('ip'.$ma2[1]);
-
+                                              $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
+                                              //$total+= (int)$this->session->userdata('ip'.$ma2[1]);
                                     } 
+                                    if ($row->fecha_pc <= 1513900799) 
+                                            $total=$total+50;
 
                               
 
