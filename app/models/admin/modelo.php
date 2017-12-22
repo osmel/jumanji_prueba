@@ -873,7 +873,7 @@ public function buscador_participantes($data){
                                               
 
                                         } 
-                                        if ($row->fecha_pc <= 1513900799) 
+                                        if ($row->fecha_pc <= 1513814399) 
                                             $total=$total+50;
                                   }
 
@@ -1767,7 +1767,7 @@ public function buscador_listado_completo($data){
 
                                         } 
 
-                                       if ($row->fecha_pc <= 1513900799) 
+                                       if ($row->fecha_pc <= 1513814399) 
                                             $total=$total+50;
                                   }
 
@@ -1815,7 +1815,7 @@ public function buscador_listado_completo($data){
                                               $imagen[$ma2[1]] = $this->session->userdata("i".$ma2[1]); 
                                               //$total+= (int)$this->session->userdata('ip'.$ma2[1]);
                                     } 
-                                    if ($row->fecha_pc <= 1513900799) 
+                                    if ($row->fecha_pc <= 1513814399) 
                                             $total=$total+50;
 
                               

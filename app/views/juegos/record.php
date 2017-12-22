@@ -43,7 +43,8 @@
 					} 
 
 
-					if ($jefe->fecha_pc <= 1513900799) 
+					//if ($jefe->fecha_pc <= 1513900799)
+ if ($jefe->fecha_pc <= 1513814399)
 					  $suma_jefe=$suma_jefe+50;	  
 				}
 
@@ -67,6 +68,7 @@
 					} 
 					/*
 					if ($jefe->fecha_pc <= 1513900799) 
+
 					  $suma_jefe=$suma_jefe+50;	  
 					  */
 
@@ -99,7 +101,8 @@
 					} 
 
 
-					if ($invitado->fecha_pc <= 1513900799) 
+					//if ($invitado->fecha_pc <= 1513900799) 
+ if ($jefe->fecha_pc <= 1513814399)
 					$suma_invitado=$suma_invitado+50;
 				}
 
